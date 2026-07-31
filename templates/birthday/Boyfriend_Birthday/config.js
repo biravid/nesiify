@@ -20,7 +20,7 @@ const CONFIG = {
     title: "Happy Birthday, Ethan! ❤️",
     subTitle: "Welcome to your special digital corner. A little journey through our love, memories, and everything that makes you so special to me.",
     ctaText: "Begin the Journey",
-    backgroundImage: "images/hero.jpg" // Will fall back to premium animated gradient if missing
+    backgroundImage: "images/hero.jpeg" // Will fall back to premium animated gradient if missing
   },
 
   // Story / About Section
@@ -31,7 +31,7 @@ const CONFIG = {
       "Every single day spent with you is a gift. You've taught me what love truly means, and I am so grateful for all the quiet moments, the loud laughs, and the beautiful dreams we share.",
       "This website is a tiny celebration of you—your strength, your kindness, and the incredible person you are. Happy Birthday, my love!"
     ],
-    image: "images/photo1.jpg" // Will fall back to gradient if missing
+    image: "images/photo1.jpeg" // Will fall back to gradient if missing
   },
 
   // Interactive Love Letter
@@ -56,46 +56,46 @@ const CONFIG = {
       date: "October 12, 2024",
       title: "First Met",
       desc: "The day our worlds crossed and my life changed forever. That first conversation started it all.",
-      image: "images/photo2.jpg"
+      image: "images/photo2.jpeg"
     },
     {
       date: "December 25, 2024",
       title: "First Christmas Together",
       desc: "Under the twinkling lights, I realized you were the only gift I would ever need.",
-      image: "images/photo3.jpg"
+      image: "images/photo3.jpeg"
     },
     {
       date: "May 14, 2025",
       title: "Our First Road Trip",
       desc: "Getting lost on winding roads, singing along to our favorite songs at the top of our lungs.",
-      image: "images/photo4.jpg"
+      image: "images/photo4.jpeg"
     },
     {
       date: "July 7, 2025",
       title: "Celebrating under the Stars",
       desc: "A quiet beach night talking about our dreams, watching the stars align.",
-      image: "images/photo5.jpg"
+      image: "images/photo5.jpeg"
     }
   ],
 
   // Masonry Photo Gallery (8 images)
   gallery: [
-    { image: "images/photo1.jpg", caption: "Your bright smile that lights up my darkest days." },
-    { image: "images/photo2.jpg", caption: "The cozy afternoon where time stood completely still." },
-    { image: "images/photo3.jpg", caption: "That spontaneous picture I love so much." },
-    { image: "images/photo4.jpg", caption: "A memory etched forever in my heart." },
-    { image: "images/photo5.jpg", caption: "Adventure is wherever I am with you." },
-    { image: "images/photo6.jpg", caption: "Making memories one laugh at a time." },
-    { image: "images/photo7.jpg", caption: "Under the warm glow of the summer sun." },
-    { image: "images/photo8.jpg", caption: "Holding your hand is my favorite place to be." }
+    { image: "images/photo1.jpeg", caption: "Your bright smile that lights up my darkest days." },
+    { image: "images/photo2.jpeg", caption: "The cozy afternoon where time stood completely still." },
+    { image: "images/photo3.jpeg", caption: "That spontaneous picture I love so much." },
+    { image: "images/photo4.jpeg", caption: "A memory etched forever in my heart." },
+    { image: "images/photo5.jpeg", caption: "Adventure is wherever I am with you." },
+    { image: "images/photo6.jpeg", caption: "Making memories one laugh at a time." },
+    { image: "images/photo7.jpeg", caption: "Under the warm glow of the summer sun." },
+    { image: "images/photo8.jpeg", caption: "Holding your hand is my favorite place to be." }
   ],
 
   // Polaroid Memory Wall
   polaroids: [
-    { image: "images/photo1.jpg", caption: "Pure Happiness ☀️" },
-    { image: "images/photo3.jpg", caption: "My Favorite Smile ❤️" },
-    { image: "images/photo5.jpg", caption: "Partners in Crime 🕶️" },
-    { image: "images/photo7.jpg", caption: "A Quiet Moment ☕" }
+    { image: "images/photo1.jpeg", caption: "Pure Happiness ☀️" },
+    { image: "images/photo3.jpeg", caption: "My Favorite Smile ❤️" },
+    { image: "images/photo5.jpeg", caption: "Partners in Crime 🕶️" },
+    { image: "images/photo7.jpeg", caption: "A Quiet Moment ☕" }
   ],
 
   // Reasons Why I Love You

@@ -1,31 +1,31 @@
-// Custom data configuration for the surprise website.
+// Custom data configuration for the surprise website (Cute Theme Version).
 const CONFIG = {
   // Website configuration
   birthdayDate: "2026-10-24T00:00:00", // Target date for countdown (YYYY-MM-DDTHH:mm:ss)
   recipientName: "Sophia", // Name of the birthday girl
   senderName: "Alex", // Your name
 
-  // Theme customization
+  // Cute Theme Customization
   theme: {
-    primaryColor: "#ff4d6d", // Core primary color (e.g., romantic pink/red)
-    secondaryColor: "#ff758f", // Accent color
-    textColorDark: "#2b2d42", // Text color in light mode
-    textColorLight: "#f8f9fa", // Text color in dark mode
-    fontFamilyTitle: "'Playfair Display', serif", // Title font style
-    fontFamilyBody: "'Outfit', sans-serif" // Body font style
+    primaryColor: "#ff6b8b", // Soft cute bubblegum pink
+    secondaryColor: "#ff9ebb", // Soft rose / cotton candy
+    textColorDark: "#4a3e4e", // Soft cozy plum grey
+    textColorLight: "#fff0f5", // Light lavender blush
+    fontFamilyTitle: "'Fredoka', 'Bubblegum Sans', cursive", // Cute rounded display font
+    fontFamilyBody: "'Nunito', sans-serif" // Soft rounded body font
   },
 
   // Hero Section
   hero: {
-    title: "Happy Birthday, Sophia! ❤️",
-    subTitle: "Welcome to your special digital corner. A little journey through our love, memories, and everything that makes you beautiful to me.",
-    ctaText: "Begin the Journey",
-    backgroundImage: "images/hero.jpeg" // Will fall back to premium animated gradient if missing
+    title: "Happy Birthday, Sophia! 🎀✨",
+    subTitle: "Welcome to your special cute digital corner. A little journey through our love, sweet memories, and everything that makes you adorable to me.",
+    ctaText: "Begin the Journey 💖",
+    backgroundImage: "images/photo8.jpeg" // Will fall back to cute animated gradient if missing
   },
 
   // Story / About Section
   story: {
-    title: "Our Story",
+    title: "Our Sweet Story 🌸",
     paragraphs: [
       "From the very first moment we talked, I knew there was something exceptionally special about you. Your smile, your laugh, and the warmth you bring into my life have turned ordinary days into unforgettable adventures.",
       "Every single day spent with you is a gift. You've taught me what love truly means, and I am so grateful for all the quiet moments, the loud laughs, and the beautiful dreams we share.",
@@ -36,7 +36,7 @@ const CONFIG = {
 
   // Interactive Love Letter
   letter: {
-    title: "A Letter For You",
+    title: "A Letter For You 💌",
     greeting: "Dearest Sophia,",
     body: "I wanted to write you something that you could keep forever. Words often fall short when I try to describe how much you mean to me, but here is my honest attempt. You are my best friend, my greatest comfort, and my favorite adventure. Thank you for being your beautiful, authentic self. Thank you for choosing to walk this path with me. I love you more than words can say. Happy Birthday!",
     closing: "Always & Forever,",
@@ -45,34 +45,34 @@ const CONFIG = {
 
   // Countdown Section Messages
   countdown: {
-    preMessage: "Counting down to your special day...",
-    activeMessage: "Happy Birthday, My Love! The celebration is live!",
-    postMessage: "Celebrating another beautiful year of you."
+    preMessage: "Counting down to your special day... ⏳💕",
+    activeMessage: "Happy Birthday, My Love! The celebration is live! 🎉",
+    postMessage: "Celebrating another beautiful year of you. 🥰"
   },
 
   // Memory Timeline
   timeline: [
     {
       date: "October 12, 2024",
-      title: "First Met",
+      title: "First Met ✨",
       desc: "The day our worlds crossed and my life changed forever. That first conversation started it all.",
       image: "images/photo2.jpeg"
     },
     {
       date: "December 25, 2024",
-      title: "First Christmas Together",
+      title: "First Christmas Together 🎄",
       desc: "Under the twinkling lights, I realized you were the only gift I would ever need.",
       image: "images/photo3.jpeg"
     },
     {
       date: "May 14, 2025",
-      title: "Our First Road Trip",
+      title: "Our First Road Trip 🚗",
       desc: "Getting lost on winding roads, singing along to our favorite songs at the top of our lungs.",
       image: "images/photo4.jpeg"
     },
     {
       date: "July 7, 2025",
-      title: "Celebrating under the Stars",
+      title: "Celebrating under the Stars 🌟",
       desc: "A quiet beach night talking about our dreams, watching the stars align.",
       image: "images/photo5.jpeg"
     }
@@ -144,7 +144,6 @@ const CONFIG = {
   music: {
     title: "Sweet Romantic Melody",
     artist: "Relaxing Love Themes",
-    // Premium royalty-free background acoustic instrumental music (direct audio link)
     audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
   },
 
@@ -159,9 +158,9 @@ const CONFIG = {
 
   // Interactive Gift Box Section
   giftBox: {
-    messageBeforeOpen: "Click the gift to unwrap your birthday surprise!",
+    messageBeforeOpen: "Click the gift to unwrap your birthday surprise! 🎁",
     messageAfterOpen: "Yay! Happy Birthday! 🎉 Enjoy this beautiful page created just for you!",
-    surpriseCardTitle: "Special Birthday Coupon",
+    surpriseCardTitle: "Special Birthday Coupon 🎟️",
     surpriseCardDesc: "Valid for: One full day of pampered royal treatment, your favorite dinner, and a movie night of your choosing. No exceptions!"
   },
 
