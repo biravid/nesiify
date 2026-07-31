@@ -1,0 +1,17 @@
+:root {
+  --bg-primary: #0a0914;
+  --bg-secondary: #131124;
+  --bg-card: rgba(25, 23, 48, 0.8);
+  --text-primary: #e6e5ec;
+  --text-secondary: #a3a1b8;
+  --accent-color: #ff3377; /* Neon rose */
+  --accent-glow: rgba(255, 51, 119, 0.45);
+  --border-color: #272346;
+  --gold-accent: #ffb703; /* Radiant glowing gold */
+  --timeline-line: #2e2954;
+  --heart-color: #ff3377;
+  --envelope-bg: #1d1b33;
+  --envelope-seal: #ff3377;
+  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  --input-bg: #131124;
+}

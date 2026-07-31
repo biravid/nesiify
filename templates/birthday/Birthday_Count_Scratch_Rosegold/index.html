@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday! ✨</title>
+  <meta name="description" content="A premium birthday countdown, memories gallery, and digital scratch card wish.">
+  
+  <!-- Google Fonts for Luxury Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  
+  <!-- Main Stylesheet -->
+  
+
+      <link rel="stylesheet" href="style-rosegold.css"> 
+  
+  <!-- Config File (Loaded first so scripts can access it) -->
+  <script src="config.js" defer></script>
+  <!-- Main JS file -->
+  <script src="script.js" defer></script>
+</head>
+<body>
+  
+  <!-- Particle Background Canvas -->
+  <canvas id="bg-canvas"></canvas>
+  
+  <!-- Confetti Celebration Canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Autoplay Fallback / Music Widget -->
+  <div class="music-widget" id="music-widget">
+    <button class="music-toggle" id="music-toggle" aria-label="Toggle Music">
+      <svg class="icon-play" viewBox="0 0 24 24" width="24" height="24">
+        <path d="M8 5v14l11-7z" fill="currentColor"/>
+      </svg>
+      <svg class="icon-pause hidden" viewBox="0 0 24 24" width="24" height="24">
+        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" fill="currentColor"/>
+      </svg>
+    </button>
+    <div class="music-info">
+      <span class="music-title">Birthday Melodies</span>
+      <div class="visualizer" id="music-visualizer">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </div>
+    <div class="volume-control">
+      <svg viewBox="0 0 24 24" width="16" height="16">
+        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" fill="currentColor"/>
+      </svg>
+      <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.5" aria-label="Volume Slider">
+    </div>
+  </div>
+
+  <!-- Interactive Background Sound Request Prompt -->
+  <div class="interaction-overlay" id="interaction-overlay">
+    <div class="overlay-card">
+      <div class="gift-icon">🎁</div>
+      <h2>A Special Birthday Surprise</h2>
+      <p>Click below to enter the celebration with music and sound effects!</p>
+      <button class="enter-btn" id="enter-btn">Open Surprise ✨</button>
+    </div>
+  </div>
+
+  <main class="main-container">
+    
+    <!-- Hero / Welcome Header -->
+    <header class="hero-section">
+      <p class="pre-title">CELEBRATING A WONDERFUL LIFE</p>
+      <h1 class="celebrant-name" id="celebrant-title">Happy Birthday, <span class="glow-text" id="name-placeholder">Aria</span>!</h1>
+      <p class="tagline" id="tagline-placeholder">Counting down to the big moment...</p>
+    </header>
+
+    <!-- Countdown Timer Card -->
+    <section class="countdown-section" id="countdown-section">
+      <div class="glass-card countdown-card">
+        <div class="countdown-timer" id="timer">
+          <div class="time-block">
+            <span class="time-num" id="days">00</span>
+            <span class="time-label">Days</span>
+          </div>
+          <div class="time-separator">:</div>
+          <div class="time-block">
+            <span class="time-num" id="hours">00</span>
+            <span class="time-label">Hours</span>
+          </div>
+          <div class="time-separator">:</div>
+          <div class="time-block">
+            <span class="time-num" id="minutes">00</span>
+            <span class="time-label">Mins</span>
+          </div>
+          <div class="time-separator">:</div>
+          <div class="time-block">
+            <span class="time-num" id="seconds">00</span>
+            <span class="time-label">Secs</span>
+          </div>
+        </div>
+        <p class="countdown-message" id="countdown-msg">until 12:00 AM of the special day</p>
+      </div>
+    </section>
+
+    <!-- Celebration Wish Banner (shown when target date arrived/passed) -->
+    <section class="celebration-banner hidden" id="celebration-banner">
+      <div class="glass-card celebration-card">
+        <div class="sparkles-container">✨ 🎉 🎂 💖 🥳 🎈</div>
+        <h2>The Big Day is Here!</h2>
+        <p>Wishing you a day as sweet as you are and a year ahead full of beautiful surprises!</p>
+      </div>
+    </section>
+
+    <!-- Sliding Photo Gallery Section -->
+    <section class="gallery-section" id="gallery-section">
+      <h2 class="section-title">Memory Lane 📸</h2>
+      <p class="section-subtitle">A collection of beautiful moments together</p>
+      
+      <div class="gallery-container">
+        <div class="slider-wrapper">
+          <div class="slider" id="gallery-slider">
+            <!-- Dynamic slides will be injected here by JS -->
+          </div>
+        </div>
+
+        <!-- Slider Navigation Controls -->
+        <button class="nav-btn prev-btn" id="prev-btn" aria-label="Previous Slide">
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="currentColor"/>
+          </svg>
+        </button>
+        <button class="nav-btn next-btn" id="next-btn" aria-label="Next Slide">
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="currentColor"/>
+          </svg>
+        </button>
+
+        <!-- Slider Dots Navigation -->
+        <div class="slider-dots" id="slider-dots">
+          <!-- Dynamic dots will be injected here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Scratch Card Section -->
+    <section class="scratch-section" id="scratch-section">
+      <h2 class="section-title">A Hidden Message 🤫</h2>
+      <p class="section-subtitle">Scratch off the golden seal below to reveal your personal birthday wish!</p>
+      
+      <div class="scratch-card-container">
+        <!-- Message Container (underneath the canvas) -->
+        <div class="scratch-message-box glass-card" id="scratch-message-box">
+          <div class="wish-decor">✉️</div>
+          <div class="wish-text" id="wish-text-placeholder">
+            Loading your special wish...
+          </div>
+          <div class="wish-signature">With love & warmest wishes ✨</div>
+        </div>
+        
+        <!-- Scratch Surface Canvas -->
+        <canvas id="scratch-canvas" class="scratch-canvas"></canvas>
+      </div>
+      
+      <div class="scratch-instructions" id="scratch-instructions">
+        👉 Tap/Click & drag to scratch the card
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Made with 💖 by nesiify.shop for a beautiful celebration</p>
+    </footer>
+
+  </main>
+</body>
+</html>

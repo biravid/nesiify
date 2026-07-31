@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" class="theme-dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anniversary Surprise</title>
+<meta name="description" content="A digital anniversary surprise celebrating our love story.">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Mulish:wght@400;600;700;800&family=Caveat:wght@600&family=Noto+Serif+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+
+<!-- Theme variables (load both; JS toggles which is active) -->
+<link rel="stylesheet" href="css/dark.css">
+<link rel="stylesheet" href="css/light.css">
+<!-- Structure & components -->
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============================== ENTRY GATE ============================== -->
+<div id="entry-gate">
+  <div class="mono-heart">&#10084;</div>
+  <h1 id="entry-title">A little something for you&hellip;</h1>
+  <button id="entry-btn" class="btn">Open Your Surprise</button>
+</div>
+
+<!-- ============================== DECOR LAYERS ============================== -->
+<div class="starfield" aria-hidden="true"></div>
+<div class="float-layer" id="float-layer" aria-hidden="true"></div>
+<canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+<!-- ============================== TOP BAR ============================== -->
+<header id="topbar">
+  <div class="brand" id="brand-name">Names &amp; Names</div>
+  <div class="controls">
+    <button id="audio-toggle" class="icon-btn" aria-label="Play music"></button>
+    <button id="theme-toggle" class="icon-btn" aria-label="Switch theme"></button>
+  </div>
+</header>
+
+<!-- ============================== HERO ============================== -->
+<section id="hero">
+  <img class="hero-img" id="hero-img" src="" alt="">
+  <div class="hero-content">
+    <div class="eyebrow">Happy Anniversary</div>
+    <h1 class="hero-names" id="hero-names"></h1>
+    <p class="hero-wish" id="hero-wish"></p>
+    <p class="hero-wish" id="hero-subline" style="margin-top:.5rem; font-size:1rem; opacity:.85;"></p>
+    <div class="hero-meta">
+      <div class="stat"><b id="stat-years">0</b><span>Years Together</span></div>
+      <div class="stat"><b id="stat-days">0</b><span>Days &amp; Counting</span></div>
+      <div class="stat"><b id="stat-countdown">0</b><span>Days To Next Anniversary</span></div>
+    </div>
+  </div>
+  <div class="scroll-cue"><span class="line"></span>Scroll</div>
+</section>
+
+<!-- ============================== TIMELINE ============================== -->
+<section id="timeline" class="section">
+  <div class="section-head reveal">
+    <div class="eyebrow">The Journey</div>
+    <h2>Every Chapter Of Us</h2>
+    <p>From the first hello to right now &mdash; the moments that quietly became a lifetime.</p>
+  </div>
+  <div class="timeline-path" id="timeline-list"></div>
+</section>
+
+<!-- ============================== GALLERY ============================== -->
+<section id="gallery" class="section">
+  <div class="section-head reveal">
+    <div class="eyebrow">Memories</div>
+    <h2>A Gallery Of Us</h2>
+    <p>A handful of the thousands of moments we've collected together.</p>
+  </div>
+  <div class="gallery-grid" id="gallery-grid"></div>
+</section>
+
+<!-- ============================== POLAROIDS ============================== -->
+<section id="polaroids" class="section">
+  <div class="section-head reveal">
+    <div class="eyebrow">Keepsakes</div>
+    <h2>Pinned To My Heart</h2>
+    <p>The little snapshots I'd save first if the house was on fire.</p>
+  </div>
+  <div class="polaroid-strip" id="polaroid-strip"></div>
+</section>
+
+<!-- ============================== LOVE LETTER ============================== -->
+<section id="letter" class="section">
+  <div class="section-head reveal">
+    <div class="eyebrow">Just For You</div>
+    <h2>A Letter, Sealed With Love</h2>
+    <p>Click the envelope to open it.</p>
+  </div>
+  <div class="envelope-wrap reveal">
+    <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Open the love letter">
+      <div class="envelope-paper"></div>
+      <div class="envelope-body"></div>
+      <div class="envelope-flap"></div>
+      <div class="wax-seal" id="wax-seal"></div>
+    </div>
+  </div>
+  <p class="envelope-note" style="text-align:center; margin-top:1rem;">Tap the envelope to open your letter</p>
+</section>
+
+<div class="letter-modal" id="letter-modal">
+  <div class="letter-sheet">
+    <button class="close-btn" id="letter-close" aria-label="Close letter">&times;</button>
+
+    <p class="salutation" id="letter-salutation"></p>
+    <div id="letter-body"></div>
+    
+    <p class="signature"><span id="letter-signature"></span><br><span id="letter-signature-name"></span></p>
+  </div>
+</div>
+
+<div class="letter-passcode-modal" id="letter-passcode-modal" aria-hidden="true">
+  <div class="passcode-card">
+    <button class="close-btn" id="passcode-close" aria-label="Close modal">&times;</button>
+    <div class="passcode-icon">🔒</div>
+    <h3>Sealed With Love</h3>
+    <p>Enter the secret passcode to open your letter.</p>
+    <form id="passcode-form">
+      <input type="password" id="passcode-input" placeholder="Enter passcode..." autocomplete="off" required>
+      <button type="submit" class="btn">Unlock Letter</button>
+    </form>
+    <p class="passcode-error" id="passcode-error"></p>
+  </div>
+</div>
+
+<!-- ============================== GIFT BOX ============================== -->
+<section id="giftbox" class="section">
+  <div class="section-head reveal">
+    <div class="eyebrow">Open Me</div>
+    <h2 id="gift-title">One More Thing&hellip;</h2>
+  </div>
+  <div class="gift reveal" id="gift" role="button" tabindex="0" aria-label="Open the gift">
+    <div class="gift-lid">
+      <div class="gift-ribbon-h"></div>
+      <div class="gift-bow"></div>
+    </div>
+    <div class="gift-base">
+      <div class="gift-ribbon-v"></div>
+    </div>
+  </div>
+  <p class="gift-hint">click / tap the box</p>
+  <p class="gift-message" id="gift-message"></p>
+</section>
+
+<!-- ============================== KEEPSAKE DOWNLOAD ============================== -->
+<section id="keepsake" class="section">
+  <div class="section-head reveal">
+    <div class="eyebrow">Forever Treasure</div>
+    <h2>Keep This Memory Forever</h2>
+    <p>Download this entire surprise as a printable PDF keepsake containing all our memories, photos, quotes, and love letter.</p>
+  </div>
+  <div class="keepsake-card reveal">
+    <div class="keepsake-icon">💖📄</div>
+    <h3>Our Love Story, Saved Forever</h3>
+    <p>Click below to download a PDF document of this website to treasure for years to come.</p>
+    <button id="download-pdf-btn" class="btn">Download Keepsake PDF 📄</button>
+    <p id="pdf-status" class="pdf-status" role="status" aria-live="polite"></p>
+  </div>
+<!-- ============================== CAROUSEL KEEPSAKE ============================== -->
+<section id="carousel-section" class="section">
+  <div class="section-head reveal">
+    <div class="eyebrow">Visual Album</div>
+    <h2>Memory Card Carousel</h2>
+    <p>Browse and download high-resolution PNG image cards of our love story to share or save on your phone.</p>
+  </div>
+
+  <div class="carousel-wrapper reveal">
+    <div class="carousel-viewport" id="carousel-viewport">
+      <div class="carousel-track" id="carousel-track">
+        <div style="padding:40px; text-align:center; color:var(--muted);">Generating PNG memory cards... ✨</div>
+      </div>
+    </div>
+
+    <button class="carousel-arrow prev" id="carousel-prev" aria-label="Previous card">&lsaquo;</button>
+    <button class="carousel-arrow next" id="carousel-next" aria-label="Next card">&rsaquo;</button>
+
+    <div class="carousel-dots" id="carousel-dots"></div>
+
+    <div class="carousel-actions">
+      <button id="download-current-slide" class="btn btn-ghost">Download Selected Card 🖼️</button>
+      <button id="download-all-slides" class="btn">Download All PNG Cards 📸</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== FOOTER ============================== -->
+<footer>
+  Made with <span class="heart-inline">&#10084;</span> for <span id="footer-names"></span> &mdash; <span id="footer-year"></span>
+</footer>
+
+<audio id="bg-audio" preload="none"></audio>
+<div style="display:none" id="audio-title"></div>
+
+<!-- Confetti / fireworks engine -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.9.3/confetti.browser.min.js"></script>
+<!-- html2canvas image generator -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<!-- Vector PDF export engine -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<!-- Site config (edit this file to personalize) -->
+<script src="js/config.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

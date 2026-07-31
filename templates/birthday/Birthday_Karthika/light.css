@@ -1,0 +1,45 @@
+/* LIGHT THEME STYLESHEET - Romantic Blush, Soft Cream, Champagne Gold */
+:root {
+  --theme-mode: "light";
+  --bg-primary: #fff0f3;
+  --bg-secondary: #ffb3c1;
+  --bg-gradient: linear-gradient(135deg, #fff0f3 0%, #ffccd5 50%, #ffb3c1 100%);
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --card-border: rgba(255, 182, 193, 0.5);
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --glass-shadow: 0 10px 30px rgba(230, 57, 70, 0.12);
+
+  --text-primary: #590d22;
+  --text-secondary: #800f2f;
+  --text-muted: #a4133c;
+  --accent-color: #ff4d6d;
+  --accent-secondary: #c9184a;
+  --accent-gold: #ffb703;
+  --accent-glow: rgba(255, 77, 109, 0.35);
+
+  --hero-overlay: linear-gradient(180deg, rgba(89, 13, 34, 0.2) 0%, rgba(89, 13, 34, 0.7) 100%);
+  --timeline-line: #ff758f;
+  --timeline-badge: #ff4d6d;
+
+  --polaroid-bg: #ffffff;
+  --polaroid-shadow: 0 15px 35px rgba(164, 19, 60, 0.15);
+  --polaroid-tape: rgba(255, 204, 213, 0.8);
+  --polaroid-text: #590d22;
+
+  --envelope-bg: #fff0f3;
+  --envelope-flap: #ffccd5;
+  --envelope-inner: #ff8fa3;
+  --envelope-seal: #c9184a;
+  --letter-paper: #fffcf7;
+
+  --gift-box-base: #ff4d6d;
+  --gift-box-lid: #ff758f;
+  --gift-ribbon: #ffd700;
+
+  --input-bg: rgba(255, 255, 255, 0.9);
+  --input-border: #ff8fa3;
+  --input-text: #590d22;
+
+  --floating-heart-color: rgba(255, 77, 109, 0.6);
+}

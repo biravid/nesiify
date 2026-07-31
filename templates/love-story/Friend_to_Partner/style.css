@@ -1,0 +1,503 @@
+/* ==========================================================================
+   TOKENS
+   ========================================================================== */
+:root{
+  --cream:        #FFF6F0;
+  --blush:        #FBE4E8;
+  --blush-deep:   #F6D3D9;
+  --rose:         #E8A0B4;
+  --deep-rose:    #B45C7A;
+  --gold:         #D4AF7A;
+  --sage:         #93A889;
+  --sage-deep:    #7B9871;
+  --ink:          #4A3B42;
+  --ink-light:    #8A7680;
+
+  --display: "Fraunces", "Iowan Old Style", serif;
+  --body:    "Literata", Georgia, serif;
+  --script:  "Caveat", cursive;
+
+  --max-w: 1120px;
+  --space-section: clamp(4rem, 10vw, 8rem);
+  --ease: cubic-bezier(.22,1,.36,1);
+}
+
+*, *::before, *::after{ box-sizing: border-box; }
+
+html{ scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior: auto; }
+  *, *::before, *::after{
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body{
+  margin:0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--body);
+  font-weight: 400;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1,h2{
+  font-family: var(--display);
+  font-weight: 500;
+  color: var(--ink);
+  margin: 0 0 .4em;
+  letter-spacing: -0.01em;
+}
+
+a{ color: inherit; }
+
+::selection{ background: var(--rose); color: #fff; }
+
+:focus-visible{
+  outline: 2px solid var(--deep-rose);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.eyebrow{
+  font-family: var(--body);
+  font-size: .78rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin: 0 0 1em;
+}
+.eyebrow-sage{ color: var(--sage-deep); }
+.eyebrow-rose{ color: var(--deep-rose); }
+.eyebrow-gold{ color: var(--gold); }
+
+/* ==========================================================================
+   THREAD — the signature element: a line that grows from thin friendship
+   thread (sage) into a rose ribbon and finally a gold ring.
+   ========================================================================== */
+.thread-wrap{
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+#thread-svg{
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+#thread-path{
+  stroke-width: 2.5;
+  transition: stroke-width 1.2s var(--ease);
+}
+.thread-node{
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 14px;
+  height: 14px;
+  margin-left: -7px;
+  margin-top: -7px;
+  border-radius: 50%;
+  background: var(--cream);
+  border: 2px solid var(--sage);
+  z-index: 2;
+}
+.chapter .thread-node{ border-color: var(--rose); }
+
+@media (max-width: 760px){
+  .thread-wrap{ left: 28px; transform: none; width: 4px; }
+  .thread-node{ left: 28px; }
+}
+
+/* ==========================================================================
+   LAYOUT PRIMITIVES
+   ========================================================================== */
+.section{
+  position: relative;
+  width: 100%;
+  padding: var(--space-section) 1.5rem;
+  z-index: 2;
+}
+
+/* ==========================================================================
+   HERO — quiet, unassuming. No warning of what's coming.
+   ========================================================================== */
+.hero{
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 0%, var(--blush) 0%, transparent 70%),
+    var(--cream);
+}
+.hero-inner{ max-width: 640px; position: relative; }
+.hero-title{
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-style: italic;
+  font-weight: 400;
+}
+.hero-tagline{
+  font-size: 1.05rem;
+  color: var(--ink-light);
+  font-style: italic;
+  max-width: 32ch;
+  margin: 0 auto;
+}
+.scroll-hint{
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+  color: var(--ink-light);
+}
+.scroll-hint span{
+  width: 1px;
+  height: 34px;
+  background: linear-gradient(var(--sage), transparent);
+  animation: pulse-down 2s ease-in-out infinite;
+}
+.scroll-hint p{
+  font-size: .72rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  margin: 0;
+}
+@keyframes pulse-down{
+  0%,100%{ opacity: .3; transform: scaleY(.7); transform-origin: top; }
+  50%{ opacity: 1; transform: scaleY(1); transform-origin: top; }
+}
+
+/* ==========================================================================
+   CHAPTERS
+   ========================================================================== */
+.chapter-grid{
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+}
+.chapter.reverse .chapter-grid{ direction: rtl; }
+.chapter.reverse .chapter-grid > *{ direction: ltr; }
+
+.chapter-copy h2{ font-size: clamp(1.8rem, 3.4vw, 2.6rem); }
+.chapter-text{
+  color: var(--ink-light);
+  font-size: 1.05rem;
+  max-width: 46ch;
+}
+
+.reveal{
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .9s var(--ease), transform .9s var(--ease);
+}
+.reveal.is-visible{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* photo frames */
+.photo-frame{
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--blush);
+  box-shadow: 0 24px 50px -20px rgba(74,59,66,.28);
+}
+.photo-frame::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255,255,255,.5);
+  border-radius: 4px;
+  pointer-events: none;
+}
+.photo-img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.photo-placeholder{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .75rem;
+  color: var(--deep-rose);
+  background:
+    repeating-linear-gradient(135deg, var(--blush) 0 14px, var(--blush-deep) 14px 28px);
+  text-align: center;
+  padding: 1.5rem;
+}
+.placeholder-icon{ width: 34px; height: 34px; opacity: .55; }
+.photo-placeholder span{
+  font-size: .78rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  opacity: .7;
+  max-width: 16ch;
+}
+
+/* ==========================================================================
+   SIGNS — tone shift begins
+   ========================================================================== */
+.signs{
+  background: linear-gradient(180deg, var(--cream) 0%, var(--blush) 100%);
+  text-align: center;
+  padding-top: var(--space-section);
+  padding-bottom: var(--space-section);
+}
+.signs-title{
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-style: italic;
+}
+.signs-list{
+  list-style: none;
+  margin: 2.5rem auto 0;
+  padding: 0;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+.signs-list li{
+  font-size: 1.15rem;
+  color: var(--ink);
+  font-style: italic;
+  position: relative;
+  padding-left: 1.6rem;
+}
+.signs-list li::before{
+  content: "♡";
+  position: absolute;
+  left: 0;
+  top: .05em;
+  color: var(--rose);
+  font-size: .9em;
+}
+.heartbeat{
+  margin: 3rem auto 0;
+  width: 10px;
+  height: 10px;
+  display: flex;
+  justify-content: center;
+}
+.heartbeat span{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--deep-rose);
+  display: inline-block;
+  animation: beat 1.6s ease-in-out infinite;
+}
+@keyframes beat{
+  0%, 100%{ transform: scale(1); opacity: .7; }
+  50%{ transform: scale(1.6); opacity: 1; }
+}
+
+/* ==========================================================================
+   BUILDUP — full screen, lines reveal in sequence
+   ========================================================================== */
+.buildup{
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--blush-deep);
+  text-align: center;
+}
+.buildup-lines{
+  max-width: 620px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+.buildup-lines p{
+  font-family: var(--display);
+  font-style: italic;
+  font-size: clamp(1.3rem, 3.4vw, 2rem);
+  color: var(--ink);
+  margin: 0;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 1s var(--ease), transform 1s var(--ease);
+}
+.buildup-lines p.is-visible{ opacity: 1; transform: translateY(0); }
+#cfg-buildup-name-line{
+  font-size: clamp(1.6rem, 4.2vw, 2.4rem);
+  color: var(--deep-rose);
+}
+#cfg-their-name-inline{ font-family: var(--script); font-weight: 600; font-size: 1.15em; }
+
+/* ==========================================================================
+   THE ASK
+   ========================================================================== */
+.proposal{
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 20%, var(--blush) 0%, transparent 70%),
+    var(--cream);
+  gap: 1.6rem;
+  padding-top: calc(var(--space-section) + 2rem);
+}
+.ring-wrap{
+  opacity: 0;
+  transform: scale(.6) rotate(-12deg);
+  transition: opacity 1s var(--ease), transform 1s var(--ease);
+}
+.ring-wrap.is-visible{ opacity: 1; transform: scale(1) rotate(0); }
+.ring-svg{ width: 64px; height: 64px; }
+
+.final-photo{
+  width: min(320px, 80vw);
+  margin-bottom: .5rem;
+  opacity: 0;
+  transform: translateY(20px) scale(.96);
+  transition: opacity 1s var(--ease) .1s, transform 1s var(--ease) .1s;
+}
+.final-photo.is-visible{ opacity: 1; transform: translateY(0) scale(1); }
+
+.proposal-headline{
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-style: italic;
+  max-width: 18ch;
+}
+.proposal-message{
+  max-width: 52ch;
+  font-size: 1.1rem;
+  color: var(--ink-light);
+}
+.proposal-quote{
+  margin: 1.2rem 0 0;
+  padding: 0;
+  max-width: 46ch;
+}
+.proposal-quote p{
+  font-family: var(--script);
+  font-size: clamp(1.6rem, 3.4vw, 2.1rem);
+  font-weight: 600;
+  color: var(--deep-rose);
+  margin: 0 0 .3em;
+  line-height: 1.35;
+}
+.proposal-quote cite{
+  font-family: var(--body);
+  font-style: normal;
+  font-size: .85rem;
+  color: var(--ink-light);
+  letter-spacing: .04em;
+}
+
+.proposal-actions{ margin-top: 1.5rem; }
+.btn-yes{
+  font-family: var(--display);
+  font-size: 1.15rem;
+  font-style: italic;
+  color: #fff;
+  background: linear-gradient(135deg, var(--deep-rose), var(--rose));
+  border: none;
+  padding: .95rem 2.6rem;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 16px 30px -12px rgba(180,92,122,.55);
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+}
+.btn-yes:hover{
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 20px 36px -12px rgba(180,92,122,.6);
+}
+.btn-yes:active{ transform: translateY(0) scale(.98); }
+
+/* ==========================================================================
+   CELEBRATION OVERLAY
+   ========================================================================== */
+.celebration{
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cream);
+  text-align: center;
+}
+.celebration[hidden]{ display: none; }
+.celebration-inner{
+  position: relative;
+  z-index: 2;
+  max-width: 480px;
+  padding: 2rem;
+  animation: rise-in .9s var(--ease);
+}
+@keyframes rise-in{
+  from{ opacity: 0; transform: translateY(24px); }
+  to{ opacity: 1; transform: translateY(0); }
+}
+.celebration-inner h2{
+  font-size: clamp(2.2rem, 6vw, 3.4rem);
+  font-style: italic;
+  color: var(--deep-rose);
+}
+.celebration-inner p{
+  color: var(--ink-light);
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
+}
+.btn-replay{
+  font-family: var(--body);
+  font-size: .85rem;
+  letter-spacing: .05em;
+  background: transparent;
+  border: 1px solid var(--deep-rose);
+  color: var(--deep-rose);
+  padding: .7rem 1.6rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background .3s var(--ease), color .3s var(--ease);
+}
+.btn-replay:hover{ background: var(--deep-rose); color: #fff; }
+
+#confetti-canvas{
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 760px){
+  .chapter-grid{ grid-template-columns: 1fr; }
+  .chapter.reverse .chapter-grid{ direction: ltr; }
+  .section{ padding-left: 2.2rem; }
+  .photo-frame{ aspect-ratio: 4/3; }
+}

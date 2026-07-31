@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Love Story - Happy Anniversary</title>
+  <meta name="description" content="A premium digital surprise and memory lane celebrating a beautiful marriage anniversary.">
+  
+  <!-- Premium Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Sacramento&display=swap" rel="stylesheet">
+  
+  <!-- Project Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Global Particle Canvas for weather and ambient effects -->
+  <canvas id="ambient-canvas"></canvas>
+
+  <!-- Interactive Cursor Elements (Desktop only) -->
+  <div class="cursor-glow"></div>
+  <div class="cursor-trail-container"></div>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress-container">
+    <div class="scroll-progress-bar" id="progressBar"></div>
+  </div>
+
+  <!-- Ambient Sound -->
+  <audio id="bg-music" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" loop preload="auto"></audio>
+
+  <!-- Navigation Header -->
+  <header class="main-header">
+    <div class="header-container">
+      <a href="#hero" class="logo">
+        <span class="sacramento">Forever</span> <span class="gold-text">Together</span>
+      </a>
+      
+      <!-- Desktop Navigation Menu -->
+      <nav class="nav-menu">
+        <a href="#story" class="nav-link">Our Story</a>
+        <a href="#letter" class="nav-link">Love Letter</a>
+        <a href="#timeline" class="nav-link">Timeline</a>
+        <a href="#gallery" class="nav-link">Gallery</a>
+        <a href="#reasons" class="nav-link">Why I Love You</a>
+        <a href="#gift" class="nav-link">Surprise</a>
+      </nav>
+
+      <!-- Toolbar Settings (Theme & Weather Controls) -->
+      <div class="header-controls">
+        <!-- Ambient Weather Selector -->
+        <div class="weather-selector-wrapper">
+          <button class="control-btn" id="weatherMenuBtn" title="Ambient Mode" aria-label="Choose ambient effect">
+            <span class="btn-icon">✨</span>
+          </button>
+          <div class="weather-dropdown" id="weatherDropdown">
+            <button class="weather-opt active" data-effect="none">None</button>
+            <button class="weather-opt" data-effect="hearts">Floating Hearts</button>
+            <button class="weather-opt" data-effect="snow">Romantic Snow</button>
+            <button class="weather-opt" data-effect="rain">Gentle Rain</button>
+            <button class="weather-opt" data-effect="sparkles">Magic Sparkles</button>
+          </div>
+        </div>
+
+        <!-- Music Controller Toggle -->
+        <button class="control-btn" id="musicToggleBtn" title="Play Music" aria-label="Toggle music">
+          <span class="btn-icon" id="musicIcon">🔇</span>
+        </button>
+
+        <!-- Dark/Light Theme Switcher -->
+        <button class="control-btn" id="themeToggleBtn" title="Toggle Theme" aria-label="Toggle dark and light mode">
+          <span class="btn-icon" id="themeIcon">🌙</span>
+        </button>
+
+        <!-- Hamburger Icon for Mobile Menu -->
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Open Navigation Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Dropdown Navigation Menu -->
+  <div class="mobile-nav-menu" id="mobileNavMenu">
+    <a href="#story" class="mobile-nav-link">Our Story</a>
+    <a href="#letter" class="mobile-nav-link">Love Letter</a>
+    <a href="#timeline" class="mobile-nav-link">Timeline</a>
+    <a href="#gallery" class="mobile-nav-link">Gallery</a>
+    <a href="#reasons" class="mobile-nav-link">Why I Love You</a>
+    <a href="#gift" class="mobile-nav-link">Surprise</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="hero">
+    <div class="hero-bg-container">
+      <img src="images/hero.jpg" alt="Hero Background" onerror="handleImageError(this)" class="hero-bg-img">
+      <div class="hero-overlay"></div>
+    </div>
+    
+    <div class="hero-content">
+      <div class="anniversary-badge reveal-fade-in">Happy Anniversary</div>
+      <h1 class="hero-title reveal-fade-in delay-1">
+        A Beautiful Journey of <span class="accent-text sacramento">Love</span>
+      </h1>
+      <p class="hero-subtitle reveal-fade-in delay-2">
+        Celebrating our timeless bond and the many memories we've made together.
+      </p>
+      
+      <!-- Countdown Sub-section inside Hero -->
+      <div class="hero-countdown reveal-fade-in delay-3" id="countdownContainer">
+        <div class="countdown-card">
+          <span class="countdown-num" id="days">00</span>
+          <span class="countdown-lbl">Days</span>
+        </div>
+        <div class="countdown-card">
+          <span class="countdown-num" id="hours">00</span>
+          <span class="countdown-lbl">Hours</span>
+        </div>
+        <div class="countdown-card">
+          <span class="countdown-num" id="minutes">00</span>
+          <span class="countdown-lbl">Mins</span>
+        </div>
+        <div class="countdown-card">
+          <span class="countdown-num" id="seconds">00</span>
+          <span class="countdown-lbl">Secs</span>
+        </div>
+      </div>
+
+      <div class="hero-actions reveal-fade-in delay-4">
+        <a href="#story" class="btn btn-primary ripple">
+          <span>Explore Our Memories</span>
+          <span class="btn-shine"></span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <a href="#story" class="scroll-indicator" aria-label="Scroll Down">
+      <div class="mouse">
+        <div class="wheel"></div>
+      </div>
+      <span class="scroll-arrow"></span>
+    </a>
+  </section>
+
+  <!-- Love Story Section -->
+  <section class="section story-section" id="story">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Our Love Story</h2>
+        <div class="header-divider">✨</div>
+        <p class="section-subtitle">How two lives became one beautiful, shared adventure</p>
+      </div>
+
+      <div class="story-grid">
+        <div class="story-text-container reveal-slide-left">
+          <h3 class="story-heading">A Beautiful Beginning</h3>
+          <p class="story-paragraph">
+            Every love story is beautiful, but ours is my absolute favorite. From the very moment our paths crossed, the world seemed to hold a little more light, color, and laughter. We found in each other not just a partner, but a confidant, a supporter, and a soulmate.
+          </p>
+          <p class="story-paragraph">
+            Through every chapter of life, we have built a foundation of trust, shared dreams, and quiet moments that define our happiness. Today, we celebrate the milestones, the laughter, and the beautiful future waiting ahead of us.
+          </p>
+          <div class="story-signature">
+            <span class="sacramento">Yours Forever, Always</span>
+          </div>
+        </div>
+        <div class="story-visual-container reveal-slide-right">
+          <!-- Polaroid Memory Wall (Scattered photos layout) -->
+          <div class="polaroid-wall">
+            <div class="polaroid polaroid-1">
+              <div class="polaroid-img-wrapper">
+                <img src="images/photo1.jpg" alt="First Date" onerror="handleImageError(this)">
+              </div>
+              <p class="polaroid-caption">Where it started 💖</p>
+            </div>
+            <div class="polaroid polaroid-2">
+              <div class="polaroid-img-wrapper">
+                <img src="images/photo2.jpg" alt="Saying Yes" onerror="handleImageError(this)">
+              </div>
+              <p class="polaroid-caption">The Proposal 💍</p>
+            </div>
+            <div class="polaroid polaroid-3">
+              <div class="polaroid-img-wrapper">
+                <img src="images/photo3.jpg" alt="Wedding Day" onerror="handleImageError(this)">
+              </div>
+              <p class="polaroid-caption">Mr. & Mrs. ✨</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Love Letter Section -->
+  <section class="section letter-section" id="letter">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">A Message From My Heart</h2>
+        <div class="header-divider">💌</div>
+        <p class="section-subtitle">Click the envelope below to open your personalized love letter</p>
+      </div>
+
+      <!-- Interactive 3D Envelope -->
+      <div class="envelope-container reveal-fade-in">
+        <div class="envelope-wrapper" id="envelopeWrapper">
+          <div class="envelope">
+            <div class="envelope-flap" id="envelopeFlap"></div>
+            <div class="envelope-paper">
+              <div class="letter-content" id="letterContent">
+                <h4 class="letter-title">My Dearest,</h4>
+                <p class="letter-body" id="typingText"></p>
+                <div class="letter-footer">
+                  <p class="sign-off">With all my love,</p>
+                  <p class="signature-name sacramento">Your Beloved</p>
+                </div>
+              </div>
+            </div>
+            <div class="envelope-pocket"></div>
+            <div class="envelope-seal" id="envelopeSeal">
+              <div class="heart-seal">❤</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Control buttons for letter -->
+      <div class="letter-controls-container hidden" id="letterControlPanel">
+        <button class="btn btn-secondary ripple" id="closeLetterBtn">Close Envelope</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Memory Timeline Section -->
+  <section class="section timeline-section" id="timeline">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Milestones of Us</h2>
+        <div class="header-divider">⏳</div>
+        <p class="section-subtitle">A timeline of the moments that shaped our journey</p>
+      </div>
+
+      <div class="timeline-wrapper">
+        <div class="timeline-line" id="timelineLine">
+          <div class="timeline-progress" id="timelineProgress"></div>
+        </div>
+
+        <!-- Timeline Node 1 -->
+        <div class="timeline-item reveal-slide-left">
+          <div class="timeline-marker">
+            <span class="timeline-icon">✨</span>
+          </div>
+          <div class="timeline-content glass-card">
+            <span class="timeline-date">August 12, 2018</span>
+            <h3 class="timeline-title">The First Day</h3>
+            <p>Our eyes met, and we talked for hours. It was as if we had known each other for lifetimes. The spark was instant and undeniable.</p>
+          </div>
+        </div>
+
+        <!-- Timeline Node 2 -->
+        <div class="timeline-item reveal-slide-right">
+          <div class="timeline-marker">
+            <span class="timeline-icon">✈</span>
+          </div>
+          <div class="timeline-content glass-card">
+            <span class="timeline-date">May 24, 2019</span>
+            <h3 class="timeline-title">Our First Trip</h3>
+            <p>Traveling together showed us how perfectly we matched. Navigating new streets, trying street foods, and laughing through delayed flights.</p>
+          </div>
+        </div>
+
+        <!-- Timeline Node 3 -->
+        <div class="timeline-item reveal-slide-left">
+          <div class="timeline-marker">
+            <span class="timeline-icon">💍</span>
+          </div>
+          <div class="timeline-content glass-card">
+            <span class="timeline-date">October 15, 2021</span>
+            <h3 class="timeline-title">The Proposal</h3>
+            <p>A quiet evening, a nervous heartbeat, a velvet box, and a tearful, ecstatic "YES!" Under a canopy of golden fairy lights, we promised to build a lifetime.</p>
+          </div>
+        </div>
+
+        <!-- Timeline Node 4 -->
+        <div class="timeline-item reveal-slide-right">
+          <div class="timeline-marker">
+            <span class="timeline-icon">⛪</span>
+          </div>
+          <div class="timeline-content glass-card">
+            <span class="timeline-date">June 18, 2023</span>
+            <h3 class="timeline-title">The Wedding Day</h3>
+            <p>Surrounded by our family, friends, and tears of pure joy, we read our vows. The happiest day of our lives, marking the official start of forever.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Masonry Gallery Section -->
+  <section class="section gallery-section" id="gallery">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Moments Frozen In Time</h2>
+        <div class="header-divider">📸</div>
+        <p class="section-subtitle">Our favorite memories. Click any image to view in detail.</p>
+      </div>
+
+      <!-- Masonry Grid -->
+      <div class="masonry-grid" id="masonryGrid">
+        <div class="masonry-item reveal-fade-in" data-index="0">
+          <img src="images/photo1.jpg" alt="Strolling through the botanical gardens during our early dating phase" onerror="handleImageError(this)" loading="lazy">
+          <div class="masonry-overlay">
+            <span class="masonry-zoom-icon">🔍</span>
+            <p class="masonry-desc">Botanical Garden Walk</p>
+          </div>
+        </div>
+        <div class="masonry-item reveal-fade-in" data-index="1">
+          <img src="images/photo2.jpg" alt="A beautiful sunset we witnessed on the beach during our summer trip" onerror="handleImageError(this)" loading="lazy">
+          <div class="masonry-overlay">
+            <span class="masonry-zoom-icon">🔍</span>
+            <p class="masonry-desc">Chasing Sunsets</p>
+          </div>
+        </div>
+        <div class="masonry-item reveal-fade-in" data-index="2">
+          <img src="images/photo3.jpg" alt="A candid moment of laughter during a weekend coffee date" onerror="handleImageError(this)" loading="lazy">
+          <div class="masonry-overlay">
+            <span class="masonry-zoom-icon">🔍</span>
+            <p class="masonry-desc">Cozy Coffee Dates</p>
+          </div>
+        </div>
+        <div class="masonry-item reveal-fade-in" data-index="3">
+          <img src="images/photo4.jpg" alt="Our beautiful engagement photoshoot in the middle of autumn forests" onerror="handleImageError(this)" loading="lazy">
+          <div class="masonry-overlay">
+            <span class="masonry-zoom-icon">🔍</span>
+            <p class="masonry-desc">Autumn Engagement</p>
+          </div>
+        </div>
+        <div class="masonry-item reveal-fade-in" data-index="4">
+          <img src="images/photo5.jpg" alt="Exchanging vows under the floral canopy at our wedding ceremony" onerror="handleImageError(this)" loading="lazy">
+          <div class="masonry-overlay">
+            <span class="masonry-zoom-icon">🔍</span>
+            <p class="masonry-desc">The Wedding Vows</p>
+          </div>
+        </div>
+        <div class="masonry-item reveal-fade-in" data-index="5">
+          <img src="images/photo6.jpg" alt="Enjoying a quiet winter evening together by the fireside" onerror="handleImageError(this)" loading="lazy">
+          <div class="masonry-overlay">
+            <span class="masonry-zoom-icon">🔍</span>
+            <p class="masonry-desc">Warm Winter Nights</p>
+          </div>
+        </div>
+        <div class="masonry-item reveal-fade-in" data-index="6">
+          <img src="images/photo7.jpg" alt="Taking a scenic hike and reaching the mountain peak hand in hand" onerror="handleImageError(this)" loading="lazy">
+          <div class="masonry-overlay">
+            <span class="masonry-zoom-icon">🔍</span>
+            <p class="masonry-desc">Reaching New Heights</p>
+          </div>
+        </div>
+        <div class="masonry-item reveal-fade-in" data-index="7">
+          <img src="images/photo8.jpg" alt="Celebrating our first anniversary dinner under candlelight" onerror="handleImageError(this)" loading="lazy">
+          <div class="masonry-overlay">
+            <span class="masonry-zoom-icon">🔍</span>
+            <p class="masonry-desc">Anniversary Candlelight</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox-modal" id="lightboxModal" role="dialog" aria-modal="true" aria-label="Image Detail Gallery">
+    <button class="lightbox-close" id="lightboxCloseBtn" aria-label="Close Lightbox">&times;</button>
+    <button class="lightbox-arrow arrow-left" id="lightboxPrevBtn" aria-label="Previous Image">&#10094;</button>
+    <div class="lightbox-content" id="lightboxContent">
+      <!-- Image is inserted dynamically via JS -->
+    </div>
+    <button class="lightbox-arrow arrow-right" id="lightboxNextBtn" aria-label="Next Image">&#10095;</button>
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+
+  <!-- Reasons Section (Why I Love You) -->
+  <section class="section reasons-section" id="reasons">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Reasons I Love You</h2>
+        <div class="header-divider">💖</div>
+        <p class="section-subtitle">A few of the infinite reasons my heart beats for you</p>
+      </div>
+
+      <div class="reasons-grid">
+        <!-- Card 1 -->
+        <div class="flip-card-wrapper reveal-fade-in">
+          <div class="flip-card">
+            <div class="flip-card-front glass-card">
+              <div class="reason-icon">🌸</div>
+              <h3 class="reason-title">Your Gentle Kindness</h3>
+              <p class="flip-hint">Hover to see why</p>
+            </div>
+            <div class="flip-card-back glass-card">
+              <h3 class="reason-title-back">Gentle Kindness</h3>
+              <p class="reason-details">
+                You carry a warmth that comforts everyone you meet. Your empathy, patience, and soft heart are the absolute anchors of my life.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="flip-card-wrapper reveal-fade-in delay-1">
+          <div class="flip-card">
+            <div class="flip-card-front glass-card">
+              <div class="reason-icon">☀️</div>
+              <h3 class="reason-title">Your Bright Laughter</h3>
+              <p class="flip-hint">Hover to see why</p>
+            </div>
+            <div class="flip-card-back glass-card">
+              <h3 class="reason-title-back">Bright Laughter</h3>
+              <p class="reason-details">
+                Even on my darkest or most stressful days, your laugh has a magic quality that instantly clears away my doubts and makes me smile.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="flip-card-wrapper reveal-fade-in delay-2">
+          <div class="flip-card">
+            <div class="flip-card-front glass-card">
+              <div class="reason-icon">🛡️</div>
+              <h3 class="reason-title">Your Infinite Support</h3>
+              <p class="flip-hint">Hover to see why</p>
+            </div>
+            <div class="flip-card-back glass-card">
+              <h3 class="reason-title-back">Infinite Support</h3>
+              <p class="reason-details">
+                No matter how wild my dreams or hard the battles, you stand right beside me, holding my hand and giving me the strength to proceed.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="flip-card-wrapper reveal-fade-in delay-3">
+          <div class="flip-card">
+            <div class="flip-card-front glass-card">
+              <div class="reason-icon">🧩</div>
+              <h3 class="reason-title">How We Fit Together</h3>
+              <p class="flip-hint">Hover to see why</p>
+            </div>
+            <div class="flip-card-back glass-card">
+              <h3 class="reason-title-back">Perfect Fit</h3>
+              <p class="reason-details">
+                We balance each other out in the most unexpected and perfect ways. You make me a better version of myself, every single day.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Music Player & Quotes Carousel Section -->
+  <section class="section media-quotes-section">
+    <div class="container">
+      <div class="media-quotes-grid">
+        
+        <!-- Custom Audio Player Card -->
+        <div class="glass-card music-player-card reveal-slide-left">
+          <h3 class="card-heading">Our Soundtrack</h3>
+          <p class="card-subheading">Sit back and enjoy our special romantic track</p>
+          
+          <div class="music-player">
+            <!-- Vinyl Animation -->
+            <div class="vinyl-container">
+              <div class="vinyl" id="vinylRecord">
+                <div class="vinyl-center"></div>
+              </div>
+            </div>
+
+            <div class="track-info">
+              <p class="track-name" id="trackName">Romantic Piano Melody</p>
+              <p class="track-artist">Classical Selections</p>
+            </div>
+
+            <!-- Custom Controls -->
+            <div class="player-controls">
+              <!-- Timeline Slider -->
+              <div class="time-control">
+                <span class="time-text" id="currentTime">0:00</span>
+                <input type="range" class="progress-bar" id="musicProgress" min="0" max="100" value="0" aria-label="Seek track">
+                <span class="time-text" id="durationTime">0:00</span>
+              </div>
+
+              <div class="button-controls">
+                <button class="player-btn ripple" id="playerPlayBtn" aria-label="Play or Pause">
+                  <span id="playerPlayIcon">▶</span>
+                </button>
+              </div>
+
+              <!-- Volume Control -->
+              <div class="volume-control">
+                <span class="volume-icon">🔈</span>
+                <input type="range" class="volume-slider" id="musicVolume" min="0" max="100" value="70" aria-label="Volume controller">
+                <span class="volume-icon">🔊</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quotes Carousel Card -->
+        <div class="glass-card quotes-card reveal-slide-right">
+          <h3 class="card-heading">Words of Devotion</h3>
+          <p class="card-subheading">Vows, sweet words, and quotes that define us</p>
+          
+          <div class="carousel-container">
+            <div class="carousel-track" id="carouselTrack">
+              <div class="carousel-slide active">
+                <p class="quote-text">"I love you not only for what you are, but for what I am when I am with you. I love you for the part of me that you bring out."</p>
+                <p class="quote-author">— Roy Croft</p>
+              </div>
+              <div class="carousel-slide">
+                <p class="quote-text">"In all the world, there is no heart for me like yours. In all the world, there is no love for you like mine."</p>
+                <p class="quote-author">— Maya Angelou</p>
+              </div>
+              <div class="carousel-slide">
+                <p class="quote-text">"If I had a flower for every time I thought of you... I could walk through my garden forever."</p>
+                <p class="quote-author">— Alfred Tennyson</p>
+              </div>
+            </div>
+            
+            <!-- Indicators -->
+            <div class="carousel-dots" id="carouselDots">
+              <!-- Dots generated dynamically via JS -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Section & Polaroid Wall -->
+  <section class="section video-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Our Wedding Video</h2>
+        <div class="header-divider">🎥</div>
+        <p class="section-subtitle">Press play to look back on our happiest day</p>
+      </div>
+
+      <!-- Custom Video Wrapper -->
+      <div class="video-container-wrapper glass-card reveal-fade-in">
+        <div class="video-placeholder" id="videoPlaceholder">
+          <div class="video-play-overlay">
+            <div class="play-btn-circle ripple" id="playVideoBtn" aria-label="Play video demo">
+              <span class="play-arrow">▶</span>
+            </div>
+            <h3 class="video-title-overlay">Play Our Love Story Highlight</h3>
+            <p class="video-sub-overlay">A preview of our wedding and ceremony highlights</p>
+          </div>
+          <!-- Real Video iframe or local video container (Hidden by default until play is clicked) -->
+          <div class="real-video-wrapper hidden" id="realVideoWrapper">
+            <!-- Emulated romantic placeholder video layout (or youtube embeds can go here) -->
+            <iframe id="videoIframe" src="" title="Love Story Highlights" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Surprise Section (Gift Box & Password Message) -->
+  <section class="section surprise-section" id="gift">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Anniversary Surprise</h2>
+        <div class="header-divider">🎁</div>
+        <p class="section-subtitle">Click the box to unlock your surprise or open the secret message below</p>
+      </div>
+
+      <div class="surprise-container-grid">
+        
+        <!-- Interactive Gift Box Card -->
+        <div class="glass-card gift-box-card reveal-slide-left">
+          <h3 class="surprise-card-title">A Gift For You</h3>
+          <p class="surprise-card-sub">Click the gift box below to unwrap a surprise!</p>
+          
+          <div class="gift-box-wrapper">
+            <div class="gift-box" id="giftBox">
+              <div class="gift-lid"></div>
+              <div class="gift-ribbon-v"></div>
+              <div class="gift-ribbon-h"></div>
+              <div class="gift-bow"></div>
+              <div class="gift-body"></div>
+            </div>
+          </div>
+
+          <!-- Unwrapped Surprise Content (Hidden initially) -->
+          <div class="gift-surprise-message hidden" id="giftSurprise">
+            <h4 class="surprise-alert-title">Surprise! 🎉</h4>
+            <p>You have unlocked a Romantic Getaway Weekend & Dinner Voucher! 🍽️✈️</p>
+            <p class="voucher-code">CODE: FOREVER-US-2026</p>
+            <p class="sub-message">Check your email for booking details and reservation links. I love you!</p>
+          </div>
+        </div>
+
+        <!-- Secret Lock Code Panel -->
+        <div class="glass-card lock-box-card reveal-slide-right">
+          <h3 class="surprise-card-title">Secret Lock Box</h3>
+          <p class="surprise-card-sub">Enter the secret key to reveal a hidden handwritten letter</p>
+          
+          <div class="lock-form" id="lockForm">
+            <div class="input-group">
+              <input type="password" id="secretPassword" placeholder="Hint: Our wedding date (MMDD) or 'love'" aria-label="Secret password code">
+              <span class="password-toggle-eye" id="passwordToggleEye">👁️</span>
+            </div>
+            <button class="btn btn-primary ripple" id="unlockBtn">
+              <span>Unlock Secret</span>
+            </button>
+            <p class="error-message hidden" id="lockErrorMsg">❌ Incorrect password. Try checking the hint!</p>
+          </div>
+
+          <!-- Locked surprise content -->
+          <div class="secret-content-unlocked hidden" id="secretContent">
+            <div class="unlocked-letter">
+              <span class="unlocked-icon">🔓 Secret Unlocked</span>
+              <h4>Dear Wife / Husband,</h4>
+              <p>
+                If you are reading this, you successfully guessed the password! This note is to promise you my heart, my patience, and my constant devotion. The days we have shared have been the greatest gift, and I look forward to holding you close for thousands of days to come.
+              </p>
+              <p class="highlight-quote">"Grow old along with me! The best is yet to be."</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Action Buttons Footer-Area -->
+  <section class="section interaction-fun-section">
+    <div class="container text-center">
+      <h3 class="fun-heading reveal-fade-in">Send a Virtual Celebration!</h3>
+      <p class="fun-sub reveal-fade-in delay-1">Click the buttons below to fill the screen with love</p>
+      
+      <div class="fun-buttons reveal-fade-in delay-2">
+        <button class="btn btn-secondary ripple" id="triggerHeartsBtn">
+          <span>💖 Shower Hearts</span>
+        </button>
+        <button class="btn btn-secondary ripple" id="triggerBalloonsBtn">
+          <span>🎈 Release Balloons</span>
+        </button>
+        <button class="btn btn-primary ripple" id="triggerFireworksBtn">
+          <span>💥 Launch Fireworks</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Thank You / Ending Section -->
+  <footer class="thank-you-footer">
+    <div class="container">
+      <div class="footer-logo sacramento">Forever Yours</div>
+      <p class="footer-msg">"Here's to another year of sharing sunsets, whispers, and dreams."</p>
+      <div class="footer-divider-flower">❀ ❁ ❀</div>
+      <p class="copyright">&copy; 2026. Made with 💖 for our anniversary.</p>
+    </div>
+  </footer>
+
+  <!-- Scroll-to-Top Button -->
+  <button class="scroll-to-top" id="scrollTopBtn" title="Scroll to top" aria-label="Scroll to top">
+    <span>↑</span>
+  </button>
+
+  <!-- Project JavaScript File -->
+  <script src="script.js"></script>
+</body>
+</html>

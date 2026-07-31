@@ -1,0 +1,136 @@
+================================================================================
+          ANNIVERSARY DIGITAL SURPRISE WEBSITE - USER REQUIREMENTS & DATA GUIDE
+================================================================================
+
+This document lists all the custom information, text, dates, and photos you can replace 
+to make this website 100% personalized for your anniversary celebration.
+
+All text and image paths can be updated directly inside the file: config.js
+All image files should be placed inside the folder: images/
+
+--------------------------------------------------------------------------------
+1. COUPLE INFORMATION & HERO SECTION
+--------------------------------------------------------------------------------
+- Partner 1 Name: (e.g., "Karthika")
+- Partner 2 Name: (e.g., "Rahul")
+- Years Together: (e.g., "5 Years" or "3rd Anniversary")
+- Anniversary Date: (e.g., "2026-07-20" - Format: YYYY-MM-DD for live countdown)
+- Hero Banner Title: (e.g., "Karthika & Rahul")
+- Hero Anniversary Wishes: (e.g., "Happy 5th Anniversary, my love! Five years of laughter...")
+- Hero Image File: (Place in images/ folder, e.g., "images/hero.svg" or "images/hero.jpg")
+
+--------------------------------------------------------------------------------
+2. BACKGROUND MUSIC
+--------------------------------------------------------------------------------
+- Music URL or Relative Path: (e.g., "https://...mp3" or relative file "images/bg-music.mp3")
+
+--------------------------------------------------------------------------------
+3. LOVE JOURNEY TIMELINE MILESTONES
+--------------------------------------------------------------------------------
+* Milestone 1 (The First Spark / Meeting):
+  - Date: (e.g., "October 14, 2021")
+  - Title: (e.g., "The First Spark")
+  - Subtitle: (e.g., "Where our story began")
+  - Description: (e.g., "A simple coffee catch-up turned into a 4-hour conversation...")
+  - Icon: (e.g., "☕" or "✨")
+  - Image File: (e.g., "images/timeline-1.svg")
+
+* Milestone 2 (First Date):
+  - Date: (e.g., "February 14, 2022")
+  - Title: (e.g., "Our First Official Date")
+  - Subtitle: (e.g., "Candlelight & Magic")
+  - Description: (e.g., "Dinner by the bay with nervous giggles...")
+  - Icon: (e.g., "🕯️")
+  - Image File: (e.g., "images/timeline-2.svg")
+
+* Milestone 3 (Proposal / Major Promise):
+  - Date: (e.g., "December 25, 2024")
+  - Title: (e.g., "The Forever Promise")
+  - Subtitle: (e.g., "Saying 'I Love You'")
+  - Description: (e.g., "Surrounded by festive lights, holding hands...")
+  - Icon: (e.g., "💍")
+  - Image File: (e.g., "images/timeline-3.svg")
+
+* Milestone 4 (Anniversary Today):
+  - Date: (e.g., "July 20, 2026")
+  - Title: (e.g., "Celebrating Today")
+  - Subtitle: (e.g., "5 Years & Beyond")
+  - Description: (e.g., "Looking back at every obstacle we conquered...")
+  - Icon: (e.g., "💖")
+  - Image File: (e.g., "images/timeline-4.svg")
+
+--------------------------------------------------------------------------------
+4. GALLERY OF MEMORIES
+--------------------------------------------------------------------------------
+* Memory 1:
+  - Title: (e.g., "Sunset Beach Walk")
+  - Caption: (e.g., "Barefoot in the sand, watching the horizon turn to gold.")
+  - Image File: (e.g., "images/gallery-1.svg")
+
+* Memory 2:
+  - Title: (e.g., "Starlit Night")
+  - Caption: (e.g., "Counting shooting stars while wrapped in a warm blanket.")
+  - Image File: (e.g., "images/gallery-2.svg")
+
+* Memory 3:
+  - Title: (e.g., "First Road Trip")
+  - Caption: (e.g., "Singing along to our favorite songs with open windows...")
+  - Image File: (e.g., "images/gallery-3.svg")
+
+* Memory 4:
+  - Title: (e.g., "Cozy Cabin Weekend")
+  - Caption: (e.g., "Hot cocoa, crackling fireplace, and endless laughter.")
+  - Image File: (e.g., "images/gallery-4.svg")
+
+--------------------------------------------------------------------------------
+5. POLAROID MOMENTS
+--------------------------------------------------------------------------------
+* Polaroid 1:
+  - Caption: (e.g., "Our Silly Laughs 📸")
+  - Date: (e.g., "Summer '23")
+  - Image File: (e.g., "images/polaroid-1.svg")
+
+* Polaroid 2:
+  - Caption: (e.g., "Surprises & Roses 🌹")
+  - Date: (e.g., "Valentine '24")
+  - Image File: (e.g., "images/polaroid-2.svg")
+
+* Polaroid 3:
+  - Caption: (e.g., "First Flight Together ✈️")
+  - Date: (e.g., "Autumn '25")
+  - Image File: (e.g., "images/polaroid-3.svg")
+
+--------------------------------------------------------------------------------
+6. INTERACTIVE LOVE LETTER & SECRET PASSWORD
+--------------------------------------------------------------------------------
+- Secret Passcode: (e.g., "love" or "1402" or "karthika")
+- Password Hint: (e.g., "💡 Hint: The special 4-letter word that binds our hearts forever (e.g. 'love') ❤️")
+- Salutation: (e.g., "My Dearest Karthika,")
+- Letter Heading: (e.g., "To My Soulmate and Best Friend")
+- Letter Paragraph 1: (Personal message paragraph 1)
+- Letter Paragraph 2: (Personal message paragraph 2)
+- Letter Paragraph 3: (Personal message paragraph 3)
+- Sign-off: (e.g., "Yours Forever and Always,")
+- Sender Name: (e.g., "Rahul ❤️")
+
+--------------------------------------------------------------------------------
+7. EXPLODING GIFT BOX SURPRISE
+--------------------------------------------------------------------------------
+- Gift Surprise Title: (e.g., "Surprise Milestone Unlocked! 🎁✨")
+- Gift Subtitle: (e.g., "A Special Anniversary Gift For You")
+- Gift Message: (e.g., "Pack your bags! We are heading on a romantic getaway trip to Paris & Rome...")
+- Gift Image File: (e.g., "images/gift-surprise.svg")
+
+--------------------------------------------------------------------------------
+8. AUTOMATED LOVE NOTE RECIPIENT EMAIL
+--------------------------------------------------------------------------------
+- Recipient Email Address: (e.g., "karthika@example.com")
+  * When your lover writes a note and clicks "Send My Love", it automatically opens mail to this address!
+  * (Optional) EmailJS Public Key / Service ID / Template ID if you wish to use EmailJS API.
+
+================================================================================
+HOW TO EDIT:
+1. Open the file `config.js` in any text editor (Notepad, VSCode, etc.).
+2. Replace the sample values inside `config.js` with your information listed above.
+3. Save `config.js` and open `index.html` in any browser to see your customized website!
+================================================================================

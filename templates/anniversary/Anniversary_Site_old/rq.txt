@@ -1,0 +1,61 @@
+# What I Need From You — Anniversary Site Checklist
+
+Fill in the answers below (or just send them to me in chat) and I'll drop them
+straight into `js/config.js` for you. Everything maps 1:1 to a field in that file.
+
+## 1. Names & core details
+- [ ] Your name:
+- [ ] Partner's name:
+- [ ] Date you got together (DD/MM/YYYY):
+- [ ] This year's anniversary date (DD/MM/YYYY):
+- [ ] One-line anniversary wish for the hero banner (e.g. *"Ten years, one heart, forever counting."*):
+- [ ] Small subline under the wish (e.g. *"For the love of my life"*):
+
+## 2. Entry screen
+- [ ] Text shown before they open the surprise (e.g. *"A little something for you…"*):
+- [ ] Button label (e.g. *"Open Your Surprise"*):
+
+## 3. Photos — filenames must match, or tell me the new names
+- [ ] **Hero photo** (1 photo, landscape, ideally 1600×1000+) → `images/hero.jpg`
+- [ ] **Gallery photos** (6 photos, square, 800×800+) → `images/gallery1.jpg` – `gallery6.jpg`, plus a short caption for each
+- [ ] **Polaroid photos** (4 photos, square, 700×700+) → `images/polaroid1.jpg` – `polaroid4.jpg`, plus a short handwritten-style caption for each
+- [ ] **Timeline photos** (one per milestone, landscape, 700×500+) → `images/timeline1.jpg`, `timeline2.jpg`, ...
+
+## 4. Your love story timeline (as many milestones as you like)
+For each milestone:
+- [ ] Year
+- [ ] Short title (e.g. "Where It Began")
+- [ ] 1–2 sentence story
+
+## 5. The love letter
+- [ ] Salutation (e.g. "My love,")
+- [ ] The letter itself — as many paragraphs as you want
+- [ ] Sign-off (e.g. "Forever yours,")
+
+## 6. The gift box reveal
+- [ ] Heading (e.g. "One more thing…")
+- [ ] The hidden message that appears when the box is opened
+
+## 7. Song
+- [ ] An MP3 or WAV file of "your song" (replaces `audio/song.wav`)
+- [ ] Display title for it (e.g. "Our Song")
+
+## 8. The note-to-inbox feature
+- [ ] Email address the notes should be sent to:
+- [ ] Email subject line (e.g. "A note from your anniversary surprise 💌"):
+- [ ] Placeholder text shown in the empty textarea:
+- [ ] Send button label (e.g. "Send With Love"):
+- [ ] Message shown after a note is sent successfully:
+
+## 9. Footer / branding
+- [ ] Site title / browser tab text (defaults to "[Name] & [Name] — Happy Anniversary")
+
+## 10. Hosting (only if you want me to help publish it)
+- [ ] Do you already have a GitHub / Netlify / Vercel account, or should I walk you through creating one?
+- [ ] Any preference on the site's URL/subdomain?
+
+---
+
+**Not required, just nice to have:** a couple of backup photos in case any of
+the above are missing — I can duplicate placeholders anywhere a slot is left
+blank, so nothing breaks if you skip a section for now.

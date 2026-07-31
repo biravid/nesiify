@@ -1,0 +1,17 @@
+:root {
+  --bg-primary: #3c0919;
+  --bg-secondary: #580c25;
+  --bg-card: rgba(89, 13, 34, 0.85);
+  --text-primary: #fff0f3;
+  --text-secondary: #ffccd5;
+  --accent-color: #ff4d6d; /* Vibrant ruby red */
+  --accent-glow: rgba(255, 77, 109, 0.5);
+  --border-color: #7209b7; /* Royal purple border accents */
+  --gold-accent: #ffb703; /* Sparkling gold */
+  --timeline-line: #ff758f;
+  --heart-color: #ff4d6d;
+  --envelope-bg: #4c071d;
+  --envelope-seal: #ff4d6d;
+  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  --input-bg: #4a0e17;
+}

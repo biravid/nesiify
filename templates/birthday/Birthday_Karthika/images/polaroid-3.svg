@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="p3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#b92b27"/>
+      <stop offset="100%" stop-color="#1565c0"/>
+    </linearGradient>
+  </defs>
+  <rect width="500" height="500" rx="10" fill="url(#p3)"/>
+  <!-- Flight / trip silhouette -->
+  <path d="M 120,280 Q 250,150 380,120" stroke="#ffffff" stroke-width="4" stroke-dasharray="10 10" fill="none"/>
+  <polygon points="380,120 360,110 365,130" fill="#ffffff"/>
+  <circle cx="380" cy="120" r="8" fill="#ffd700"/>
+</svg>

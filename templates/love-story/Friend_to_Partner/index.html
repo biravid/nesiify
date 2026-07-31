@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Story</title>
+<meta name="description" content="A story of friendship, told from the beginning.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Literata:ital,wght@0,300;0,400;0,500;1,400&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- The friendship thread — grows and changes color as the story unfolds -->
+<div class="thread-wrap" aria-hidden="true">
+  <svg id="thread-svg" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="thread-gradient" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#93A889"/>
+        <stop offset="45%" stop-color="#C98CA0"/>
+        <stop offset="80%" stop-color="#B45C7A"/>
+        <stop offset="100%" stop-color="#D4AF7A"/>
+      </linearGradient>
+    </defs>
+    <path id="thread-path" d="" fill="none" stroke="url(#thread-gradient)" stroke-linecap="round"/>
+  </svg>
+</div>
+
+<!-- ============ HERO — deliberately quiet, no warning of what's coming ============ -->
+<header class="section hero" id="hero">
+  <div class="hero-inner">
+    <p class="eyebrow eyebrow-sage">a small archive of</p>
+    <h1 class="hero-title">
+      <span id="cfg-names">Two Friends</span>
+    </h1>
+    <p class="hero-tagline" id="cfg-tagline">every story worth telling starts somewhere ordinary.</p>
+    <div class="thread-node" data-node="0"></div>
+  </div>
+  <div class="scroll-hint" aria-hidden="true">
+    <span></span>
+    <p>keep scrolling</p>
+  </div>
+</header>
+
+<!-- ============ CHAPTERS — the friendship, told plainly ============ -->
+<main>
+  <section class="section chapter" id="chapter-1" data-chapter="1">
+    <div class="chapter-grid">
+      <div class="photo-frame" data-photo="chapter1">
+        <img class="photo-img" id="cfg-photo-1" alt="" hidden>
+        <div class="photo-placeholder">
+          <svg viewBox="0 0 48 48" class="placeholder-icon"><path d="M24 30a8 8 0 100-16 8 8 0 000 16z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 14h6l3-4h14l3 4h6a2 2 0 012 2v22a2 2 0 01-2 2H8a2 2 0 01-2-2V16a2 2 0 012-2z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          <span>add a photo — chapter one</span>
+        </div>
+      </div>
+      <div class="chapter-copy">
+        <p class="eyebrow eyebrow-sage">chapter one</p>
+        <h2 id="cfg-ch1-title">The Beginning</h2>
+        <p class="chapter-text" id="cfg-ch1-text">Write about how you two met — the ordinary afternoon that turned out to matter more than either of you knew at the time.</p>
+      </div>
+    </div>
+    <div class="thread-node" data-node="1"></div>
+  </section>
+
+  <section class="section chapter reverse" id="chapter-2" data-chapter="2">
+    <div class="chapter-grid">
+      <div class="chapter-copy">
+        <p class="eyebrow eyebrow-sage">chapter two</p>
+        <h2 id="cfg-ch2-title">Through Everything</h2>
+        <p class="chapter-text" id="cfg-ch2-text">This is where you talk about the years in between — the late-night calls, the terrible decisions talked through together, the version of yourself only they've seen.</p>
+      </div>
+      <div class="photo-frame" data-photo="chapter2">
+        <img class="photo-img" id="cfg-photo-2" alt="" hidden>
+        <div class="photo-placeholder">
+          <svg viewBox="0 0 48 48" class="placeholder-icon"><path d="M24 30a8 8 0 100-16 8 8 0 000 16z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 14h6l3-4h14l3 4h6a2 2 0 012 2v22a2 2 0 01-2 2H8a2 2 0 01-2-2V16a2 2 0 012-2z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          <span>add a photo — chapter two</span>
+        </div>
+      </div>
+    </div>
+    <div class="thread-node" data-node="2"></div>
+  </section>
+
+  <section class="section chapter" id="chapter-3" data-chapter="3">
+    <div class="chapter-grid">
+      <div class="photo-frame" data-photo="chapter3">
+        <img class="photo-img" id="cfg-photo-3" alt="" hidden>
+        <div class="photo-placeholder">
+          <svg viewBox="0 0 48 48" class="placeholder-icon"><path d="M24 30a8 8 0 100-16 8 8 0 000 16z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 14h6l3-4h14l3 4h6a2 2 0 012 2v22a2 2 0 01-2 2H8a2 2 0 01-2-2V16a2 2 0 012-2z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          <span>add a photo — chapter three</span>
+        </div>
+      </div>
+      <div class="chapter-copy">
+        <p class="eyebrow eyebrow-rose">chapter three</p>
+        <h2 id="cfg-ch3-title">Something Shifted</h2>
+        <p class="chapter-text" id="cfg-ch3-text">Somewhere along the way, "friend" stopped feeling like the whole truth. Describe the moment you first noticed — a look that lasted too long, a goodbye that felt harder than it should have.</p>
+      </div>
+    </div>
+    <div class="thread-node" data-node="3"></div>
+  </section>
+
+  <!-- ============ SIGNS — the tone quietly shifts ============ -->
+  <section class="section signs" id="signs">
+    <p class="eyebrow eyebrow-rose">things i've noticed lately</p>
+    <h2 class="signs-title">Small Evidence</h2>
+    <ul class="signs-list" id="cfg-signs-list">
+      <li>I tell you things before I've even decided how I feel about them yet.</li>
+      <li>I've started saving the good news, just to watch your face when I tell you.</li>
+      <li>Somehow "come over" started meaning something different than it used to.</li>
+      <li>I keep picturing you in stories that haven't happened yet.</li>
+    </ul>
+    <div class="heartbeat" aria-hidden="true"><span></span></div>
+  </section>
+
+  <!-- ============ BUILDUP — full screen, sequential reveal ============ -->
+  <section class="section buildup" id="buildup">
+    <div class="buildup-lines" id="cfg-buildup-lines">
+      <p>There's something I've been meaning to say.</p>
+      <p>I've rewritten it a hundred times in my head.</p>
+      <p>But maybe it's simpler than I've been making it.</p>
+      <p id="cfg-buildup-name-line">So, <span id="cfg-their-name-inline">[Their Name]</span> —</p>
+    </div>
+  </section>
+
+  <!-- ============ THE ASK ============ -->
+  <section class="section proposal" id="proposal">
+    <div class="ring-wrap" aria-hidden="true">
+      <svg viewBox="0 0 120 120" class="ring-svg">
+        <circle cx="60" cy="60" r="34" fill="none" stroke="url(#thread-gradient)" stroke-width="6"/>
+        <path d="M60 32 l6 12 h-12 z" fill="#D4AF7A"/>
+      </svg>
+    </div>
+
+    <div class="photo-frame final-photo" data-photo="final">
+      <img class="photo-img" id="cfg-photo-final" alt="" hidden>
+      <div class="photo-placeholder">
+        <svg viewBox="0 0 48 48" class="placeholder-icon"><path d="M24 30a8 8 0 100-16 8 8 0 000 16z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 14h6l3-4h14l3 4h6a2 2 0 012 2v22a2 2 0 01-2 2H8a2 2 0 01-2-2V16a2 2 0 012-2z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        <span>add your favorite photo of the two of you</span>
+      </div>
+    </div>
+
+    <h2 class="proposal-headline" id="cfg-proposal-headline">Will you start this next chapter with me?</h2>
+    <p class="proposal-message" id="cfg-proposal-message">Not as the friend who knows me best, but as the person I want beside me for everything that's next. You already feel like home — I'd just like to make it official.</p>
+
+    <blockquote class="proposal-quote">
+      <p id="cfg-quote-text">"Some people fall in love. We just never fell out of friendship — we grew into something more."</p>
+      <cite id="cfg-quote-author">— [Your Name]</cite>
+    </blockquote>
+
+    <div class="proposal-actions">
+      <button class="btn-yes" id="btn-yes" type="button">Yes, always</button>
+    </div>
+  </section>
+</main>
+
+<!-- ============ CELEBRATION OVERLAY ============ -->
+<div class="celebration" id="celebration" hidden>
+  <div class="celebration-inner">
+    <p class="eyebrow eyebrow-gold">from friends,</p>
+    <h2 id="cfg-celebration-title">to forever.</h2>
+    <p id="cfg-celebration-message">Here's to every chapter still unwritten.</p>
+    <button class="btn-replay" id="btn-replay" type="button">Read our story again</button>
+  </div>
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

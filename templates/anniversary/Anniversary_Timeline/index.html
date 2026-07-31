@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Love Journey - Happy Anniversary</title>
+  <!-- Theme Stylesheet (swapped dynamically) -->
+  <link id="themeStylesheet" rel="stylesheet" href="theme-light.css">
+  <!-- Core Layout Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Floating Canvas for Hearts Particle Effect -->
+  <canvas id="heartsCanvas"></canvas>
+
+  <!-- Lock Screen Overlay -->
+  <div id="lockScreen">
+    <div class="lock-card" id="lockCard">
+      <img src="images/lockscreen_cover.png" alt="Lock Screen" class="lock-cover-img">
+      <h1 class="lock-title">Our Vault</h1>
+      <p class="lock-hint" id="lockHint">Enter our marriage date to unlock our memories</p>
+      <div class="password-input-wrapper">
+        <input type="date" id="dateInput" class="date-input">
+      </div>
+      <button id="unlockBtn" class="unlock-btn">Unlock Memory Chest</button>
+      <div id="errorMsg" class="error-msg">Incorrect Date. Please try again, my love.</div>
+    </div>
+  </div>
+
+  <!-- Main Website Container (unlocked via decryption) -->
+  <div id="mainContent">
+
+    <!-- Floating Background Music Player -->
+    <div class="music-player">
+      <span class="music-tooltip">Click to play/pause romance</span>
+      <button class="disc-btn" id="musicBtn" aria-label="Toggle background music">
+        <img src="images/lockscreen_cover.png" alt="Vinyl Disc" class="disc-img">
+      </button>
+      <audio id="bgMusic" loop>
+        <!-- Source is loaded dynamically from decrypted config -->
+      </audio>
+    </div>
+
+    <!-- Floating Theme Switcher -->
+    <div class="theme-switcher" id="themeSwitcher">
+      <button class="theme-btn" id="themeBtn" aria-label="Switch Theme">
+        <!-- SVG Gear Icon -->
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path
+            d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z">
+          </path>
+        </svg>
+      </button>
+      <div class="theme-menu">
+        <button class="theme-menu-btn" data-theme="light">🌸 Blush Pink (Light)</button>
+        <button class="theme-menu-btn" data-theme="dark">🌌 Neon Purple (Dark)</button>
+        <button class="theme-menu-btn" data-theme="hearts">💖 Golden Hearts</button>
+      </div>
+    </div>
+
+    <!-- Hero Header -->
+    <header class="hero">
+      <h1 class="couple-names" id="coupleNames">Vikram & Anjali</h1>
+      <p class="hero-subtitle">Our Love Ticker</p>
+
+      <!-- Love Counter Ticker -->
+      <div class="ticker-container">
+        <div class="ticker-item">
+          <div class="ticker-number" id="tickerDays">00</div>
+          <div class="ticker-label">Days</div>
+        </div>
+        <div class="ticker-item">
+          <div class="ticker-number" id="tickerHours">00</div>
+          <div class="ticker-label">Hours</div>
+        </div>
+        <div class="ticker-item">
+          <div class="ticker-number" id="tickerMinutes">00</div>
+          <div class="ticker-label">Minutes</div>
+        </div>
+        <div class="ticker-item">
+          <div class="ticker-number" id="tickerSeconds">00</div>
+          <div class="ticker-label">Seconds</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Vertical Timeline Section -->
+    <section class="timeline-section">
+      <h2 class="section-title">Our Journey</h2>
+      <div class="timeline-container" id="timelineContainer">
+        <!-- Milestones populated dynamically from decrypted configuration -->
+      </div>
+    </section>
+
+    <!-- Love Letter Section -->
+    <section class="letter-section">
+      <h2 class="section-title">A Letter For You</h2>
+
+      <div class="letter-envelope-wrapper" id="envelopeWrapper">
+        <div class="envelope">
+          <div class="wax-seal">❤</div>
+          <div class="envelope-bottom"></div>
+
+          <!-- Letter Paper -->
+          <div class="letter-paper" id="letterPaper">
+            <h3 class="letter-title" id="letterTitle">My Dearest...</h3>
+            <p class="letter-body" id="letterBody">
+              Loading your special letter...
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p class="footer-quote">"Loved you yesterday, love you still, always have, always will."</p>
+      <p class="footer-credits">Forever Together &copy; <span id="currentYear">2026</span></p>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

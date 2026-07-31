@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Happy Birthday Surprise! 🦚✨</title>
+  <meta name="description" content="A regal peacock-themed interactive digital surprise created with love.">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Configuration Script (Loaded early to make variables globally accessible) -->
+  <script src="config.js"></script>
+</head>
+<body>
+
+  <!-- Custom Cursor Trail (Disabled on mobile automatically) -->
+  <div class="custom-cursor-dot" id="cursor-dot"></div>
+  <div class="custom-cursor-glow" id="cursor-glow"></div>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress-bar" id="scroll-progress"></div>
+
+  <!-- Canvas for Floating Particles (Peacock Feathers, Stars, Sparkles) -->
+  <canvas id="particle-canvas"></canvas>
+  
+  <!-- Canvas for Fullscreen Fireworks Surprise -->
+  <canvas id="fireworks-canvas"></canvas>
+
+  <!-- Navigation Header -->
+  <header id="header">
+    <div class="navbar">
+      <a href="#hero" class="nav-logo" id="nav-logo">
+        <span class="logo-heart">🦚</span> <span id="logo-text">Surprise</span>
+      </a>
+      
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#story">Our Story</a></li>
+        <li><a href="#letter">Love Letter</a></li>
+        <li><a href="#timeline">Timeline</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#reasons">Reasons</a></li>
+        <li><a href="#giftbox">Surprise</a></li>
+      </ul>
+      
+      <div class="nav-controls">
+        <!-- Theme Toggle Switcher -->
+        <button class="nav-btn" id="theme-toggle" aria-label="Toggle dark/light mode" title="Toggle Theme">
+          🌙
+        </button>
+        
+        <!-- Environment/Weather Toggle Switcher -->
+        <button class="nav-btn" id="weather-toggle" aria-label="Toggle falling effects" title="Change Background Effects">
+          ✨
+        </button>
+        
+        <!-- Mobile Navigation Menu Toggle -->
+        <button class="nav-btn mobile-nav-toggle" id="mobile-toggle" aria-label="Toggle navigation menu">
+          ☰
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="hero">
+      <div class="hero-bg-container" id="hero-bg-container">
+        <!-- Background image with fallback logic -->
+        <img src="" alt="Hero Background" class="hero-bg-image" id="hero-bg">
+      </div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1 class="hero-title" id="hero-title">Happy Birthday!</h1>
+        <p class="hero-subtitle" id="hero-subtitle">Loading surprise...</p>
+        <button class="btn-ripple" id="hero-cta">
+          <span id="hero-cta-text">Enter</span> <span class="cta-arrow">→</span>
+        </button>
+      </div>
+      <div class="scroll-indicator" id="scroll-indicator">
+        <span></span>
+      </div>
+    </section>
+
+    <!-- Countdown Timer Section -->
+    <section id="countdown-section" class="reveal-on-scroll">
+      <div class="container">
+        <h2 class="section-title" id="countdown-title">The Countdown</h2>
+        <div class="countdown-container" id="countdown-timer">
+          <div class="countdown-box">
+            <div class="countdown-num" id="days">00</div>
+            <div class="countdown-label">Days</div>
+          </div>
+          <div class="countdown-box">
+            <div class="countdown-num" id="hours">00</div>
+            <div class="countdown-label">Hours</div>
+          </div>
+          <div class="countdown-box">
+            <div class="countdown-num" id="minutes">00</div>
+            <div class="countdown-label">Minutes</div>
+          </div>
+          <div class="countdown-box">
+            <div class="countdown-num" id="seconds">00</div>
+            <div class="countdown-label">Seconds</div>
+          </div>
+        </div>
+        <p class="countdown-msg" id="countdown-message">Checking status...</p>
+      </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section id="story" class="reveal-on-scroll">
+      <div class="container">
+        <h2 class="section-title" id="story-section-title">Our Story</h2>
+        <div class="story-wrapper">
+          <div class="story-img-container" id="story-img-container">
+            <img src="" alt="Our Story" class="story-img" id="story-img">
+          </div>
+          <div class="story-text" id="story-paragraphs">
+            <!-- Populated via script -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Love Letter Section -->
+    <section id="letter" class="reveal-on-scroll">
+      <div class="container">
+        <h2 class="section-title" id="letter-section-title">A Letter For You</h2>
+        <div class="letter-container">
+          <div class="envelope-wrapper" id="envelope-wrapper">
+            <div class="envelope" id="envelope-body">
+              <div class="envelope-flap"></div>
+              <div class="envelope-heart" id="envelope-heart">🦚</div>
+              <div class="letter-sheet" id="letter-sheet">
+                <h3 class="letter-title" id="letter-title">A Message of Love</h3>
+                <div class="letter-text" id="letter-text">
+                  <!-- Typing animation content -->
+                </div>
+                <div class="letter-closing" id="letter-closing">
+                  <!-- Populated via script -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Memory Timeline Section -->
+    <section id="timeline" class="reveal-on-scroll">
+      <div class="container">
+        <h2 class="section-title" id="timeline-section-title">Memory Timeline</h2>
+        <div class="timeline-container" id="timeline-items">
+          <!-- Milestones populated dynamically from config -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Photo Gallery Section -->
+    <section id="gallery" class="reveal-on-scroll">
+      <div class="container">
+        <h2 class="section-title" id="gallery-section-title">Our Gallery</h2>
+        <div class="gallery-grid" id="gallery-grid">
+          <!-- Masonry items populated from config -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Polaroid Wall Section -->
+    <section id="polaroids" class="reveal-on-scroll">
+      <div class="container">
+        <h2 class="section-title" id="polaroids-section-title">Polaroid Moments</h2>
+        <div class="polaroids-container" id="polaroids-container">
+          <!-- Polaroids populated dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Reasons Section -->
+    <section id="reasons" class="reveal-on-scroll">
+      <div class="container">
+        <h2 class="section-title" id="reasons-section-title">Reasons I Love You</h2>
+        <div class="reasons-grid" id="reasons-grid">
+          <!-- Interactive cards populated dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Quotes Section -->
+    <section id="quotes" class="reveal-on-scroll">
+      <div class="container">
+        <div class="quotes-container" id="quotes-container">
+          <span class="quotes-decor open">“</span>
+          <!-- Dynamic quote slides -->
+          <div id="quote-slides"></div>
+          <span class="quotes-decor close">”</span>
+        </div>
+        <div class="carousel-indicators" id="carousel-indicators">
+          <!-- Dots loaded here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Gift Box / Confetti Surprise Section -->
+    <section id="giftbox" class="reveal-on-scroll">
+      <div class="container gift-section">
+        <h2 class="section-title" id="giftbox-section-title">Unwrap a Gift</h2>
+        <p class="countdown-msg" id="giftbox-prompt">Tap the box to open your surprise!</p>
+        
+        <div class="gift-box-wrapper" id="gift-box">
+          <div class="gift-box-lid"></div>
+          <div class="gift-box-body"></div>
+          <div class="gift-surprise-card" id="gift-card">
+            <h4 class="coupon-title" id="gift-card-title">Coupon Title</h4>
+            <p class="coupon-desc" id="gift-card-desc">Coupon Description</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Password-Protected Message Section -->
+    <section id="secret" class="reveal-on-scroll">
+      <div class="container secret-container">
+        <div class="secret-card" id="secret-card">
+          <h2 class="secret-title" id="secret-title">Secret Surprise</h2>
+          <p class="secret-desc" id="secret-prompt">Enter the password to read a locked message.</p>
+          
+          <form class="secret-form" id="secret-form" onsubmit="return false;">
+            <input type="password" class="secret-input" id="secret-input" placeholder="Enter key..." autocomplete="off">
+            <p class="secret-hint" id="secret-hint">Hint: Check the config file hint</p>
+            <button type="submit" class="btn-ripple" id="secret-submit">Unlock Message</button>
+          </form>
+          
+          <div class="secret-unlocked-panel" id="secret-unlocked-panel">
+            <!-- Revealed message -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Surprise Canvas Fireworks Section -->
+    <section id="surprise" class="reveal-on-scroll">
+      <div class="container surprise-reveal-wrapper">
+        <h2 class="section-title" id="surprise-section-title">A Magical Surprise</h2>
+        <p class="countdown-msg">Click below to light up the sky for a magical birthday night!</p>
+        <button class="btn-ripple" id="fireworks-trigger">
+          ✨ Ignite Fireworks ✨
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Sticky Footer -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-heart">🦚</div>
+      <p class="footer-quote" id="footer-quote">“You are my favorite view in this whole universe.”</p>
+      <p class="footer-copyright" id="footer-copyright">© Created with Love, 2026</p>
+    </div>
+  </footer>
+
+  <!-- Floating Music Player Widget -->
+  <div class="music-player-container" id="music-player">
+    <div class="music-controls">
+      <button class="music-play-btn" id="music-play-btn" aria-label="Play music">
+        ▶
+      </button>
+    </div>
+    
+    <div class="music-info">
+      <span class="music-title" id="music-track-title">Romantic Melody</span>
+      <span class="music-artist" id="music-track-artist">Acoustic Instrumental</span>
+    </div>
+    
+    <div class="music-visualizer" id="music-visualizer">
+      <div class="visualizer-bar"></div>
+      <div class="visualizer-bar"></div>
+      <div class="visualizer-bar"></div>
+      <div class="visualizer-bar"></div>
+      <div class="visualizer-bar"></div>
+    </div>
+    
+    <div class="volume-slider-container">
+      <span class="volume-icon" id="volume-icon" title="Mute/Unmute">🔊</span>
+      <input type="range" class="volume-slider" id="volume-slider" min="0" max="1" step="0.1" value="0.5">
+    </div>
+  </div>
+
+  <!-- Interactive Lightbox Container -->
+  <div class="lightbox" id="lightbox-modal">
+    <button class="lightbox-close" id="lightbox-close">&times;</button>
+    <button class="lightbox-nav lightbox-prev" id="lightbox-prev">&#10094;</button>
+    <button class="lightbox-nav lightbox-next" id="lightbox-next">&#10095;</button>
+    <div class="lightbox-content">
+      <img src="" alt="Enlarged photo" class="lightbox-img" id="lightbox-img">
+      <p class="lightbox-caption" id="lightbox-caption">Photo Caption</p>
+    </div>
+  </div>
+
+  <!-- Scroll To Top Button -->
+  <button class="scroll-top-btn" id="scroll-top-btn" title="Go to top">
+    ▲
+  </button>
+
+  <!-- Audio Element (Used behind the scenes by JavaScript) -->
+  <audio id="bg-audio" loop></audio>
+
+  <!-- Core JavaScript Interactions -->
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nesiify — A page for every person you love</title>
+<meta name="description" content="Nesiify turns birthdays, anniversaries, proposals, love stories and family memories into a small personal website you send instead of a card.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;1,9..144,450&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<header class="nav" id="top">
+  <div class="nav-inner">
+    <a href="#top" class="logo">Nesiify<span class="logo-dot">.</span></a>
+    <nav class="nav-links">
+      <a href="#categories">Templates</a>
+      <a href="#how">How it works</a>
+      <a href="#preview">Preview</a>
+    </nav>
+    <a href="#categories" class="btn btn-ghost btn-small">Browse templates</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="postmark"><span>NESIIFY</span> · A PAGE FOR EVERY PERSON YOU LOVE</p>
+      <h1 class="hero-title">Every moment<br>deserves its<br>own <em>page.</em></h1>
+      <p class="lede">Not a template you fill in and forget. A small, personal website — a birthday countdown, an anniversary timeline, a love story with a beginning and an end — that you send instead of a card, and they open more than once.</p>
+      <div class="hero-actions">
+        <a href="#categories" class="btn btn-primary seal">
+          <span class="seal-inner">Start your page</span>
+        </a>
+        <a href="#how" class="btn btn-ghost">See how it works ↓</a>
+      </div>
+    </div>
+
+    <div class="hero-stack" aria-hidden="true">
+      <div class="postcard pc-1">
+        <span class="pc-stamp">01 · JAN</span>
+        <svg viewBox="0 0 48 48" class="pc-icon"><path d="M24 44c-9-6-18-13-18-23a11 11 0 0 1 18-8.4A11 11 0 0 1 42 21c0 10-9 17-18 23Z"/></svg>
+        <span class="pc-label">Love Story</span>
+      </div>
+      <div class="postcard pc-2">
+        <span class="pc-stamp">14 · FEB</span>
+        <svg viewBox="0 0 48 48" class="pc-icon"><circle cx="24" cy="30" r="12"/><path d="M17 12l7 8 7-8"/></svg>
+        <span class="pc-label">Proposal</span>
+      </div>
+      <div class="postcard pc-3">
+        <span class="pc-stamp">18 · JUL</span>
+        <svg viewBox="0 0 48 48" class="pc-icon"><path d="M12 20h24v20H12z"/><path d="M12 20l4-8h16l4 8"/><path d="M24 20v20"/></svg>
+        <span class="pc-label">Anniversary</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section id="categories" class="categories">
+    <div class="section-head">
+      <span class="eyebrow">Choose the moment</span>
+      <h2>Five kinds of pages,<br>one feeling.</h2>
+    </div>
+
+    <div class="category-grid">
+
+      <a class="category-card" href="templates/birthday/" data-tilt>
+        <svg class="cat-icon" viewBox="0 0 48 48"><path d="M8 24h32v16H8z"/><path d="M8 24l4-6h24l4 6"/><path d="M18 18v-4c0-2 2-3 2-5s-1-3-1-3"/><path d="M28 18v-4c0-2-2-3-2-5s1-3 1-3"/><path d="M8 32h32"/></svg>
+        <h3>Birthday</h3>
+        <p>A countdown, a gallery, a reason to check the page again before midnight.</p>
+        <span class="cat-link">Open templates →</span>
+      </a>
+
+      <a class="category-card" href="templates/anniversary/" data-tilt>
+        <svg class="cat-icon" viewBox="0 0 48 48"><circle cx="24" cy="24" r="17"/><path d="M24 14v10l7 5"/></svg>
+        <h3>Anniversary</h3>
+        <p>Every year, laid out as a timeline you can keep adding to.</p>
+        <span class="cat-link">Open templates →</span>
+      </a>
+
+      <a class="category-card is-soon" href="templates/proposal/" data-tilt>
+        <span class="cat-badge">Coming soon</span>
+        <svg class="cat-icon" viewBox="0 0 48 48"><circle cx="24" cy="30" r="12"/><path d="M17 12l7 8 7-8"/></svg>
+        <h3>Proposal</h3>
+        <p>Build up to the question, then let the page ask it with you.</p>
+        <span class="cat-link">In the works →</span>
+      </a>
+
+      <a class="category-card" href="templates/love-story/" data-tilt>
+        <svg class="cat-icon" viewBox="0 0 48 48"><path d="M10 12h20v28H10z"/><path d="M18 12v28"/><path d="M14 20h0M14 26h0M14 32h0"/><path d="M30 16l8-4v28l-8 4"/></svg>
+        <h3>Love Story</h3>
+        <p>How you met, what almost went wrong, how it didn't. Told in order.</p>
+        <span class="cat-link">Open templates →</span>
+      </a>
+
+      <a class="category-card" href="templates/family/" data-tilt>
+        <svg class="cat-icon" viewBox="0 0 48 48"><path d="M24 6l6 10h12l-6 10 6 10H30l-6 10-6-10H6l6-10-6-10h12z"/></svg>
+        <h3>Family</h3>
+        <p>The story that started before you did, kept somewhere it won't get lost.</p>
+        <span class="cat-link">Open templates →</span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how" class="how">
+    <div class="section-head">
+      <span class="eyebrow">How it works</span>
+      <h2>Three steps between<br>an idea and a link.</h2>
+    </div>
+
+    <ol class="steps">
+      <li>
+        <span class="stamp">01</span>
+        <h3>Pick a template</h3>
+        <p>Choose the moment you're marking and a style that fits them — soft, bold, playful, or quiet.</p>
+      </li>
+      <li>
+        <span class="stamp">02</span>
+        <h3>Add your story</h3>
+        <p>Swap in your own photos, dates, and words. No code — just the details only you would know.</p>
+      </li>
+      <li>
+        <span class="stamp">03</span>
+        <h3>Send the link</h3>
+        <p>They open it on their phone like any other link. What's on the other side isn't like any other link.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- PREVIEW -->
+  <section id="preview" class="preview">
+    <div class="section-head">
+      <span class="eyebrow">A closer look</span>
+      <h2>What they'll actually open.</h2>
+    </div>
+
+    <div class="browser-frame">
+      <div class="browser-bar">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="browser-url">nesiify.page/for-you</span>
+      </div>
+      <div class="browser-body">
+        <p class="mock-eyebrow">3 YEARS · TOGETHER</p>
+        <p class="mock-title">for the two of us</p>
+        <div class="mock-line"></div>
+        <p class="mock-caption">scroll to open →</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="cta-band">
+    <h2>Say it in a way<br>a card can't.</h2>
+    <a href="#categories" class="btn btn-primary seal">
+      <span class="seal-inner">Start your page</span>
+    </a>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="logo">Nesiify<span class="logo-dot">.</span></span>
+      <p>செய்யப்பட்டது அன்புடன் — made with love.</p>
+    </div>
+    <nav class="footer-links">
+      <a href="#categories">Templates</a>
+      <a href="#how">How it works</a>
+      <a href="#preview">Preview</a>
+    </nav>
+    <p class="footer-note">© <span id="year"></span> Nesiify. Every page, kept between the two of you.</p>
+  </div>
+</footer>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>

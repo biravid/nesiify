@@ -1,0 +1,33 @@
+/* ==========================================================================
+   light.css — Sunlit Paper theme
+   Warm ivory paper with wine, terracotta-rose & antique gold accents.
+   ========================================================================== */
+
+.theme-light {
+  --bg: #fbf1e2;
+  --bg-alt: #f6e6cf;
+  --surface: #fffaf0;
+  --surface-2: #fff3e0;
+  --paper: #fffaf0;
+  --paper-ink: #3a2233;
+
+  --ink: #3a2233;
+  --ink-soft: #5c3a4a;
+  --muted: #8a6a76;
+
+  --accent: #c96b74;       /* wine rose */
+  --accent-strong: #b3505c;
+  --accent-2: #b98a2f;     /* antique gold */
+  --accent-3: #6f4f8c;     /* violet */
+
+  --line: rgba(58, 34, 51, 0.14);
+  --line-strong: rgba(58, 34, 51, 0.26);
+
+  --shadow: 0 20px 50px rgba(90, 50, 40, 0.18);
+  --shadow-soft: 0 10px 24px rgba(90, 50, 40, 0.12);
+
+  --overlay-scrim: linear-gradient(180deg, rgba(58,34,51,0.08) 0%, rgba(58,34,51,0.35) 55%, rgba(58,34,51,0.78) 100%);
+
+  --star-opacity: 0.35;
+  color-scheme: light;
+}

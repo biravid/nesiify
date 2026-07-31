@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="t3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbc2eb"/>
+      <stop offset="100%" stop-color="#a6c1ee"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" rx="20" fill="url(#t3)"/>
+  <!-- Ring box & glittering heart -->
+  <rect x="250" y="180" width="100" height="80" rx="12" fill="#5b247a"/>
+  <path d="M 240,180 L 360,180 L 300,120 Z" fill="#7b2cbf"/>
+  <!-- Glowing Diamond Ring -->
+  <circle cx="300" cy="165" r="22" stroke="#ffd700" stroke-width="6" fill="none"/>
+  <polygon points="300,135 310,145 300,150 290,145" fill="#00f2fe"/>
+  <circle cx="300" cy="140" r="10" fill="#ffffff" opacity="0.8"/>
+  <text x="300" y="340" font-family="'Playfair Display', serif" font-size="24" font-weight="bold" fill="#3a1c71" text-anchor="middle">Saying "I Do"</text>
+</svg>

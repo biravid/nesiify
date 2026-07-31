@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>A Letter For You</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><text y=%2226%22 font-size=%2228%22>💌</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Ambient starfield / floating hearts canvas, sits behind everything -->
+  <canvas id="ambient-canvas"></canvas>
+
+  <!-- Fireworks / confetti canvas for the big surprise moment -->
+  <canvas id="fx-canvas"></canvas>
+
+  <!-- ============ STAGE 1 — LOCK SCREEN ============ -->
+  <main id="stage-lock" class="stage stage--active">
+    <div class="lock-card">
+      <div class="seal" id="seal">
+        <span class="seal__glyph">♡</span>
+      </div>
+
+      <h1 class="script-title" id="lock-title">A letter for you</h1>
+      <p class="lock-subtitle" id="lock-subtitle">Something written just for your eyes. Type the password to open it.</p>
+
+      <form id="password-form" class="password-form" autocomplete="off">
+        <input
+          id="password-input"
+          type="password"
+          class="password-input"
+          placeholder="Type the password…"
+          aria-label="Password"
+        />
+        <button type="submit" class="unlock-btn">
+          <span>Open my letter</span>
+        </button>
+      </form>
+
+      <p class="wrong-msg" id="wrong-msg">Not quite — try again 💭</p>
+
+      <button id="hint-btn" class="hint-btn">Need a hint?</button>
+      <p class="hint-text" id="hint-text"></p>
+    </div>
+  </main>
+
+  <!-- ============ STAGE 2 — ENVELOPE OPENING ============ -->
+  <section id="stage-envelope" class="stage">
+    <div class="envelope-scene">
+      <p class="envelope-label" id="envelope-label">To the one who has my whole heart</p>
+      <div class="envelope" id="envelope">
+        <div class="envelope__back"></div>
+        <div class="envelope__letter" id="envelope-letter">
+          <span class="envelope__letter-heart">♡</span>
+        </div>
+        <div class="envelope__flap"></div>
+        <div class="envelope__front-left"></div>
+        <div class="envelope__front-right"></div>
+        <div class="envelope__seal">♡</div>
+      </div>
+      <p class="envelope-hint">tap the envelope</p>
+    </div>
+  </section>
+
+  <!-- ============ STAGE 3 — THE FULL LETTER ============ -->
+  <section id="stage-letter" class="stage">
+    <div class="letter-page">
+
+      <header class="letter-hero">
+        <p class="eyebrow" id="hero-eyebrow">A little something for</p>
+        <h1 class="script-title script-title--hero" id="hero-name">My Love</h1>
+        <p class="letter-date" id="letter-date">Written on a Tuesday, meant for forever</p>
+      </header>
+
+      <article class="letter-card">
+        <h2 class="letter-title" id="letter-title">Every reason, in ink.</h2>
+        <div class="letter-body" id="letter-body">
+          <!-- paragraphs are typed in by JS -->
+        </div>
+        <p class="letter-closing" id="letter-closing"></p>
+        <p class="letter-signature" id="letter-signature"></p>
+      </article>
+
+      <section class="reasons-section">
+        <h2 class="section-title">A few reasons, of many</h2>
+        <p class="section-hint">tap a card</p>
+        <div class="reasons-grid" id="reasons-grid">
+          <!-- cards injected by JS -->
+        </div>
+      </section>
+
+      <section class="counter-section">
+        <p class="counter-label" id="counter-label">Since the day it all started, we've shared</p>
+        <div class="counter-grid">
+          <div class="counter-unit"><span class="counter-num" id="count-days">0</span><span class="counter-word">days</span></div>
+          <div class="counter-unit"><span class="counter-num" id="count-hours">0</span><span class="counter-word">hours</span></div>
+          <div class="counter-unit"><span class="counter-num" id="count-mins">0</span><span class="counter-word">minutes</span></div>
+          <div class="counter-unit"><span class="counter-num" id="count-secs">0</span><span class="counter-word">seconds</span></div>
+        </div>
+      </section>
+
+      <section class="gallery-section">
+        <h2 class="section-title">Moments I keep</h2>
+        <div class="gallery-grid" id="gallery-grid">
+          <!-- polaroids injected by JS -->
+        </div>
+      </section>
+
+      <section class="surprise-section">
+        <button id="surprise-btn" class="surprise-btn">
+          <span>tap for one more surprise</span>
+        </button>
+      </section>
+
+      <footer class="letter-footer">
+        <p>made with a whole heart, just for you 💌</p>
+      </footer>
+    </div>
+  </section>
+
+  <!-- ============ MODALS ============ -->
+  <div id="photo-modal" class="modal">
+    <div class="modal__backdrop"></div>
+    <div class="modal__content">
+      <img id="modal-img" src="" alt="memory" />
+      <p id="modal-caption"></p>
+      <button id="modal-close" class="modal__close" aria-label="Close">✕</button>
+    </div>
+  </div>
+
+  <div id="surprise-modal" class="modal">
+    <div class="modal__backdrop"></div>
+    <div class="modal__content modal__content--surprise">
+      <h2 id="surprise-heading">One more thing…</h2>
+      <p id="surprise-message"></p>
+      <button id="surprise-close" class="modal__close" aria-label="Close">✕</button>
+    </div>
+  </div>
+
+  <audio id="bg-music" loop></audio>
+
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
