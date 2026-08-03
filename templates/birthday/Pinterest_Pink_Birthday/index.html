@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#d9a8ae">
+  <title>Birthday Surprise</title>
+  <meta name="description" content="A little birthday surprise made with love.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="app" class="app" aria-live="polite">
+
+    <!-- 00 — COVER -->
+    <section class="screen screen-cover is-active" data-screen="0">
+      <div class="paper-grain"></div>
+      <div class="cover-orbit orbit-one"></div>
+      <div class="cover-orbit orbit-two"></div>
+      <div class="tiny-sparkle s1">✦</div>
+      <div class="tiny-sparkle s2">♡</div>
+      <div class="tiny-sparkle s3">✦</div>
+      <div class="cover-petals-container" id="coverPetals"></div>
+
+      <div class="cover-card" id="coverCard">
+        <div class="cover-ribbon ribbon-top"></div>
+        <div class="cover-flower">✿</div>
+        <p class="eyebrow" data-bind="from"></p>
+        <h1>A little<br><span>surprise</span><br>for you</h1>
+        <p class="cover-subtitle" data-bind="coverIntro"></p>
+        <button class="primary-btn heartbeat" id="openSurpriseBtn" data-next="1">
+          <span>Open surprise</span><span class="btn-heart">♡</span>
+        </button>
+        <div class="cover-note">tap gently · something sweet is waiting</div>
+      </div>
+    </section>
+
+    <!-- 01 — EDITORIAL HAPPY BIRTHDAY INTRO -->
+    <section class="screen screen-intro" data-screen="1">
+      <div class="paper-grain"></div>
+      <div class="intro-bg-glow"></div>
+
+      <div class="editorial-container">
+        <!-- Oversized layered typography -->
+        <div class="editorial-typography" id="introTypo">
+          <h1 class="bg-happy" data-bind="birthdayTitle">HAPPY</h1>
+          <div class="script-birthday" data-bind="birthdayScript">birthday</div>
+        </div>
+
+        <!-- Subject Cutout Object floating element -->
+        <div class="hero-object-wrap" id="heroObjectWrap">
+          <div class="hero-object-shadow"></div>
+          <img id="heroObjectImg" src="" alt="Birthday hero element" class="hero-object-img">
+        </div>
+
+        <!-- Interactive Petal Reveal Feature -->
+        <div class="intro-interactive-area" id="introInteractive">
+          <button class="heart-reveal-btn" id="heartRevealBtn" aria-label="Tap the heart for a surprise">
+            <span class="heart-btn-label">tap the little heart</span>
+            <span class="heart-pulse-icon">♡</span>
+          </button>
+          <p class="reveal-message hidden" id="revealMessage" data-bind="heroRevealText"></p>
+          <button class="primary-btn intro-next-btn hidden" id="introNextBtn" data-next="2">
+            <span>See your bouquet</span><span>→</span>
+          </button>
+        </div>
+      </div>
+      <div class="petal-canvas-container" id="petalContainer"></div>
+    </section>
+
+    <!-- 02 — BOUQUET -->
+    <section class="screen screen-bouquet" data-screen="2">
+      <div class="soft-blob blob-left"></div>
+      <div class="soft-blob blob-right"></div>
+      <div class="floating-heart fh1">♡</div>
+      <div class="floating-heart fh2">♡</div>
+      <div class="bouquet-copy">
+        <span class="chapter">01 · for you</span>
+        <h2>A bouquet,<br><em>just because.</em></h2>
+        <p>Every flower here carries a tiny piece of the affection, gratitude, and happy memories I wish for you.</p>
+      </div>
+      <div class="bouquet-stage">
+        <div class="bouquet-shadow"></div>
+        <img src="assets/bouquet-transparent.png" alt="Pink tulip bouquet" class="bouquet-img">
+        <div class="bouquet-tag">picked with love<br><span>♡</span></div>
+      </div>
+      <button class="primary-btn accept-btn" data-next="3">
+        <span>Accept my love</span><span>♡</span>
+      </button>
+      <div class="swipe-hint">a little love for you</div>
+    </section>
+
+    <!-- 03 — PHOTO + AUDIO -->
+    <section class="screen screen-memory" data-screen="3">
+      <div class="memory-top">
+        <span class="chapter">02 · a memory</span>
+        <span class="mini-date" data-bind="date"></span>
+      </div>
+
+      <div class="memory-frame">
+        <div class="frame-tape"></div>
+        <div class="frame-inner">
+          <div class="photo-wrap">
+            <img id="userPhoto" src="" alt="A favorite photo">
+            <div class="photo-glow"></div>
+          </div>
+          <div class="frame-caption">
+            <span class="caption-small">one of my favorite things</span>
+            <strong data-bind="personName"></strong>
+            <span class="caption-heart">♡</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="player-card">
+        <div class="player-meta">
+          <div class="disc"><span>♡</span></div>
+          <div>
+            <span class="playing-label">now playing</span>
+            <strong data-bind="songTitle"></strong>
+          </div>
+        </div>
+        <div class="player-controls">
+          <button class="icon-btn" id="backBtn" aria-label="Back">↶</button>
+          <button class="play-btn" id="playBtn" aria-label="Play">▶</button>
+          <button class="icon-btn" id="forwardBtn" aria-label="Next">↷</button>
+        </div>
+        <div class="progress-line"><span id="progress"></span><i id="progressDot"></i></div>
+        <div class="time-row"><span id="currentTime">0:00</span><span id="duration">0:00</span></div>
+      </div>
+
+      <button class="next-text-btn" data-next="4">next little surprise <span>→</span></button>
+    </section>
+
+    <!-- 04 — BALLOON LAUNCH -->
+    <section class="screen screen-balloons" data-screen="4">
+      <div class="bokeh-layer"></div>
+      <div class="launch-copy">
+        <span class="chapter">03 · make a wish</span>
+        <h2>Ready to<br><em>launch?</em></h2>
+        <p>Tap the balloons and let the birthday magic begin.</p>
+      </div>
+      <div class="balloon-cluster" id="balloonCluster" aria-label="Tap balloons to launch the surprise">
+        <button class="balloon b1" data-balloon><span>♡</span></button>
+        <button class="balloon b2" data-balloon><span>♡</span></button>
+        <button class="balloon b3" data-balloon><span>♡</span></button>
+        <button class="balloon b4" data-balloon><span>♡</span></button>
+        <button class="balloon b5" data-balloon><span>♡</span></button>
+        <button class="balloon b6" data-balloon><span>♡</span></button>
+        <button class="balloon b7" data-balloon><span>♡</span></button>
+      </div>
+      <div class="launch-label" id="launchLabel">tap any heart balloon</div>
+      <button class="ghost-btn hidden" id="launchContinue" data-next="5">open the photos ✦</button>
+    </section>
+
+    <!-- 05 — POLAROIDS -->
+    <section class="screen screen-polaroids" data-screen="5">
+      <div class="photo-paper"></div>
+      <div class="polaroid-heading">
+        <span class="chapter">04 · little moments</span>
+        <h2>These moments<br>deserve a <em>frame.</em></h2>
+      </div>
+
+      <div class="polaroid-scene">
+        <div class="polaroid p1" data-polaroid-index="0" role="button" tabindex="0">
+          <div class="polaroid-photo"><img id="gallery1" src="" alt="Memory one"></div>
+          <span id="galleryCaption1">the smiles ♡</span>
+        </div>
+        <div class="polaroid p2" data-polaroid-index="1" role="button" tabindex="0">
+          <div class="polaroid-photo"><img id="gallery2" src="" alt="Memory two"></div>
+          <span id="galleryCaption2">the laughter</span>
+        </div>
+        <div class="polaroid p3" data-polaroid-index="2" role="button" tabindex="0">
+          <div class="polaroid-photo"><img id="gallery3" src="" alt="Memory three"></div>
+          <span id="galleryCaption3">the little things</span>
+        </div>
+        <div class="polaroid p4" data-polaroid-index="3" role="button" tabindex="0">
+          <div class="polaroid-photo"><img id="gallery4" src="" alt="Memory four"></div>
+          <span id="galleryCaption4">always & forever</span>
+        </div>
+        <div class="paper-flower">✿</div>
+        <div class="paper-bow">⌁</div>
+      </div>
+
+      <button class="primary-btn cake-next" data-next="6">
+        <span>one more surprise</span><span>→</span>
+      </button>
+
+      <!-- Polaroid Focus Modal -->
+      <div class="polaroid-modal hidden" id="polaroidModal">
+        <div class="modal-backdrop" id="modalBackdrop"></div>
+        <div class="modal-card" id="modalCard">
+          <div class="modal-tape"></div>
+          <div class="modal-photo-wrap">
+            <img id="modalImg" src="" alt="Focused Polaroid photo">
+          </div>
+          <p class="modal-caption" id="modalCaption"></p>
+          <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close modal">✕</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 — CAKE -->
+    <section class="screen screen-cake" data-screen="6">
+      <div class="cake-glow" id="cakeGlow"></div>
+      <div class="cake-bokeh"></div>
+      <div class="cake-title">
+        <span class="chapter">05 · make a wish</span>
+        <h2>Happy Birthday,<br><em data-bind="personName"></em>!</h2>
+      </div>
+
+      <!-- Real Butterfly Cake Scene -->
+      <div class="cake-scene-real" id="cakeScene">
+        <div class="smoke-container" id="smokeContainer"></div>
+
+        <div class="real-cake-wrapper">
+          <div class="cake-shadow-real"></div>
+          <img id="realCakeImg" src="" alt="Pastel pink butterfly birthday cake" class="real-cake-img">
+          
+          <!-- Single Interactive Candle placed atop original cake -->
+          <div class="real-candle-wrap" id="candleArea" role="button" tabindex="0" aria-label="Tap candle to blow out flame">
+            <div class="candle-glow-aura" id="candleGlow"></div>
+            <div class="candle-stem"></div>
+            <div class="real-candle-flame" id="candleFlame"></div>
+          </div>
+        </div>
+      </div>
+
+      <p class="cake-hint-text" id="cakeHint">tap the candle flame or hold button below</p>
+
+      <p class="cake-message" data-bind="cakeMessage"></p>
+      
+      <!-- Interactive Wish Button -->
+      <button class="primary-btn wish-btn" id="wishBtn">
+        <span class="btn-text">Make a wish</span><span class="btn-icon">♡</span>
+        <div class="hold-progress" id="holdProgress"></div>
+      </button>
+
+      <!-- Revealed wish confirmation text -->
+      <div class="wish-revealed-wrap hidden" id="wishRevealed">
+        <p class="wish-revealed-text" data-bind="wishRevealText">Wish made. ♡</p>
+      </div>
+
+      <button class="primary-btn final-next-btn hidden" id="finalNextBtn" data-next="7">
+        <span>Read your message</span><span>→</span>
+      </button>
+    </section>
+
+    <!-- 07 — CONCLUSION -->
+    <section class="screen screen-wishes" data-screen="7">
+      <div class="wish-paper"></div>
+      <div class="wish-ribbon">♡</div>
+      <div class="wish-flower flower-top">✿</div>
+      <div class="wish-flower flower-bottom">❀</div>
+      <div class="wish-content">
+        <span class="chapter">06 · from my heart</span>
+        <h2>Happy<br><em>Birthday</em></h2>
+        <div class="wish-divider">♡ · ✦ · ♡</div>
+        <p data-bind="finalMessage"></p>
+        <p class="signature">with all my love,<br><strong data-bind="from"></strong> ♡</p>
+        <button class="restart-btn" id="restartBtn">replay the surprise ↻</button>
+      </div>
+    </section>
+
+    <div class="progress-dots" aria-hidden="true">
+      <i class="active"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    </div>
+    <div class="sound-note" id="soundNote">♫</div>
+  </main>
+
+  <audio id="audio" preload="metadata"></audio>
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

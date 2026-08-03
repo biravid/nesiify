@@ -1,0 +1,2 @@
+Replace the photo/audio paths in config.js with files placed in this folder.
+Recommended: your-photo.jpg, memory-1.jpg ... memory-4.jpg, song.mp3
