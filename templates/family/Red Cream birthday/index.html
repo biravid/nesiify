@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Journey of Love for Santhosh 💖✨ | From Hashini</title>
+    <meta name="description"
+        content="An aesthetic romantic surprise journey for Santhosh from Hashini with love, support, music, interactive memories, and secret letter.">
+    <!-- Google Fonts (GenZ Aesthetic Typography: Outfit, Plus Jakarta Sans, Caveat, Playfair Display) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Interactive Animated Canvas Background (Particles, Floating Hearts & Cursor Trail) -->
+    <canvas id="bgCanvas"></canvas>
+
+    <!-- Floating Music Player Control -->
+    <button id="musicToggle" class="music-toggle hidden" aria-label="Toggle Music">
+        <i id="musicIcon" class="fa-solid fa-compact-disc"></i>
+    </button>
+    <audio id="bgAudio" loop preload="auto"></audio>
+    <audio id="lofiAudio" loop preload="auto"></audio>
+
+    <!-- ============================================================
+         DOOR TRANSITION OVERLAY
+         Pattern 2 (Knock to Enter) + Pattern 4 (Typewriter Bridge)
+         Appears on every forward navigation. Hidden by default.
+         ============================================================ -->
+    <div id="doorOverlay" class="door-overlay hidden" aria-modal="true" role="dialog" aria-label="Chapter transition">
+
+        <!-- Thin progress ribbon across the very top -->
+        <div class="door-progress-ribbon" aria-hidden="true">
+            <div id="doorRibbonFill" class="door-ribbon-fill"></div>
+            <span id="doorRibbonLabel" class="door-ribbon-label">1 / 10</span>
+        </div>
+
+        <!-- Ambient floating petals (pure CSS, no JS) -->
+        <span class="door-petal dp1" aria-hidden="true">🌸</span>
+        <span class="door-petal dp2" aria-hidden="true">✨</span>
+        <span class="door-petal dp3" aria-hidden="true">🌹</span>
+        <span class="door-petal dp4" aria-hidden="true">💫</span>
+
+        <!-- Main door card -->
+        <div id="doorCard" class="door-card">
+
+            <!-- Chapter badge pill -->
+            <div id="doorChapterPill" class="door-chapter-pill">Chapter 2</div>
+
+            <!-- Typewriter message area -->
+            <div class="door-typewriter-area">
+                <p id="doorTypeText" class="door-type-text"></p><span class="door-cursor" aria-hidden="true">|</span>
+            </div>
+
+            <!-- Hint reveal — hidden until typewriter finishes -->
+            <div id="doorHint" class="door-hint hidden">
+                <span id="doorHintEmoji" class="door-hint-emoji">🎁</span>
+                <p id="doorHintLabel" class="door-hint-label">Something is waiting...</p>
+                <button id="doorKnockBtn" class="door-knock-btn" aria-label="Reveal next chapter">
+                    <i class="fa-solid fa-door-open" aria-hidden="true"></i>
+                    <span>Open Chapter 2</span>
+                </button>
+            </div>
+
+            <!-- Tap-to-skip nudge text -->
+            <p class="door-tap-hint" id="doorTapHint">tap anywhere to skip typing ›</p>
+
+        </div><!-- /.door-card -->
+    </div><!-- /#doorOverlay -->
+
+    <!-- App Wrapper Container -->
+    <div class="app-frame">
+
+        <!-- PAGE 0: Proposal / Surprise Cover Screen -->
+        <section id="page-0" class="page-screen active">
+            <div class="intro-card glass-panel text-center">
+                <!-- Botanical accent SVGs -->
+                <svg class="botanical-accent top-right" viewBox="0 0 80 80" fill="none"
+                    xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M60 10 Q70 30 50 50 Q35 40 25 55 Q40 20 60 10Z" fill="#C4717A" />
+                    <path d="M55 15 Q72 35 48 58 Q36 45 20 60 Q38 22 55 15Z" fill="none" stroke="#C4717A"
+                        stroke-width="1" />
+                    <path d="M40 40 Q48 30 55 20" stroke="#A85865" stroke-width="1.5" stroke-linecap="round" />
+                </svg>
+                <svg class="botanical-accent bottom-left" viewBox="0 0 70 70" fill="none"
+                    xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M10 60 Q20 40 40 30 Q35 50 50 55 Q25 65 10 60Z" fill="#C9A96E" />
+                    <path d="M15 55 Q28 38 45 28 Q38 52 52 58 Q28 68 15 55Z" fill="none" stroke="#C9A96E"
+                        stroke-width="1" />
+                </svg>
+
+                <div class="genz-ribbon-badge">💖 FOREVER & ALWAYS 💖</div>
+                <div class="intro-rose-icon animated-heart-bounce"><img src="images/cat3.png" alt="cat"></div>
+                <h1 id="introTitle" class="intro-title">A Special Surprise for Santhosh ✨</h1>
+                <p id="introSubtitle" class="intro-subtitle">Prepared with endless love by Hashini 💙<br>Are you
+                    ready to walk this journey together, my love?</p>
+
+                <!-- Proposal Buttons Wrapper -->
+                <div class="proposal-buttons-wrapper">
+                    <button id="startBtn" class="primary-btn yes-btn glowing-btn">
+                        <i class="fa-solid fa-heart"></i> YES, I'm Ready! 💖
+                    </button>
+                    <button id="noProposalBtn" class="secondary-btn no-btn">
+                        NO 🙈
+                    </button>
+                </div>
+                <div id="noBtnHint" class="no-btn-hint hidden">No is not an option when two hearts beat as one! 💖</div>
+            </div>
+        </section>
+
+        <!-- PAGE 1: Hero & Countdown -->
+        <section id="page-1" class="page-screen hidden">
+            <div class="glass-panel text-center">
+
+                <h1 id="recipientHeading" class="recipient-heading">Santhosh💙</h1>
+                <p id="headerSubtitle" class="header-subtitle">A golden journey created with pure love and sweet
+                    memories</p>
+
+                <div class="divider-aesthetic">✨ 🌸 💖 🌸 ✨</div>
+
+                <div class="countdown-wrapper">
+                    <h3 id="countdownTitle" class="countdown-title">Counting Down To Our Special Moment ⏳💖</h3>
+                    <div class="countdown-grid">
+                        <div class="timer-box">
+                            <span id="days" class="timer-number">00</span>
+                            <span class="timer-label">DAYS</span>
+                        </div>
+                        <div class="timer-box">
+                            <span id="hours" class="timer-number">00</span>
+                            <span class="timer-label">HOURS</span>
+                        </div>
+                        <div class="timer-box">
+                            <span id="minutes" class="timer-number">00</span>
+                            <span class="timer-label">MINS</span>
+                        </div>
+                        <div class="timer-box">
+                            <span id="seconds" class="timer-number">00</span>
+                            <span class="timer-label">SECS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Floating Send Love Button -->
+                <button id="sendLoveBtn" class="send-love-btn">
+                    <i class="fa-solid fa-sparkles"></i> Send Hugs & Hearts 💕
+                </button>
+            </div>
+        </section>
+
+        <!-- PAGE 2: Cinematic Film Reel -->
+        <section id="page-2" class="page-screen hidden">
+            <div class="glass-panel text-center film-page-panel">
+
+                <h2 class="section-title">Our Story in Frames 🎞️✨</h2>
+                <p class="section-subtitle">Every photograph holds a heartbeat, every frame a memory with you ❤️</p>
+
+                <!-- Cinematic Film Reel Strip -->
+                <div class="film-reel-section standalone-film-section">
+                    <div class="film-reel-wrapper">
+                        <div class="film-holes-bar"></div>
+                        <div class="film-strip-track">
+                            <div id="filmStrip" class="film-strip"></div>
+                        </div>
+                        <div class="film-holes-bar"></div>
+                    </div>
+                </div>
+
+                <div class="film-reel-meta">
+                    <div class="film-meta-badge"><span>🎞️ 35mm Vintage Film Reel</span></div>
+                    <p class="film-caption-quote">"Captured in light, preserved in time — forever my favourite story
+                        with you, Santhosh." 💖</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 3: Happy Birthday Showcase -->
+        <section id="page-3" class="page-screen hidden">
+            <div class="glass-panel text-center birthday-card-panel">
+                <!-- Botanical accent -->
+                <svg class="botanical-accent top-right" viewBox="0 0 80 80" fill="none"
+                    xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M65 5 Q78 28 55 52 Q38 42 28 58 Q45 18 65 5Z" fill="#E8B4B8" />
+                    <path d="M50 25 Q60 15 65 8" stroke="#C4717A" stroke-width="1.5" stroke-linecap="round" />
+                    <circle cx="52" cy="22" r="3" fill="#C4717A" opacity="0.6" />
+                </svg>
+
+                <!-- Y2K Aesthetic Typographic Header -->
+                <div class="hbd-typography-wrapper">
+                    <div id="hbdBgText" class="hbd-bg-text">HAPPY</div>
+                    <div id="hbdOverlayText" class="hbd-overlay-text">birthday</div>
+                </div>
+
+                <!-- Floating User Cutout Center Image with Y2K Halo -->
+                <div class="floating-user-image-container">
+                    <div class="floating-image-glow"></div>
+                    <img id="birthdayCutoutImg" src="images/user_cutout_transparent.png" alt="Happy Birthday Santhosh"
+                        class="floating-cutout-img">
+                    <div class="floating-sparkles">
+                        <span class="sparkle s1">✨</span>
+                        <span class="sparkle s2">💖</span>
+                        <span class="sparkle s3">🌸</span>
+                        <span class="sparkle s4">🎀</span>
+                        <span class="sparkle s5">👑</span>
+                    </div>
+                    <!-- GenZ Aesthetic Sticker Badges -->
+                    <div class="genz-sticker sticker-1">MY KING 👑</div>
+                    <div class="genz-sticker sticker-2">MY ROCK 💖</div>
+                </div>
+
+                <div class="hbd-wishes-footer">
+                    <p id="hbdMessage" class="hbd-message-text">Wishing the most wonderful, shining person in my world
+                        the happiest, brightest birthday filled with pure love! ❤️✨</p>
+                </div>
+            </div>
+
+            <!-- Cat Companion 1: Birthday Cat 🎂 (cat1.png) -->
+            <div class="cat-companion cat-right" id="catCompanion3">
+                <div class="cat-bubble bubble-right" id="catBubble3">Happy Birthday to my favourite human! 🎂 You
+                    deserve the whole world today! 💖</div>
+                <img src="images/cat1.png" alt="Birthday kitty" class="cat-img" loading="lazy">
+            </div>
+        </section>
+
+        <!-- PAGE 4: Interactive Gift Box -->
+        <section id="page-4" class="page-screen hidden">
+            <div class="glass-panel text-center">
+                <h2 class="section-title">Interactive Unboxing 🎁</h2>
+                <p id="giftInstruction" class="gift-instruction">Tap the wrapped gift box below to open your surprise!
+                </p>
+
+                <div class="gift-stage-wrapper">
+                    <!-- Sunburst Light Beams (erupts on unbox) -->
+                    <div id="giftLightBurst" class="gift-light-burst"></div>
+
+                    <!-- Floating Eruption Particles Container -->
+                    <div id="giftEruptionParticles" class="gift-eruption-particles"></div>
+
+                    <!-- Interactive Gift Box with 3D Detachable Lid -->
+                    <div id="giftBox" class="gift-box" role="button" tabindex="0" aria-label="Tap to open gift box">
+                        <!-- 3D Detachable Lid -->
+                        <div class="gift-lid-wrap" id="giftLidWrap">
+                            <div class="gift-lid-cap"></div>
+                            <div class="gift-lid-ribbon"></div>
+                            <div class="gift-bow">🎀</div>
+                            <div class="gift-tag">For Santhosh 💙</div>
+                        </div>
+
+                        <!-- Box Body Base -->
+                        <div class="gift-box-body">
+                            <div class="gift-ribbon-v"></div>
+                            <div class="gift-ribbon-h"></div>
+                            <div class="gift-box-lip"></div>
+                        </div>
+
+                        <div class="glow-ring"></div>
+                    </div>
+                </div>
+
+                <!-- Revealed Content -->
+                <div id="giftRevealed" class="gift-revealed hidden">
+                    <div class="revealed-badge">🎉 Unlocked Birthday Surprise!</div>
+                    <img id="giftRevealPhoto" src="" alt="Gift Surprise" class="gift-reveal-photo" loading="lazy">
+                    <h3 id="revealedTitle">You Are My Greatest Blessing! 🎉</h3>
+                    <p id="revealedMessage"></p>
+                </div>
+            </div>
+
+            <!-- Cat Companion 4: Gift Kitty 🎁 (cat4.png) -->
+            <div class="cat-companion cat-left" id="catCompanion4">
+                <div class="cat-bubble bubble-left" id="catBubble4">Psst... tap the gift box! The best surprise is
+                    waiting inside! 🎁🌸</div>
+                <img src="images/cat4.png" alt="Gift kitty" class="cat-img" loading="lazy">
+            </div>
+        </section>
+
+        <!-- PAGE 5: Music CD / Vinyl Turntable -->
+        <section id="page-5" class="page-screen hidden">
+            <div class="glass-panel text-center">
+                <h2 class="section-title">Our Romantic Melody 🎶</h2>
+                <p id="cdSongSub" class="section-subtitle">Dedicated to the one who makes my heart sing every day ❤️</p>
+
+                <!-- Real Music Artist Vinyl Album Showcase -->
+                <div class="vinyl-album-stage" id="vinylAlbumStage" title="Tap album to play or pause">
+                    <!-- Vinyl Record that slides out of sleeve -->
+                    <div id="cdDisc" class="cd-disc vinyl-record">
+                        <div class="vinyl-reflection"></div>
+                        <div class="vinyl-groove-lines">
+                            <span class="v-groove vg-1"></span>
+                            <span class="v-groove vg-2"></span>
+                            <span class="v-groove vg-3"></span>
+                        </div>
+                        <!-- Center Vinyl Label with vignette of photo11 -->
+                        <div class="cd-label vinyl-center-label">
+                            <img src="images/photo11.jpeg" alt="Santhosh Center Label" class="vinyl-center-thumb">
+                            <div class="vinyl-center-info">
+                                <span class="vinyl-side-tag">SIDE A</span>
+                                <span class="vinyl-speed-tag">33⅓ RPM</span>
+                            </div>
+                        </div>
+                        <div class="cd-center-hole"></div>
+                    </div>
+
+                    <!-- Realistic Square Album Jacket / Sleeve featuring photo11.jpeg -->
+                    <div class="album-sleeve" id="albumSleeve">
+                        <!-- Photo11.jpeg as the Artist Album Cover Artwork -->
+                        <div class="album-artwork-wrap">
+                            <img src="images/photo11.jpeg" alt="Santhosh Album Cover" class="album-cover-img">
+                            <div class="album-cellophane-gloss"></div>
+                            <div class="album-spine-edge"></div>
+                        </div>
+
+                        <!-- Music Artist Album Typographic Branding -->
+                        <div class="album-meta-content">
+                            <div class="album-top-credits">
+                                <span class="album-artist-title">HASHINI feat. SANTHOSH</span>
+                                <span class="album-format-pill">STEREO LP</span>
+                            </div>
+
+                            <div class="album-bottom-credits">
+                                <div class="album-title-text-wrap">
+                                    <span id="cdSongTitle" class="album-main-song">Heartbeat Melody</span>
+                                    <span class="album-deluxe-tag">DELUXE ROMANTIC EDITION</span>
+                                </div>
+                                <!-- Romantic Advisory Badge -->
+                                <div class="romantic-advisory-badge" aria-label="Parental Advisory Pure Love">
+                                    <span class="advisory-top">ADVISORY</span>
+                                    <span class="advisory-main">100% PURE LOVE</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sleeve-pocket-shadow"></div>
+                    </div>
+                </div>
+
+                <!-- Animated Equalizer Bars -->
+                <div class="audio-equalizer" id="equalizer">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+
+                <div class="cd-controls">
+                    <button id="cdPlayPauseBtn" class="primary-btn glowing-btn">
+                        <i id="cdPlayIcon" class="fa-solid fa-play"></i> <span id="cdPlayText">Play Lofi Melody</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 6: Balloon Pop Game -->
+        <section id="page-6" class="page-screen hidden">
+            <div class="glass-panel text-center">
+                <h2 class="section-title">Pop All 5 Balloons! 🎈</h2>
+                <p class="section-subtitle">Tap once — they dodge! Tap again — they POP! 💥</p>
+
+                <!-- Score Counter -->
+                <div class="balloon-score-row">
+                    <span class="balloon-score-label" id="balloonScoreLabel">
+                        🎈 <span id="balloonCount">0</span> / 5 Wishes Collected
+                    </span>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="balloon-progress-bar">
+                    <div class="balloon-progress-fill" id="balloonProgress"></div>
+                </div>
+
+                <!-- Last Balloon Hint -->
+                <p class="last-balloon-hint" id="lastBalloonHint">One wish left... catch it if you can! 💫</p>
+
+                <!-- Balloon Game Area (canvas inside for particle bursts) -->
+                <div id="balloonArea" class="balloon-game-area">
+                    <canvas id="balloonCanvas" class="balloon-burst-canvas"></canvas>
+                </div>
+
+                <!-- Collected Wish Chips Ribbon -->
+                <div class="collected-wishes-section" id="collectedWishesSection">
+                    <div class="collected-wishes-label" id="collectedWishesLabel">✨ Collected Wishes (Tap to read):
+                    </div>
+                    <div id="poppedWishesList" class="popped-wishes-chips"></div>
+                </div>
+            </div>
+
+            <!-- Cat Companion 2: Cheerleader Kitty 💋 (cat2.png) -->
+            <div class="cat-companion cat-left" id="catCompanion6">
+                <div class="cat-bubble bubble-left" id="catBubble6">Go go go! Pop them all! You have got this! 🎈💪
+                </div>
+                <img src="images/cat2.png" alt="Cheer kitty" class="cat-img" loading="lazy">
+            </div>
+
+            <!-- Balloon Wish Pop-Up Modal -->
+            <div id="balloonWishModal" class="balloon-wish-modal hidden" role="dialog" aria-modal="true"
+                aria-labelledby="wishModalTitle">
+                <div class="balloon-wish-backdrop" id="wishModalBackdrop"></div>
+                <div class="balloon-wish-dialog">
+                    <div class="wish-modal-sparkles">✨ 🎈 ✨</div>
+                    <div class="wish-modal-badge" id="wishModalBadge">🎈 Wish 1 of 5 Unlocked!</div>
+                    <div class="wish-modal-photo-wrap hidden" id="wishModalPhotoWrap">
+                        <img id="wishModalPhoto" class="wish-modal-photo" src="" alt="Wish Memory" loading="lazy">
+                    </div>
+                    <h3 class="wish-modal-title" id="wishModalTitle">Wish Title</h3>
+                    <p class="wish-modal-text" id="wishModalText">Wish text goes here...</p>
+                    <button type="button" id="wishModalCloseBtn" class="btn-primary wish-modal-btn">Keep Popping
+                        💖</button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- PAGE 7: Interactive Kitty Showcase (Tap to toggle kitties) -->
+        <section id="page-7" class="page-screen hidden">
+            <div class="glass-panel text-center evr-main-card">
+                <h2 class="section-title">Flower Delivery 💐</h2>
+                <p class="section-subtitle">Tap the kitty to see my real reaction! 🐾</p>
+
+                <!-- Stage Container with Big Interactive Kitties -->
+                <div class="evr-stage-container kitty-interactive-stage" id="evrStage">
+
+                    <!-- KITTY 1: Polite Flower Kitty (cat6.png) -->
+                    <div class="evr-card evr-expectation" id="evrExpectationCard">
+                        <div class="cat-showcase-box kitty-hero-box" id="cat6Box" role="button" tabindex="0"
+                            aria-label="Tap to see the other kitty">
+                            <div class="cat-glow-halo halo-blue"></div>
+                            <img src="images/cat6.png" alt="Flower Kitty" class="cat-star-img cat6-star-img"
+                                id="cat6Img">
+                            <div class="floating-sparkle sp-1">✨</div>
+                            <div class="floating-sparkle sp-2">🌸</div>
+                            <div class="floating-sparkle sp-3">🤍</div>
+                            <div class="floating-sparkle sp-4">🎀</div>
+                        </div>
+                        <p class="kitty-simple-text">Trying to be calm & polite... 🌸</p>
+                    </div>
+
+                    <!-- KITTY 2: Party Joy Kitty (cat7.png - Initially Hidden) -->
+                    <div class="evr-card evr-reality hidden" id="evrRealityCard">
+                        <div class="cat-showcase-box reality-box kitty-hero-box" id="cat7Box" role="button" tabindex="0"
+                            aria-label="Tap to see the other kitty">
+                            <div class="cat-glow-halo halo-party"></div>
+                            <img src="images/cat7.png" alt="Party Kitty" class="cat-star-img cat7-star-img"
+                                id="cat7Img">
+                            <div class="floating-emoji-burst fe-1">🎉</div>
+                            <div class="floating-emoji-burst fe-2">🥳</div>
+                            <div class="floating-emoji-burst fe-3">⚡</div>
+                            <div class="floating-emoji-burst fe-4">💖</div>
+                            <div class="floating-emoji-burst fe-5">👑</div>
+                        </div>
+                        <p class="kitty-simple-text kitty-loud-text">ACTUALLY SCREAMING WITH JOY! 🥳💖</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- PAGE 8: Scratch Card Reveal (Holographic Foil & Coin) -->
+        <section id="page-8" class="page-screen hidden">
+            <div class="glass-panel text-center">
+                <h2 class="section-title">Lucky In Love Lottery 🪙✨</h2>
+                <p class="section-subtitle">Use your lucky coin to scratch and reveal the secret treasure!</p>
+
+                <div class="scratch-card-container">
+                    <div class="scratch-card-wrapper" id="scratchCardWrapper">
+                        <!-- Hidden Secret Photo Underneath -->
+                        <div class="scratch-photo-wrap">
+                            <img id="scratchImg" src="images/photo10.jpeg" alt="Secret Photo" class="scratch-under-img">
+                            <div class="scratch-photo-glow"></div>
+                        </div>
+
+                        <!-- Canvas Scratch Overlay -->
+                        <canvas id="scratchCanvas" width="300" height="230" class="scratch-canvas"></canvas>
+
+                        <!-- Floating Gold Coin Cursor -->
+                        <div class="scratch-coin-cursor" id="scratchCoinCursor" aria-hidden="true">
+                            <span class="coin-icon">🪙</span>
+                        </div>
+
+                        <!-- Sparkle Foil Flakes Particle Container -->
+                        <div class="scratch-particles-wrap" id="scratchParticlesWrap" aria-hidden="true"></div>
+                    </div>
+                </div>
+
+                <div id="scratchRevealedMsg" class="scratch-revealed-msg hidden">
+                    <h4 id="scratchCaption">🎉 You revealed the hidden treasure of my heart! ❤️</h4>
+                    <button id="resetScratchBtn" class="primary-btn secondary glowing-btn">
+                        <i class="fa-solid fa-rotate"></i> Scratch Again
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 9: Retro Instant Camera & Developing Film Gallery (Idea 2) -->
+        <section id="page-9" class="page-screen hidden">
+            <!-- Fullscreen White Camera Flash Burst Overlay -->
+            <div id="cameraFlashBurst" class="camera-flash-burst" aria-hidden="true"></div>
+
+            <div class="glass-panel retro-camera-panel text-center">
+                <h2 class="section-title">Memory Cam 1998 📸</h2>
+                <p class="section-subtitle">Click the red shutter to snap & develop our sweetest memories ✨</p>
+
+                <!-- Retro Instant Camera Device -->
+                <div class="instant-camera-device" id="instantCameraDevice">
+                    <!-- Camera Top Header (Viewfinder, Flash, Shutter Button, LED) -->
+                    <div class="camera-top-deck">
+                        <!-- Optical Viewfinder -->
+                        <div class="camera-viewfinder-box" title="Optical Viewfinder">
+                            <div class="viewfinder-window">
+                                <span class="viewfinder-grid"></span>
+                            </div>
+                        </div>
+
+                        <!-- Romantic Pastel Stripes -->
+                        <div class="camera-rainbow-stripes" aria-hidden="true">
+                            <span class="cam-stripe c-pink"></span>
+                            <span class="cam-stripe c-rose"></span>
+                            <span class="cam-stripe c-gold"></span>
+                        </div>
+
+                        <!-- Flash Bulb & Ready LED Indicator -->
+                        <div class="camera-flash-module">
+                            <div class="camera-ready-led" id="cameraReadyLed" title="Flash Ready"></div>
+                            <div class="camera-flash-reflector">
+                                <div class="flash-strobe-element" id="flashStrobeElement"></div>
+                            </div>
+                        </div>
+
+                        <!-- 3D Red Shutter Button -->
+                        <button id="cameraShutterBtn" class="camera-shutter-button" aria-label="Snap Photo Shutter"
+                            title="Press to Snap!">
+                            <span class="shutter-bezel"></span>
+                            <span class="shutter-core">
+                                <i class="fa-solid fa-camera"></i>
+                                <span class="shutter-label">SNAP</span>
+                            </span>
+                        </button>
+                    </div>
+
+                    <!-- Camera Front Face (Engraved Lens & Film Ejection Slot) -->
+                    <div class="camera-front-face">
+                        <!-- Metallic 3D Lens Assembly -->
+                        <div class="camera-lens-housing">
+                            <div class="lens-outer-rim">
+                                <div class="lens-calligraphy">HASHINI ♡ SANTHOSH • 35MM f/1.4</div>
+                                <div class="lens-aperture-glass">
+                                    <div class="lens-pupil">
+                                        <span class="lens-reflection">✦</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Camera Film Ejection Slot -->
+                        <div class="camera-ejection-slot" aria-hidden="true">
+                            <div class="slot-shadow-lip"></div>
+                        </div>
+                    </div>
+
+                    <!-- Ejected Developing Polaroid Photo -->
+                    <div class="polaroid-ejection-tray">
+                        <div id="galleryContainer" class="instant-polaroid-frame">
+                            <!-- Film Gloss Sheen Overlay -->
+                            <div class="polaroid-surface-glare" aria-hidden="true"></div>
+
+                            <!-- Photo Window with Chemical Developing Effect -->
+                            <div class="polaroid-photo-window">
+                                <img id="galleryImg" src="images/photo4.jpeg" alt="Memory Snapshot"
+                                    class="polaroid-photo-image">
+                                <!-- Developing Chemical Haze Overlay -->
+                                <div id="developingHaze" class="developing-chemical-haze hidden">
+                                    <span class="developing-text">✨ Developing... ✨</span>
+                                </div>
+                            </div>
+
+                            <!-- Polaroid Bottom Paper Footer -->
+                            <div class="polaroid-paper-footer">
+                                <h4 id="galleryCaption" class="polaroid-caption"></h4>
+                                <div class="polaroid-meta-row">
+                                    <span id="galleryDate" class="polaroid-date-stamp"></span>
+                                    <button id="instantLoveBtn" class="polaroid-love-stamp"
+                                        title="Love this memory! ❤️">
+                                        <i class="fa-solid fa-heart"></i>
+                                        <span id="instantLoveCount">1</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Camera Bottom Controls & Film Frame Scrubber -->
+                    <div class="camera-control-deck">
+                        <button id="prevImgBtn" class="camera-deck-btn" aria-label="Previous Memory"
+                            title="Rewind Film">
+                            <i class="fa-solid fa-backward-step"></i> Prev
+                        </button>
+
+                        <!-- Film Frame Reel Dots / Badges -->
+                        <div id="cameraFilmDots" class="camera-film-dots" role="tablist"></div>
+
+                        <button id="nextImgBtn" class="camera-deck-btn" aria-label="Next Memory" title="Next Frame">
+                            Next <i class="fa-solid fa-forward-step"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 10: Password-Protected Secret Letter -->
+        <section id="page-10" class="page-screen hidden">
+            <div class="glass-panel letter-card text-center">
+                <div class="stamp-icon animated-heart-bounce">💌</div>
+                <h2 id="letterTitle" class="letter-title">Secret Passcode Letter</h2>
+
+                <!-- Password Lock Screen -->
+                <div id="letterLockScreen" class="letter-lock-screen">
+                    <div class="lock-icon">🔒</div>
+                    <p class="lock-instruction">This letter is sealed with love & a passcode.</p>
+                    <div class="password-input-group">
+                        <input type="password" id="letterPasswordInput" class="password-input"
+                            placeholder="Enter Passcode">
+                        <button id="unlockLetterBtn" class="primary-btn glowing-btn">
+                            <i class="fa-solid fa-key"></i> Unlock 💖
+                        </button>
+                    </div>
+                    <p id="passwordErrorMsg" class="password-error hidden">Incorrect Passcode! Hint: A name with 4
+                        letters❤️</p>
+                    <p id="passwordHint" class="password-hint"></p>
+                </div>
+
+                <!-- Unlocked Page Status (When unlocked on page) -->
+                <div id="letterUnlockedScreen" class="letter-unlocked-screen hidden">
+                    <div class="unlocked-badge">🎉 Secret Letter Unlocked!</div>
+                    <p class="unlocked-sub">Her handwritten words are waiting for you, Santhosh ❤️</p>
+                    <div class="unlocked-actions-row">
+                        <button id="reopenLetterBtn" class="primary-btn glowing-btn read-letter-trigger-btn">
+                            <i class="fa-solid fa-envelope-open-text"></i> Read Secret Letter 💌
+                        </button>
+                        <button id="openLocketInlineBtn" class="secondary-btn locket-trigger-btn">
+                            <i class="fa-solid fa-heart"></i> Open Our Heart Locket 💙
+                        </button>
+                    </div>
+
+                    <!-- STAGE B: Heart Locket Grand Finale -->
+                    <div id="heartLocket" class="heart-locket hidden">
+                        <p class="locket-title-text">💙 Forever in My Heart</p>
+                        <div class="locket-container">
+                            <div class="locket-half locket-left">
+                                <img id="locketPhotoLeft" src="" alt="Locket left photo" class="locket-photo"
+                                    loading="lazy">
+                            </div>
+                            <span class="locket-center-heart">💙</span>
+                            <div class="locket-half locket-right">
+                                <img id="locketPhotoRight" src="" alt="Locket right photo" class="locket-photo"
+                                    loading="lazy">
+                            </div>
+                        </div>
+                        <p id="locketCaption" class="locket-caption"></p>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cat Companion 5: Letter Kitty 🐾 (cat5.png) -->
+            <div class="cat-companion cat-right" id="catCompanion10">
+                <div class="cat-bubble bubble-right" id="catBubble10">The secret passcode is 'mylu'... 🔒💌</div>
+                <img src="images/cat5.png" alt="Letter kitty" class="cat-img" loading="lazy">
+            </div>
+
+            <!-- POPUP MODAL: Realistic Parchment Letter Popup -->
+            <div id="letterModalPopup" class="letter-modal-overlay hidden" role="dialog" aria-modal="true"
+                aria-label="Secret Love Letter">
+                <div class="letter-modal-backdrop" id="letterModalBackdrop"></div>
+                <div class="letter-modal-dialog">
+                    <button id="closeLetterModalBtn" class="letter-modal-close-btn" aria-label="Close letter">✕</button>
+
+                    <!-- Warm ambient floating embers container -->
+                    <div id="letterEmbersContainer" class="letter-embers-container" aria-hidden="true"></div>
+
+                    <!-- Realistic Parchment Letterhead -->
+                    <div class="letter-paper parchment-paper">
+                        <!-- Trifold Creases (Realistic Fold Marks) -->
+                        <div class="letter-crease crease-top" aria-hidden="true"></div>
+                        <div class="letter-crease crease-bottom" aria-hidden="true"></div>
+
+                        <!-- Pressed Dried Rosebud & Keepsake Stamp in Corner -->
+                        <div class="pressed-flower-stamp" aria-hidden="true">
+                            <div class="washi-tape"></div>
+                            <div class="botanical-rose">🥀</div>
+                            <div class="stamp-meta">
+                                <span>AIRMAIL</span>
+                                <span>№ 0824</span>
+                            </div>
+                        </div>
+
+                        <!-- Ornate Calligraphy Monogram Watermark -->
+                        <div class="letter-watermark" aria-hidden="true">
+                            <span class="watermark-monogram">G ♡ K</span>
+                            <span class="watermark-flourish">❧ forever & always ☙</span>
+                        </div>
+
+                        <!-- Authentic 3D Wax Seal Medallion -->
+                        <div class="wax-seal-medallion">
+                            <div class="wax-seal-stamp">
+                                <div class="wax-seal-inner">
+                                    <span class="wax-monogram">G</span>
+                                    <span class="wax-sparkle">✦</span>
+                                </div>
+                            </div>
+                            <div class="wax-ribbon-tails">
+                                <span class="ribbon-tail left"></span>
+                                <span class="ribbon-tail right"></span>
+                            </div>
+                        </div>
+
+                        <!-- Letterhead Subtitle / Recipient Header -->
+                        <div class="letterhead-header">
+                            <span class="letterhead-tag">From the depths of my heart</span>
+                            <span class="letterhead-recipient">For Santhosh 💖</span>
+                        </div>
+
+                        <!-- Letter Body Content -->
+                        <div id="letterBody" class="letter-body"></div>
+
+                        <!-- Bottom Paper Sign-off Flourish -->
+                        <div class="letter-bottom-flourish">
+                            <span class="flourish-divider">✧ • • • 💖 • • • ✧</span>
+                        </div>
+                    </div>
+
+                    <div class="final-actions letter-actions-row">
+                        <button id="openLocketBtn" class="primary-btn glowing-btn locket-cta-btn">
+                            <i class="fa-solid fa-heart"></i> Open Our Heart Locket 💙
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 11: Birthday Boy Quiz -->
+        <section id="page-11" class="page-screen hidden">
+            <div class="glass-panel text-center">
+                <h2 class="section-title">How Well Do You Know Me? 💘</h2>
+                <p class="section-subtitle">Answer these 4 little questions about us, birthday boy! 🎁</p>
+
+                <div class="quiz-container" id="quizContainer">
+                    <!-- Progress Bar -->
+                    <div class="quiz-progress-bar">
+                        <div class="quiz-progress" id="quizProgress"></div>
+                    </div>
+
+                    <!-- Question Text -->
+                    <p class="quiz-question-title" id="quizQuestionText">Loading question...</p>
+
+                    <!-- Options Grid -->
+                    <div class="quiz-options-grid" id="quizOptions"></div>
+
+                    <!-- Feedback Message -->
+                    <div class="quiz-feedback hidden" id="quizFeedback"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 12: Grand Birthday Finale (Full Screen hero.jpeg Background) -->
+        <section id="page-12" class="page-screen hidden finale-screen">
+            <div class="finale-content-card final-content-card text-center">
+                <div class="finale-badge" id="finaleBadge">✨ FOREVER & ALWAYS • YOUR HASHINI! 🔐✨</div>
+                <h1 class="finale-title" id="finaleTitle">Happy Birthday, My Machaan! 🎂💙</h1>
+                <p class="finale-subtitle" id="finaleSubtitle">A life with you is the greatest gift of all...</p>
+
+                <!-- Romantic Scrollable Wishes Letter Card -->
+                <div class="finale-wishes-box">
+                    <p class="finale-wishes-text" id="finaleMessage"></p>
+                    <div class="finale-signature" id="finaleSignature">Forever & Always Yours, Hashini 💍💖</div>
+                </div>
+
+                <!-- Final Action Buttons -->
+                <div class="finale-actions-row">
+                    <button id="celebrateAgainBtn" class="primary-btn glowing-btn finale-btn">
+                        <i class="fa-solid fa-heart-pulse"></i> Shower Love 💖✨
+                    </button>
+                    <button id="replayJourneyBtn" class="secondary-btn finale-btn">
+                        <i class="fa-solid fa-rotate-right"></i> Replay Journey 🌸
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Persistent Bottom Navigation Bar -->
+        <nav id="bottomNav" class="bottom-nav hidden">
+            <button id="prevPageBtn" class="nav-btn" disabled>
+                <i class="fa-solid fa-arrow-left"></i> Prev
+            </button>
+
+            <!-- Pagination Dots for 12 Pages -->
+            <div id="pageDots" class="page-dots">
+                <span class="dot active" data-page="1"></span>
+                <span class="dot" data-page="2"></span>
+                <span class="dot" data-page="3"></span>
+                <span class="dot" data-page="4"></span>
+                <span class="dot" data-page="5"></span>
+                <span class="dot" data-page="6"></span>
+                <span class="dot" data-page="7"></span>
+                <span class="dot" data-page="8"></span>
+                <span class="dot" data-page="9"></span>
+                <span class="dot" data-page="10"></span>
+                <span class="dot" data-page="11"></span>
+                <span class="dot" data-page="12"></span>
+            </div>
+
+            <button id="nextPageBtn" class="nav-btn primary glowing-btn">
+                Next <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </nav>
+
+        <!-- Footer -->
+        <footer id="mainFooter" class="footer-section hidden">
+            <p id="senderFooter">Created with ❤️ by Hashini</p>
+        </footer>
+
+    </div>
+
+    <!-- Image Modal Lightbox for Memory Gallery -->
+    <div id="imageModal" class="image-modal hidden">
+        <span id="closeModal" class="close-modal">&times;</span>
+        <img id="modalImg" class="modal-content-img" alt="Zoomed Photo">
+        <div id="modalCaption" class="modal-caption"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="config_1.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
