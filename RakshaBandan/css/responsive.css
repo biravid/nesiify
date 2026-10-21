@@ -1,0 +1,224 @@
+/* ==========================================================================
+   RAKSHA BANDHAN — Fully Responsive (Mobile-First)
+   ========================================================================== */
+
+/* ─── Bottom Offset for Fixed Nav Bar (≈ 66px) ─── */
+/* Scene sections are absolute/full-height; padding-bottom keeps content above nav bar */
+.scene-section {
+  padding-bottom: 110px;
+}
+
+/* ─── Mobile Nav Bar Compact ─── */
+@media (max-width: 480px) {
+  .scene-nav-bar {
+    padding: 8px 12px;
+  }
+  .scene-nav-btn {
+    min-width: 80px;
+    padding: 9px 14px;
+    font-size: 0.82rem;
+    gap: 5px;
+  }
+  .nav-label { display: none; }          /* icons-only on tiny screens */
+  .scene-nav-btn .nav-arrow { font-size: 1.3rem; }
+  .scene-nav-indicator { padding: 6px 12px; font-size: 0.82rem; }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   LARGE DESKTOP (1280px+)
+───────────────────────────────────────────────────────────────────────────── */
+@media (min-width: 1280px) {
+  .quiz-hints-grid  { grid-template-columns: repeat(3, 1fr); }
+  .thali-container  { gap: 60px; }
+  .roast-grid       { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   TABLET / LAPTOP (768px – 1279px)
+───────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .thali-container {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    text-align: center;
+  }
+  .thali-tray {
+    width: 260px;
+    height: 260px;
+  }
+  .thali-inventory {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .thali-item-btn {
+    flex: 0 0 calc(50% - 8px);
+    justify-content: center;
+  }
+}
+
+@media (max-width: 992px) {
+  .scene-section { padding: 50px 20px 90px; }
+
+  .quiz-hints-grid      { grid-template-columns: 1fr; }
+  .quiz-options-container { grid-template-columns: 1fr 1fr; }
+
+  .story-nav-dots { right: 10px; }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   MOBILE (max 600px)
+───────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  /* Hide desktop-only elements */
+  .custom-cursor,
+  .custom-cursor-dot { display: none !important; }
+
+  .story-nav-dots { display: none; }
+
+  /* Scene full-page padding — reserve room for bottom CTA bar */
+  .scene-section {
+    padding: 40px 16px 110px;
+    justify-content: flex-start;
+    padding-top: clamp(40px, 12vh, 80px);
+  }
+
+  /* Typography */
+  .section-title   { font-size: clamp(1.4rem, 5.5vw, 2rem); }
+  .section-subtitle { font-size: 0.88rem; margin-bottom: 20px; }
+  .section-tag      { font-size: 1.2rem; }
+
+  /* Envelope intro box */
+  .envelope-intro-box { padding: 28px 20px; }
+  .envelope-icon      { font-size: 2.8rem; }
+
+  /* Quiz options: single column on very small screens */
+  .quiz-options-container {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  /* Thali */
+  .thali-tray {
+    width: 220px;
+    height: 220px;
+  }
+  .thali-tray-slot {
+    width: 56px;
+    height: 56px;
+    font-size: 1.5rem;
+    margin: 5px;
+  }
+  .thali-item-btn {
+    flex: 0 0 100%;
+    padding: 12px 16px;
+  }
+
+  /* Portrait frames */
+  .tilak-brother-frame,
+  .sister-avatar-frame {
+    width: 200px;
+    height: 200px;
+  }
+
+  /* Sweet ritual */
+  .sweet-ritual-frame { width: 240px; }
+
+  /* Rakhi video */
+  .rakhi-video-container {
+    width: 240px;
+    height: 240px;
+  }
+
+  /* Blessing bubbles — 2 col on mobile */
+  .blessing-bubbles-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .blessing-bubble-btn {
+    font-size: 0.8rem;
+    padding: 10px 12px;
+  }
+
+  /* Roast grid */
+  .roast-grid { grid-template-columns: 1fr; gap: 14px; }
+
+  /* Passcode box */
+  .passcode-box { padding: 24px 16px; }
+  .lock-icon-art { width: 100px; height: 100px; }
+
+  /* Letter modal */
+  .letter-paper { padding: 28px 20px; font-size: 1.2rem; }
+
+  /* Buttons */
+  .btn-begin {
+    padding: 14px 28px;
+    font-size: 0.95rem;
+    width: 100%;
+    justify-content: center;
+  }
+  .btn-tie-rakhi {
+    padding: 15px 32px;
+    font-size: 1rem;
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Audio toggle */
+  .audio-toggle-btn { top: 14px; right: 14px; width: 42px; height: 42px; }
+
+  /* Sister toast */
+  .sister-toast {
+    font-size: 1.1rem;
+    padding: 11px 20px;
+    bottom: 20px;
+    max-width: 94vw;
+  }
+
+  /* Ending */
+  .ending-wish-card { padding: 28px 20px; }
+  .ending-main-title { font-size: 2rem; }
+  .ending-sub-title  { font-size: 1.3rem; }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   VERY SMALL (375px and below)
+───────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 375px) {
+  .section-title { font-size: 1.3rem; }
+  .thali-tray    { width: 190px; height: 190px; }
+  .blessing-bubbles-grid { grid-template-columns: 1fr; }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   LANDSCAPE MOBILE — allow slight overflow for short screens
+───────────────────────────────────────────────────────────────────────────── */
+@media (max-height: 600px) and (orientation: landscape) {
+  .scene-section {
+    min-height: 100dvh;
+    padding: 20px 24px 80px;
+    overflow-y: auto;
+    scroll-snap-align: start;
+  }
+  .tilak-brother-frame,
+  .sister-avatar-frame,
+  .rakhi-video-container,
+  .sweet-ritual-frame { width: 160px; height: 160px; }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   REDUCED MOTION PREFERENCE
+───────────────────────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .scene-section::before,
+  .scene-section::after,
+  .envelope-icon,
+  .sister-avatar-frame,
+  .rakhi-central-icon { animation: none; }
+
+  .animate-on-scroll {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}

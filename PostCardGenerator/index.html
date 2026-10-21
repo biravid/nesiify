@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nesiify Vintage Surprise Postcard Generator | Personalized Web Studio</title>
+  <meta name="description" content="Create personalized vintage surprise postcards with customized handwriting, scannable QR code postage stamps, and interactive stickers for birthdays, proposals, anniversaries, and secret gifts.">
+  
+  <!-- Preconnect & Load Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Cinzel:wght@500;700;900&family=Dancing+Script:wght@500;700&family=Marck+Script&family=Patrick+Hand&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Sacramento&display=swap" rel="stylesheet">
+
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💌</text></svg>">
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <!-- APP HEADER -->
+    <header class="app-header">
+      <div class="brand-badge">
+        <div class="brand-logo">N</div>
+        <div>
+          <h1 class="brand-title">NESIIFY STUDIO</h1>
+          <div class="brand-subtitle">Vintage Surprise Postcard Generator</div>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button id="btnBrowsePresets" class="btn btn-secondary" title="View surprise message presets">
+          <span>📜 Message Presets</span>
+        </button>
+        <button id="btnSaveDraft" class="btn btn-secondary" title="Save current design to browser">
+          <span>💾 Save Draft</span>
+        </button>
+        <button id="btnLoadDraft" class="btn btn-secondary" title="Load saved postcard design">
+          <span>📂 Load Draft</span>
+        </button>
+        <button id="btnResetForm" class="btn btn-outline-danger" title="Reset all fields to default">
+          <span>🔄 Reset</span>
+        </button>
+        <button id="btnPrintPostcard" class="btn btn-secondary" title="Print postcard directly">
+          <span>🖨️ Print</span>
+        </button>
+        <button id="btnDownloadPng" class="btn btn-gold" title="Download high-resolution PNG image for sending or printing">
+          <span>📥 Download PNG</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- STUDIO MAIN WORKSPACE (2 PANELS) -->
+    <main class="studio-main">
+
+      <!-- LEFT PANEL: EDITOR CONTROLS -->
+      <aside class="editor-panel">
+        
+        <!-- SECTION 1: THEME & OCCASION -->
+        <section class="section-card">
+          <div class="section-title">🎨 1. Theme & Occasion</div>
+          
+          <div class="form-group">
+            <label class="form-label">Select Visual Theme</label>
+            <div id="themeSelectorGrid" class="theme-selector-grid">
+              <!-- Dynamically populated from js/templates.js -->
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-top: 0.75rem;">
+            <label class="form-label">Custom Background Image</label>
+            <div style="display: flex; gap: 0.5rem; align-items: center;">
+              <label for="inputBgImage" class="btn btn-secondary" style="padding: 0.4rem 0.75rem; font-size: 0.775rem; margin: 0; cursor: pointer; flex: 1; text-align: center; display: inline-flex; align-items: center; justify-content: center; gap: 0.3rem;">
+                🖼️ Upload Background Image
+              </label>
+              <input type="file" id="inputBgImage" accept="image/*" style="display: none;">
+              <button id="btnRemoveBgImage" class="btn btn-outline-danger" style="padding: 0.4rem 0.6rem; font-size: 0.75rem; display: none;" title="Remove custom background image">
+                🗑️ Clear
+              </button>
+            </div>
+            <div id="bgImageStatus" style="font-size: 0.725rem; color: var(--accent-gold); margin-top: 0.35rem; display: none;"></div>
+          </div>
+
+          <div class="form-row" style="margin-top: 0.75rem;">
+            <div class="form-group">
+              <label for="inputOccasion" class="form-label">Occasion</label>
+              <select id="inputOccasion" class="form-control">
+                <option value="Surprise Gift">Surprise Gift 🎁</option>
+                <option value="Birthday">Birthday 🎂</option>
+                <option value="Anniversary">Anniversary 💍</option>
+                <option value="Proposal">Proposal ❤️</option>
+                <option value="Love Note">Love Note 💌</option>
+                <option value="Long Distance">Long Distance ✈️</option>
+                <option value="Custom">Custom Stamp 🌟</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="inputDate" class="form-label">Postmark Date</label>
+              <input type="text" id="inputDate" class="form-control" placeholder="e.g. Aug 14, 2026">
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 2: SENDER & RECIPIENT -->
+        <section class="section-card">
+          <div class="section-title">✍️ 2. Names & Addresses</div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="inputFromName" class="form-label">From Name</label>
+              <input type="text" id="inputFromName" class="form-control" placeholder="Your Name">
+            </div>
+            <div class="form-group">
+              <label for="inputFromAddress" class="form-label">From Address / City</label>
+              <input type="text" id="inputFromAddress" class="form-control" placeholder="123 Dreamer's Lane, Cloud City">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="inputToName" class="form-label">To Name (Recipient)</label>
+              <input type="text" id="inputToName" class="form-control" placeholder="Someone Special">
+            </div>
+            <div class="form-group">
+              <label for="inputToAddress" class="form-label">Recipient Address</label>
+              <input type="text" id="inputToAddress" class="form-control" placeholder="789 Heartfelt Avenue, Happiness Town">
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 3: WISH & MESSAGE -->
+        <section class="section-card">
+          <div class="presets-header-bar">
+            <div class="section-title" style="margin-bottom: 0;">💌 3. Handwritten Wish</div>
+            <button id="btnQuickPresets" class="btn btn-secondary" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">
+              Auto Presets ✨
+            </button>
+          </div>
+          
+          <div class="form-group" style="margin-top: 0.75rem;">
+            <div class="form-label">
+              <span>Message Text</span>
+              <span id="charCounter" class="char-counter">0 / 300</span>
+            </div>
+            <textarea id="inputWishMessage" class="form-control" maxlength="300" placeholder="Type your message here..."></textarea>
+          </div>
+        </section>
+
+        <!-- SECTION 4: SURPRISE WEBSITE & QR STAMP -->
+        <section class="section-card">
+          <div class="section-title">📮 4. Surprise Website URL & Stamp Text</div>
+          
+          <div class="form-group">
+            <div class="form-label">
+              <span>Surprise Website URL</span>
+              <button id="btnTestUrl" class="btn btn-secondary" style="padding: 0.2rem 0.5rem; font-size: 0.725rem;">
+                🔗 Test Link
+              </button>
+            </div>
+            <input type="url" id="inputSurpriseUrl" class="form-control" placeholder="https://surprise.nesiify.com/my-gift">
+          </div>
+
+          <div class="form-group" style="margin-top: 0.75rem;">
+            <label for="inputQrLabel" class="form-label">Stamp Postmark Badge Text</label>
+            <input type="text" id="inputQrLabel" class="form-control" placeholder="SPECIAL DELIVERY">
+          </div>
+        </section>
+
+        <!-- SECTION 5: INTERACTIVE STICKERS -->
+        <section class="section-card">
+          <div class="section-title">✨ 5. Cute Interactive Stickers</div>
+          <div class="form-label" style="margin-bottom: 0.5rem;">Click sticker to add onto Postcard:</div>
+          
+          <div id="stickerGallery" class="sticker-gallery">
+            <!-- Dynamically populated from js/stickers.js -->
+          </div>
+
+          <!-- Active Sticker Controls Bar -->
+          <div id="stickerControlsBar" class="sticker-controls-bar" style="display: none;">
+            <div class="control-slider-group">
+              <span>Size</span>
+              <input type="range" id="stickerScaleInput" min="0.5" max="2.5" step="0.1" value="1">
+            </div>
+            <div class="control-slider-group">
+              <span>Rotate</span>
+              <input type="range" id="stickerRotateInput" min="-180" max="180" step="5" value="0">
+            </div>
+            <div style="display: flex; gap: 0.3rem;">
+              <button id="btnStickerUp" class="btn btn-secondary" style="padding: 0.2rem 0.4rem; font-size: 0.7rem;" title="Bring Forward">⬆️</button>
+              <button id="btnStickerDown" class="btn btn-secondary" style="padding: 0.2rem 0.4rem; font-size: 0.7rem;" title="Send Back">⬇️</button>
+              <button id="btnStickerDelete" class="btn btn-outline-danger" style="padding: 0.2rem 0.4rem; font-size: 0.7rem;" title="Delete Sticker">🗑️</button>
+            </div>
+          </div>
+        </section>
+
+      </aside>
+
+      <!-- RIGHT PANEL: LIVE POSTCARD PREVIEW -->
+      <section class="preview-panel">
+        
+        <div class="workspace-actions-top">
+          <div class="workspace-title">
+            <span>📷 Live Postcard Canvas</span>
+            <span style="font-size: 0.75rem; color: #888; text-transform: none;">(Exact Reference Match)</span>
+          </div>
+          <div style="font-size: 0.75rem; color: var(--accent-gold);">
+            💡 Drag & scale stickers directly on the postcard
+          </div>
+        </div>
+
+        <!-- POSTCARD CONTAINER (TARGET FOR HTML2CANVAS & PRINT) -->
+        <div class="postcard-wrapper">
+          <div id="postcardPreview" class="postcard-card theme-vintage-love">
+
+            <!-- REAL DOM VIGNETTE OVERLAY -->
+            <div class="postcard-vignette-overlay"></div>
+
+            <!-- CENTER HEADER & VERTICAL DIVIDER LINE -->
+            <div class="postcard-center-header">
+              <span class="postcard-heading">POST CARD</span>
+            </div>
+            
+            <div class="postcard-divider"></div>
+            <div class="postcard-divider-top-swirl">✥</div>
+
+            <!-- STICKERS OVERLAY LAYER -->
+            <div id="postcardStickersLayer" class="postcard-stickers-layer"></div>
+
+            <!-- STATIC REFERENCE ACCENTS -->
+            <div class="deco-flower-top-left">🌸</div>
+            <div class="deco-daisy-top-right">🌼</div>
+            <div class="deco-leaf-branch-right">🌿</div>
+
+            <!-- LEFT COLUMN: FROM & MESSAGE -->
+            <div class="postcard-left-col">
+              
+              <!-- FROM BLOCK -->
+              <div>
+                <div class="from-block-header">
+                  <div class="washi-tape-pink">From: ♡</div>
+                </div>
+
+                <div class="from-fields-container ruled-lines-block">
+                  <div id="previewFromName" class="from-line">Your Name</div>
+                  <div id="previewFromStreet" class="from-line">123 Dreamer's Lane</div>
+                  <div id="previewFromCity" class="from-line">Cloud City, DD 45678</div>
+                  <div id="previewFromCountry" class="from-line">India</div>
+                </div>
+              </div>
+
+              <!-- MESSAGE BLOCK -->
+              <div>
+                <div class="message-block-header">
+                  <div class="washi-tape-pink">Message: ♡</div>
+                </div>
+
+                <div class="message-text-container ruled-lines-block">
+                  <p id="previewWishMessage">
+Hey there,
+Just a little note to say you're amazing ! Keep shining and chasing your dreams.
+Can't wait to see what the future holds for you.
+Stay happy, always!
+                  </p>
+                </div>
+
+                <div class="message-signoff">
+                  With love, ♡
+                </div>
+              </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN: STAMPS & TO ADDRESS -->
+            <div class="postcard-right-col">
+
+              <!-- STAMP & POSTMARKS TOP RIGHT AREA -->
+              <div class="stamp-postmarks-area">
+                
+                <!-- Circular Postmark: WANDER OFTEN -->
+                <div class="postmark-flight">
+                  <div>WANDER OFTEN</div>
+                  <div class="postmark-flight-icon">✈️</div>
+                  <div>WONDER ALWAYS</div>
+                </div>
+
+                <!-- Circular Postmark: SPECIAL DELIVERY -->
+                <div class="postmark-delivery">
+                  <div id="previewQrLabel">SPECIAL DELIVERY</div>
+                  <div style="font-size: 0.9rem; margin: 1px 0;">✉️</div>
+                  <div>★ ★ ★ ★ ★</div>
+                  <div class="postmark-wavy-lines"></div>
+                </div>
+
+                <!-- SERRATED QR CODE POSTAGE STAMP (EXACT REFERENCE MATCH) -->
+                <div class="serrated-qr-stamp">
+                  <div class="stamp-pink-tape"></div>
+                  <!-- QR CODE CANVAS CONTAINER -->
+                  <div id="stampQrContainer" class="stamp-qr-container"></div>
+                  <div class="stamp-corner-heart">🖤</div>
+                </div>
+
+              </div>
+
+              <!-- TO ADDRESS BLOCK -->
+              <div class="to-block-container">
+                <div class="to-block-header">
+                  <div class="washi-tape-pink">To: ♡</div>
+                </div>
+
+                <div class="to-fields-container ruled-lines-block">
+                  <div id="previewToName" class="to-line">Someone Special</div>
+                  <div id="previewToStreet" class="to-line">789 Heartfelt Avenue</div>
+                  <div id="previewToCity" class="to-line">Happiness Town, HT 12345</div>
+                  <div id="previewToCountry" class="to-line">India</div>
+                </div>
+              </div>
+
+              <!-- DECORATIVE NOTE CARDS AT BOTTOM RIGHT -->
+              <div class="deco-note-you-got-this">
+                You got this! ♡
+              </div>
+
+              <div class="deco-note-all-my-love">
+                Sending you<br>all my love ♡
+              </div>
+
+              <div class="deco-note-good-things">
+                <div class="deco-pin-bullet"></div>
+                Good things<br>take time ♡
+              </div>
+
+              <div class="deco-teddy-bear">🧸</div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- SURPRISE MESSAGE PRESETS MODAL -->
+  <div id="presetsModal" class="modal-backdrop">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">📜 Surprise Message Presets</h3>
+        <button id="btnClosePresetsModal" class="modal-close">&times;</button>
+      </div>
+      <div id="presetsModalBody" class="modal-body">
+        <!-- Dynamically rendered categories from js/templates.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATIONS CONTAINER -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- CDN LIBRARIES -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <!-- CUSTOM APPLICATION SCRIPTS -->
+  <script src="js/templates.js"></script>
+  <script src="js/qr.js"></script>
+  <script src="js/stickers.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>

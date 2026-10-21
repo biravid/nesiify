@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rose Surprise 🌹</title>
+    <meta name="description"
+        content="A romantic multi-page surprise web application with music CD player, balloon popping, love quiz, rose bouquet builder, interactive scratch card, and password protected letter.">
+    <!-- Google Fonts (English & Tamil Font Support) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Arima:wght@400;600;700&family=Baloo+Thambi+2:wght@500;600;700;800&family=Catamaran:wght@400;500;600;700&family=Great+Vibes&family=Kavivanar&family=Mukta+Malar:wght@400;600;700&family=Outfit:wght@300;400;600;700&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Floating Music Player Control -->
+    <button id="musicToggle" class="music-toggle hidden" aria-label="Toggle Music">
+        <i id="musicIcon" class="fa-solid fa-music"></i>
+    </button>
+    <audio id="bgAudio" loop preload="auto"></audio>
+
+    <!-- App Wrapper / Responsive Laptop & Mobile Container -->
+    <div class="app-frame">
+
+        <!-- PAGE 0: Proposal Cover Screen -->
+        <section id="page-0" class="page-screen active">
+            <div class="intro-card glass-panel text-center">
+                <div class="intro-rose-icon">🌹</div>
+                <h1 id="introTitle" class="intro-title">A Special Proposal 💖</h1>
+                <p id="introSubtitle" class="intro-subtitle">Will you accept this journey of love & open your surprise?
+                </p>
+
+                <!-- Proposal Buttons Wrapper -->
+                <div class="proposal-buttons-wrapper">
+                    <button id="startBtn" class="primary-btn yes-btn">
+                        <i class="fa-solid fa-heart"></i> YES, I'm Ready! 💖
+                    </button>
+                    <button id="noProposalBtn" class="secondary-btn no-btn">
+                        NO 🙈
+                    </button>
+                </div>
+                <div id="noBtnHint" class="no-btn-hint hidden">Nice try! Only YES is allowed! ❤️</div>
+            </div>
+        </section>
+
+        <!-- PAGE 1: Hero & Countdown -->
+        <section id="page-1" class="page-screen hidden">
+            <div class="glass-panel text-center">
+                <div class="badge">Page 1 / 10 💖</div>
+                <h1 id="recipientHeading" class="recipient-heading">My Dearest Love</h1>
+                <p id="headerSubtitle" class="header-subtitle">A gift created with pure love and golden memories</p>
+
+                <div class="divider-rose">🌹 ✨ 🌹</div>
+
+                <div class="countdown-wrapper">
+                    <h3 id="countdownTitle" class="countdown-title">Counting Down To Our Moment</h3>
+                    <div class="countdown-grid">
+                        <div class="timer-box">
+                            <span id="days" class="timer-number">00</span>
+                            <span class="timer-label">Days</span>
+                        </div>
+                        <div class="timer-box">
+                            <span id="hours" class="timer-number">00</span>
+                            <span class="timer-label">Hours</span>
+                        </div>
+                        <div class="timer-box">
+                            <span id="minutes" class="timer-number">00</span>
+                            <span class="timer-label">Mins</span>
+                        </div>
+                        <div class="timer-box">
+                            <span id="seconds" class="timer-number">00</span>
+                            <span class="timer-label">Secs</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 2: Happy Birthday Showcase (NEW) -->
+        <section id="page-2" class="page-screen hidden">
+            <div class="glass-panel text-center birthday-card-panel">
+                <div class="badge">Page 2 / 10 🎂</div>
+
+                <!-- Reference Image Style Typographic Header -->
+                <div class="hbd-typography-wrapper">
+                    <div id="hbdBgText" class="hbd-bg-text">HAPPY</div>
+                    <div id="hbdOverlayText" class="hbd-overlay-text">birthday</div>
+                </div>
+
+                <!-- Floating User Cutout Center Image -->
+                <div class="floating-user-image-container">
+                    <div class="floating-image-glow"></div>
+                    <img id="birthdayCutoutImg" src="images/user_cutout_transparent.png" alt="Happy Birthday Love"
+                        class="floating-cutout-img">
+                    <div class="floating-sparkles">
+                        <span class="sparkle s1">✨</span>
+                        <span class="sparkle s2">💖</span>
+                        <span class="sparkle s3">🌸</span>
+                        <span class="sparkle s4">✨</span>
+                    </div>
+                </div>
+
+                <div class="hbd-wishes-footer">
+                    <p id="hbdMessage" class="hbd-message-text">Wishing the most wonderful person in my world the
+                        happiest, brightest birthday filled with pure love! ❤️✨</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 3: Interactive Gift Box -->
+        <section id="page-3" class="page-screen hidden">
+            <div class="glass-panel text-center">
+                <div class="badge">Page 3 / 10 🎁</div>
+                <h2 class="section-title">Interactive Unboxing</h2>
+                <p id="giftInstruction" class="gift-instruction">Tap the gift box below to reveal your surprise!</p>
+
+                <div id="giftBox" class="gift-box">
+                    <div class="gift-lid">🎁</div>
+                    <div class="glow-ring"></div>
+                </div>
+
+                <!-- Revealed Content -->
+                <div id="giftRevealed" class="gift-revealed hidden">
+                    <div class="revealed-badge">🎉 Unlocked!</div>
+                    <h3 id="revealedTitle">Special Message</h3>
+                    <p id="revealedMessage"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 4: Music CD with Surrounded Flowers -->
+        <section id="page-4" class="page-screen hidden">
+            <div class="glass-panel text-center">
+                <div class="badge">Page 4 / 10 🎵</div>
+                <h2 class="section-title">Our Romantic Melody</h2>
+                <p id="cdSongSub" class="section-subtitle">Dedicated to the one who makes my heart sing ❤️</p>
+
+                <!-- Spinning CD disc with surrounding flower ring -->
+                <div class="cd-flower-wrapper">
+                    <div class="flower-ring">
+                        <span class="fl-item fl-1">🌹</span>
+                        <span class="fl-item fl-2">🌸</span>
+                        <span class="fl-item fl-3">🌹</span>
+                        <span class="fl-item fl-4">🌸</span>
+                        <span class="fl-item fl-5">🌹</span>
+                        <span class="fl-item fl-6">🌸</span>
+                        <span class="fl-item fl-7">🌹</span>
+                        <span class="fl-item fl-8">🌸</span>
+                    </div>
+
+                    <div id="cdDisc" class="cd-disc spinning">
+                        <div class="cd-groove"></div>
+                        <div class="cd-label">
+                            <span class="cd-icon">🎶</span>
+                            <span id="cdSongTitle" class="cd-title">Our Song</span>
+                        </div>
+                        <div class="cd-center-hole"></div>
+                    </div>
+                </div>
+
+                <div class="cd-controls">
+                    <button id="cdPlayPauseBtn" class="primary-btn">
+                        <i id="cdPlayIcon" class="fa-solid fa-pause"></i> <span id="cdPlayText">Playing Custom
+                            Song...</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 5: Balloon Popping Wishes -->
+        <section id="page-5" class="page-screen hidden">
+            <div class="glass-panel text-center">
+                <div class="badge">Page 5 / 10 🎈</div>
+                <h2 class="section-title">Pop Balloons for Sweet Wishes!</h2>
+                <p class="section-subtitle">Tap each floating balloon to pop it and reveal a heartfelt wish 💕</p>
+
+                <div id="balloonArea" class="balloon-area"></div>
+
+                <div id="poppedWishesList" class="popped-wishes-container"></div>
+            </div>
+        </section>
+
+        <!-- PAGE 6: Romantic Love Quiz -->
+        <section id="page-6" class="page-screen hidden">
+            <div class="glass-panel text-center">
+                <div class="badge">Page 6 / 10 ❓</div>
+                <h2 class="section-title">Our Love Story Quiz 💖</h2>
+                <p class="section-subtitle">Answer these 4 sweet questions to test how well you know my heart!</p>
+
+                <div id="quizContainer" class="quiz-container">
+                    <div class="quiz-progress-bar">
+                        <div id="quizProgress" class="quiz-progress"></div>
+                    </div>
+                    <h3 id="quizQuestionText" class="quiz-question-title">Question 1</h3>
+                    <div id="quizOptions" class="quiz-options-grid"></div>
+                    <div id="quizFeedback" class="quiz-feedback hidden"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 7: 5 Roses Bouquet Collector -->
+        <section id="page-7" class="page-screen hidden">
+            <div class="glass-panel text-center">
+                <div class="badge">Page 7 / 10 <img src="images/rose.png" class="badge-icon-img" alt="Rose"></div>
+                <h2 class="section-title">Build Our Bouquet of Love</h2>
+                <p class="section-subtitle">Tap each of the 5 roses to bundle them into a glowing bouquet! 💐</p>
+
+                <div class="bouquet-builder-wrapper">
+                    <!-- Uncollected Scattered Roses -->
+                    <div id="roseGarden" class="rose-garden"></div>
+
+                    <!-- Center Bouquet Container -->
+                    <div id="bouquetDisplay" class="bouquet-display">
+                        <div id="bouquetRoses" class="bouquet-roses-container">
+                            <span class="bouquet-placeholder-text">Tap the roses above to gather your bouquet ❤️</span>
+                        </div>
+                        <div id="bouquetVowText" class="bouquet-vow-text hidden"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 8: Scratch Card Reveal (NEW) -->
+        <section id="page-8" class="page-screen hidden">
+            <div class="glass-panel text-center">
+                <div class="badge">Page 8 / 10 🪙</div>
+                <h2 class="section-title">Secret Scratch Card</h2>
+                <p class="section-subtitle">Scratch 3 times to reveal the hidden photo surprise! ✨</p>
+
+                <div class="scratch-card-wrapper">
+                    <!-- Hidden Secret Photo Underneath -->
+                    <img id="scratchImg" src="images/photo1.png" alt="Secret Photo" class="scratch-under-img">
+
+                    <!-- Canvas Scratch Overlay -->
+                    <canvas id="scratchCanvas" width="280" height="220" class="scratch-canvas"></canvas>
+                </div>
+
+                <div id="scratchRevealedMsg" class="scratch-revealed-msg hidden">
+                    <h4 id="scratchCaption">🎉 You revealed the hidden treasure of my heart! ❤️</h4>
+                    <button id="resetScratchBtn" class="primary-btn secondary">
+                        <i class="fa-solid fa-rotate"></i> Scratch Again
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 9: 6 Memory Gallery Slider -->
+        <section id="page-9" class="page-screen hidden">
+            <div class="glass-panel text-center">
+                <div class="badge">Page 9 / 10 📸</div>
+                <h2 class="section-title">Cherished Memories (1 to 6)</h2>
+                <div class="gallery-slider">
+                    <button id="prevImgBtn" class="slider-btn left" aria-label="Previous Photo"><i
+                            class="fa-solid fa-chevron-left"></i></button>
+                    <div id="galleryContainer" class="gallery-card">
+                        <img id="galleryImg" src="images/photo1.png" alt="Memory Photo" class="gallery-img">
+                        <div class="gallery-info">
+                            <h4 id="galleryCaption">Memory Title</h4>
+                            <span id="galleryDate" class="gallery-date">Date</span>
+                        </div>
+                    </div>
+                    <button id="nextImgBtn" class="slider-btn right" aria-label="Next Photo"><i
+                            class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 10: Password-Protected Secret Letter -->
+        <section id="page-10" class="page-screen hidden">
+            <div class="glass-panel letter-card text-center">
+                <div class="badge">Page 10 / 10 🔐</div>
+                <div class="stamp-icon">💌</div>
+                <h2 id="letterTitle" class="letter-title">Secret Password Letter</h2>
+
+                <!-- Password Lock Screen -->
+                <div id="letterLockScreen" class="letter-lock-screen">
+                    <div class="lock-icon">🔒</div>
+                    <p class="lock-instruction">This letter is sealed with love & a secret passcode.</p>
+                    <div class="password-input-group">
+                        <input type="password" id="letterPasswordInput" class="password-input"
+                            placeholder="Enter Password (e.g. 1234)">
+                        <button id="unlockLetterBtn" class="primary-btn">
+                            <i class="fa-solid fa-key"></i> Unlock
+                        </button>
+                    </div>
+                    <p id="passwordErrorMsg" class="password-error hidden">Incorrect Password! Please try again ❤️</p>
+                    <p id="passwordHint" class="password-hint"></p>
+                </div>
+
+                <!-- Unlocked Letter Content -->
+                <div id="letterUnlockedScreen" class="letter-unlocked-screen hidden">
+                    <div id="letterBody" class="letter-body"></div>
+                    <div class="final-actions">
+                        <button id="restartBtn" class="primary-btn secondary">
+                            <i class="fa-solid fa-rotate-right"></i> Replay Journey
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Persistent Bottom Navigation Bar -->
+        <nav id="bottomNav" class="bottom-nav hidden">
+            <button id="prevPageBtn" class="nav-btn" disabled>
+                <i class="fa-solid fa-arrow-left"></i> Prev
+            </button>
+
+            <!-- Pagination Dots for 10 Pages -->
+            <div id="pageDots" class="page-dots">
+                <span class="dot active" data-page="1"></span>
+                <span class="dot" data-page="2"></span>
+                <span class="dot" data-page="3"></span>
+                <span class="dot" data-page="4"></span>
+                <span class="dot" data-page="5"></span>
+                <span class="dot" data-page="6"></span>
+                <span class="dot" data-page="7"></span>
+                <span class="dot" data-page="8"></span>
+                <span class="dot" data-page="9"></span>
+                <span class="dot" data-page="10"></span>
+            </div>
+
+            <button id="nextPageBtn" class="nav-btn primary">
+                Next <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </nav>
+
+        <!-- Footer -->
+        <footer id="mainFooter" class="footer-section hidden">
+            <p id="senderFooter">Created with ❤️ by Yours Truly</p>
+        </footer>
+
+    </div>
+
+    <!-- Scripts -->
+    <!-- <script src="config_tamil.js"></script> -->
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Sister Has a Surprise For You — Interactive Raksha Bandhan Ceremony</title>
+  <meta name="description" content="A surprise interactive digital Raksha Bandhan ceremony experience prepared by your sister.">
+
+  <!-- Preload critical WebP images (above-the-fold scenes) -->
+  <link rel="preload" as="image" href="assets/images/hero_rakhi.webp" type="image/webp">
+  <link rel="preload" as="image" href="assets/images/childhood_art.webp" type="image/webp">
+  <link rel="preload" as="image" href="assets/images/sister_art.webp" type="image/webp">
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Custom Cursor (Desktop) -->
+  <div id="custom-cursor" class="custom-cursor"></div>
+  <div id="custom-cursor-dot" class="custom-cursor-dot"></div>
+
+  <!-- ── Fixed Prev / Next Navigation Bar ── -->
+  <div id="scene-nav-bar" class="scene-nav-bar">
+    <button id="btn-scene-prev" class="scene-nav-btn" aria-label="Previous Scene">
+      <span class="nav-arrow">←</span>
+      <span class="nav-label">Prev</span>
+    </button>
+    <div id="scene-nav-indicator" class="scene-nav-indicator">
+      <span id="scene-nav-current">1</span>
+      <span class="scene-nav-sep">/</span>
+      <span id="scene-nav-total">11</span>
+    </div>
+    <button id="btn-scene-next" class="scene-nav-btn next" aria-label="Next Scene">
+      <span class="nav-label">Next</span>
+      <span class="nav-arrow">→</span>
+    </button>
+  </div>
+
+  <!-- Background Petal Canvas -->
+  <canvas id="petal-canvas"></canvas>
+
+  <!-- Audio Toggle -->
+  <button id="audio-toggle-btn" class="audio-toggle-btn" title="Toggle Sound">🔇</button>
+
+  <!-- Side Progress Dots -->
+  <nav class="story-nav-dots" aria-label="Story Progression">
+    <a href="#scene-mystery"          class="nav-dot active"  data-title="The Mystery"></a>
+    <a href="#scene-guess"            class="nav-dot"         data-title="Guess Who?"></a>
+    <a href="#scene-childhood-reveal" class="nav-dot"         data-title="Memories"></a>
+    <a href="#scene-sister-reveal"    class="nav-dot"         data-title="Sister Reveal"></a>
+    <a href="#scene-thali-ritual"     class="nav-dot"         data-title="Thali Prep"></a>
+    <a href="#scene-tilak-ritual"     class="nav-dot"         data-title="Tilak"></a>
+    <a href="#scene-sweet-ritual"     class="nav-dot"         data-title="Sweet"></a>
+    <a href="#scene-rakhi"            class="nav-dot"         data-title="Tie Rakhi"></a>
+    <a href="#scene-secret-lock"      class="nav-dot"         data-title="Secret Gift"></a>
+    <a href="#scene-roast"            class="nav-dot"         data-title="Roasts"></a>
+    <a href="#scene-ending"           class="nav-dot"         data-title="Forever"></a>
+  </nav>
+
+  <!-- MAIN SCROLL-SNAP STORY CONTAINER -->
+  <main id="story-app">
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SCENE 1 — MYSTERIOUS OPENING
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="scene-mystery" class="scene-section">
+      <div class="container" style="text-align:center">
+        <div class="envelope-intro-box animate-on-scroll scale-in">
+          <div class="envelope-icon">💌</div>
+          <h1 id="mystery-title" class="section-title" style="font-size:clamp(1.6rem,3.5vw,2.6rem)"></h1>
+          <p id="mystery-subtitle" class="section-subtitle" style="margin-bottom:28px"></p>
+          <button id="btn-curiosity-promise" class="btn-begin" data-next-scene="scene-guess"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SCENE 2 — GUESS QUIZ
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="scene-guess" class="scene-section">
+      <div class="container">
+        <div class="section-tag" style="text-align:center;display:block">🕵️ Scene 02</div>
+        <h2 id="guess-heading" class="section-title"></h2>
+
+        <div id="quiz-hints-grid" class="quiz-hints-grid animate-on-scroll fade-up"></div>
+        <p id="guess-question" class="section-subtitle" style="margin-top:20px"></p>
+        <div id="quiz-options-container" class="quiz-options-container animate-on-scroll scale-in"></div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SCENE 3 — CHILDHOOD UNBLUR
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="scene-childhood-reveal" class="scene-section">
+      <div class="container" style="text-align:center">
+        <div class="section-tag" style="display:block">🧒 Scene 03</div>
+        <h2 id="childhood-heading" class="section-title"></h2>
+        <p id="childhood-subtitle" class="section-subtitle"></p>
+
+        <div class="unblur-wrapper animate-on-scroll scale-in">
+          <img id="unblur-img" class="unblur-img" src="" alt="Childhood Memory Photo">
+        </div>
+
+        <button id="btn-unblur-memory" class="btn-begin"></button>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SCENE 4 — SISTER REVEAL
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="scene-sister-reveal" class="scene-section">
+      <div class="container" style="text-align:center">
+        <div class="section-tag" style="display:block">🥹 Major Reveal</div>
+        <h2 id="sister-heading" class="section-title"></h2>
+        <p id="sister-subheading" class="section-subtitle" style="font-family:var(--font-script);font-size:clamp(1.4rem,3vw,2rem);color:var(--saffron)"></p>
+
+        <div class="sister-avatar-frame animate-on-scroll scale-in">
+          <img id="sister-photo" src="" alt="Sister Photo">
+        </div>
+
+        <p id="sister-message" class="section-subtitle" style="font-size:clamp(1rem,2vw,1.25rem);color:var(--text-main);max-width:680px;font-weight:500;margin-bottom:28px"></p>
+        <button id="btn-sister-next" class="btn-begin" data-next-scene="scene-thali-ritual">Let's Begin the Ceremony 🎉</button>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SCENE 5 — INTERACTIVE THALI RITUAL
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="scene-thali-ritual" class="scene-section">
+      <div class="container">
+        <div class="section-tag" style="text-align:center;display:block">🪔 Scene 05</div>
+        <h2 id="thali-heading" class="section-title"></h2>
+        <p id="thali-instruction" class="section-subtitle"></p>
+
+        <div class="thali-container">
+          <div class="thali-tray animate-on-scroll scale-in">
+            <div class="thali-tray-slot"></div>
+            <div class="thali-tray-slot"></div>
+            <div class="thali-tray-slot"></div>
+            <div class="thali-tray-slot"></div>
+            <div class="thali-tray-slot"></div>
+          </div>
+          <div id="thali-inventory" class="thali-inventory animate-on-scroll fade-left"></div>
+        </div>
+
+        <div style="text-align:center;margin-top:24px">
+          <button id="btn-thali-next" class="btn-begin" data-next-scene="scene-tilak-ritual" style="display:none">
+            Thali Ready! Continue → 🔴
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SCENE 6 — VIRTUAL TILAK
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="scene-tilak-ritual" class="scene-section">
+      <div class="container" style="text-align:center">
+        <div class="section-tag" style="display:block;color:var(--saffron)">🔴 Scene 06</div>
+        <h2 id="tilak-title" class="section-title"></h2>
+        <p id="tilak-subtitle" class="section-subtitle"></p>
+
+        <div id="tilak-frame-wrapper" class="tilak-brother-frame animate-on-scroll scale-in">
+          <img id="tilak-brother-img" src="assets/images/brother_no_tilak.webp" alt="Brother Portrait">
+          <div id="tilak-shine-overlay" class="tilak-shine-overlay"></div>
+        </div>
+
+        <div style="margin-top:24px;display:flex;flex-direction:column;align-items:center;gap:12px">
+          <button id="btn-apply-tilak" class="btn-begin"></button>
+          <button id="btn-tilak-next" class="btn-begin" data-next-scene="scene-sweet-ritual" style="display:none">
+            Now for the Sweet! Continue 🍬
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SCENE 7 — FEED SWEET
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="scene-sweet-ritual" class="scene-section">
+      <div class="container" style="text-align:center">
+        <div class="section-tag" style="display:block">🍬 Scene 07</div>
+        <h2 id="sweet-title" class="section-title"></h2>
+        <p id="sweet-subtitle" class="section-subtitle"></p>
+
+        <div id="sweet-frame-wrapper" class="sweet-ritual-frame animate-on-scroll scale-in">
+          <img id="sweet-ritual-img" src="assets/images/sweet_waiting.webp" alt="Feed Sweet Ceremony">
+          <div class="sweet-glow-overlay"></div>
+        </div>
+
+        <div style="margin-top:24px;display:flex;flex-direction:column;align-items:center;gap:12px">
+          <button id="btn-feed-sweet" class="btn-begin"></button>
+          <button id="btn-sweet-next" class="btn-begin" data-next-scene="scene-rakhi" style="display:none">
+            The Main Moment awaits! 🧵
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SCENE 8 — THE RAKHI MOMENT
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="scene-rakhi" class="scene-section" style="position:relative">
+      <canvas id="fireworks-canvas" class="fireworks-canvas"></canvas>
+
+      <div class="container" style="text-align:center;position:relative;z-index:5">
+        <div class="section-tag" style="display:block">🧵 Scene 08 — The Main Climax</div>
+        <h2 id="rakhi-title" class="section-title"></h2>
+        <p id="rakhi-subtitle" class="section-subtitle"></p>
+
+        <div class="rakhi-stage">
+          <div id="rakhi-video-container" class="rakhi-video-container animate-on-scroll scale-in">
+            <video id="rakhi-tying-video" class="rakhi-video-player" playsinline loop muted poster="assets/images/hero_rakhi.webp">
+              <source src="assets/videos/rakhi_tying.mp4" type="video/mp4">
+            </video>
+            <div id="rakhi-icon" class="rakhi-central-icon">
+              <img src="assets/images/hero_rakhi.webp" alt="Sacred Rakhi">
+            </div>
+            <div class="rakhi-glow-overlay"></div>
+          </div>
+
+          <div style="margin-top:20px">
+            <button id="btn-tie-rakhi" class="btn-tie-rakhi">Tie the Rakhi 🧵</button>
+          </div>
+
+          <div id="rakhi-tied-banner" class="rakhi-tied-banner">
+            <div id="rakhi-climax-quote" class="tied-message"></div>
+
+            <div style="margin-top:24px">
+              <h3 style="font-family:var(--font-heading);color:var(--golden);margin-bottom:12px;font-size:clamp(1rem,2vw,1.3rem)">Tap for Sister's Blessings ✨</h3>
+              <div id="blessing-bubbles-grid" class="blessing-bubbles-grid"></div>
+            </div>
+
+            <div style="margin-top:28px">
+              <button id="btn-rakhi-next" class="btn-begin" data-next-scene="scene-secret-lock">
+                One Last Surprise 🎁
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SCENE 9 — SECRET PASSWORD LOCK
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="scene-secret-lock" class="scene-section">
+      <div class="container" style="text-align:center">
+        <div class="section-tag" style="display:block;color:var(--golden)">🔐 Scene 09</div>
+        <h2 id="lock-heading" class="section-title"></h2>
+        <p id="lock-subtitle" class="section-subtitle"></p>
+
+        <div id="passcode-box" class="passcode-box animate-on-scroll scale-in">
+          <div class="lock-icon-art">
+            <img id="lock-art" src="assets/images/gift_box.webp" alt="Locked Gift Box">
+          </div>
+          <input type="text" id="passcode-input" class="passcode-input" placeholder="Enter Secret Code..." autocomplete="off">
+          <button id="btn-unlock-gift" class="btn-begin" style="width:100%;justify-content:center">Unlock My Secret Gift 🔓</button>
+          <p id="lock-hint" style="margin-top:14px;font-size:0.82rem;color:var(--golden);opacity:0.8"></p>
+        </div>
+
+        <div style="margin-top:24px">
+          <button id="btn-lock-roast-next" class="btn-begin" data-next-scene="scene-roast">
+            Skip to Sister's Roasts 😂
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SCENE 10 — SISTER'S ROAST CARDS
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="scene-roast" class="scene-section">
+      <div class="container">
+        <div class="section-tag" style="text-align:center;display:block">😂 Scene 10</div>
+        <h2 class="section-title">Sister's Secret Roasts</h2>
+        <p class="section-subtitle">Before you leave, your sister wants to remind you of a few universal truths!</p>
+
+        <div id="roast-grid" class="roast-grid"></div>
+
+        <div style="text-align:center;margin-top:32px">
+          <button id="btn-roast-next" class="btn-begin" data-next-scene="scene-ending">
+            The Final Message 💌
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SCENE 11 — NIGHT SKY ENDING
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="scene-ending" class="scene-section">
+      <div class="container" style="text-align:center">
+        <div id="ending-quote-box" class="ending-quote-box animate-on-scroll fade-up"></div>
+
+        <div class="ending-wish-card animate-on-scroll scale-in">
+          <div id="ending-main-title" class="ending-main-title"></div>
+          <div id="ending-sub-title" class="ending-sub-title"></div>
+          <p style="margin-top:18px;font-size:1rem;color:var(--golden)">Forever &amp; Always 🌸</p>
+        </div>
+
+        <footer class="site-footer">Made with ❤️ for Raksha Bandhan</footer>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- LETTER PAPER MODAL -->
+  <div id="letter-modal" class="letter-paper-modal">
+    <div class="letter-paper">
+      <button id="close-letter-btn" class="close-letter-btn">&times;</button>
+      <div id="letter-paper-content"></div>
+    </div>
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script src="config.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/interactions.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeviceStudio - Instagram Reels & Showcase Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===========================
+           GLOBAL RESET & ROOT THEMES
+        =========================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-base: #0c0b12;
+            --accent-purple: #8b5cf6;
+            --accent-pink: #ec4899;
+            --accent-cyan: #06b6d4;
+            --accent-amber: #f59e0b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-glass: rgba(255, 255, 255, 0.12);
+            --border-active: rgba(139, 92, 246, 0.6);
+            --card-glass: rgba(18, 18, 28, 0.78);
+            --font-display: 'Outfit', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+
+            /* Default Aesthetic Theme: Pastel Aurora Glow */
+            --glow-1: rgba(139, 92, 246, 0.35);
+            --glow-2: rgba(236, 72, 153, 0.32);
+            --glow-3: rgba(6, 182, 212, 0.22);
+            --glow-4: rgba(245, 158, 11, 0.15);
+        }
+
+        /* THEME 1: PASTEL LOVELY / ROSE VELVET */
+        body[data-theme="lovely-rose"] {
+            --bg-base: #110914;
+            --glow-1: rgba(244, 114, 182, 0.45);
+            --glow-2: rgba(251, 113, 133, 0.4);
+            --glow-3: rgba(192, 132, 252, 0.35);
+            --glow-4: rgba(253, 186, 116, 0.25);
+        }
+
+        /* THEME 2: CYBER AURORA / TECH DREAM */
+        body[data-theme="cyber-aurora"] {
+            --bg-base: #060913;
+            --glow-1: rgba(99, 102, 241, 0.42);
+            --glow-2: rgba(168, 85, 247, 0.38);
+            --glow-3: rgba(20, 184, 166, 0.32);
+            --glow-4: rgba(59, 130, 246, 0.25);
+        }
+
+        /* THEME 3: SUNSET BLISS / GOLDEN HOUR */
+        body[data-theme="sunset-bliss"] {
+            --bg-base: #130909;
+            --glow-1: rgba(239, 68, 68, 0.4);
+            --glow-2: rgba(249, 115, 22, 0.42);
+            --glow-3: rgba(234, 179, 8, 0.3);
+            --glow-4: rgba(217, 70, 239, 0.28);
+        }
+
+        /* THEME 4: MIDNIGHT OBSIDIAN / LUXURY STUDIO */
+        body[data-theme="midnight-lux"] {
+            --bg-base: #050508;
+            --glow-1: rgba(255, 255, 255, 0.1);
+            --glow-2: rgba(148, 163, 184, 0.15);
+            --glow-3: rgba(51, 65, 85, 0.35);
+            --glow-4: rgba(212, 175, 55, 0.15);
+        }
+
+        /* THEME 5: EMERALD SERENITY */
+        body[data-theme="emerald-aura"] {
+            --bg-base: #05120e;
+            --glow-1: rgba(16, 185, 129, 0.38);
+            --glow-2: rgba(5, 150, 105, 0.35);
+            --glow-3: rgba(56, 189, 248, 0.25);
+            --glow-4: rgba(167, 243, 208, 0.2);
+        }
+
+        /* THEME 6: CANDY DREAM / COTTON LAVENDER */
+        body[data-theme="candy-dream"] {
+            --bg-base: #0d081a;
+            --glow-1: rgba(168, 85, 247, 0.45);
+            --glow-2: rgba(244, 63, 94, 0.4);
+            --glow-3: rgba(59, 130, 246, 0.35);
+            --glow-4: rgba(253, 224, 71, 0.25);
+        }
+
+        /* ===========================
+           BODY & ANIMATED BACKGROUND
+        =========================== */
+        body {
+            min-height: 100vh;
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            user-select: none;
+            transition: background-color 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        /* AESTHETIC LIVING LIQUID BACKGROUND */
+        .ambient-canvas {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .ambient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.85;
+            transition: background 1.5s ease;
+            mix-blend-mode: screen;
+            will-change: transform;
+        }
+
+        .orb-1 {
+            width: 55vw;
+            height: 55vw;
+            top: -15%;
+            left: -10%;
+            background: var(--glow-1);
+            animation: orbFloat1 22s infinite alternate ease-in-out;
+        }
+
+        .orb-2 {
+            width: 50vw;
+            height: 50vw;
+            bottom: -15%;
+            right: -10%;
+            background: var(--glow-2);
+            animation: orbFloat2 26s infinite alternate ease-in-out;
+        }
+
+        .orb-3 {
+            width: 40vw;
+            height: 40vw;
+            top: 25%;
+            right: 15%;
+            background: var(--glow-3);
+            animation: orbFloat3 20s infinite alternate ease-in-out;
+        }
+
+        .orb-4 {
+            width: 35vw;
+            height: 35vw;
+            bottom: 20%;
+            left: 20%;
+            background: var(--glow-4);
+            animation: orbFloat4 24s infinite alternate ease-in-out;
+        }
+
+        @keyframes orbFloat1 {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(12%, 18%) scale(1.15) rotate(45deg); }
+            100% { transform: translate(5%, 10%) scale(0.95) rotate(-30deg); }
+        }
+
+        @keyframes orbFloat2 {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-14%, -16%) scale(1.2) rotate(-40deg); }
+            100% { transform: translate(-8%, -6%) scale(1) rotate(20deg); }
+        }
+
+        @keyframes orbFloat3 {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-20%, 15%) scale(1.1); }
+            100% { transform: translate(10%, -10%) scale(0.9); }
+        }
+
+        @keyframes orbFloat4 {
+            0% { transform: translate(0, 0) scale(0.95); }
+            50% { transform: translate(18%, -15%) scale(1.25); }
+            100% { transform: translate(-10%, 12%) scale(1); }
+        }
+
+        /* AESTHETIC NOISE GRAIN TEXTURE */
+        .ambient-noise {
+            position: fixed;
+            inset: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+            background-size: 32px 32px;
+            opacity: 0.35;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* ===========================
+           TOP CONTROL BAR (HEADER)
+        =========================== */
+        .top-navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            padding: 12px 24px;
+            background: rgba(14, 14, 22, 0.75);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid var(--border-glass);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.45);
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+
+        /* REELS STUDIO FULLSCREEN MODE */
+        body.reels-mode .top-navbar,
+        body.reels-mode .preset-bar {
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+            position: absolute;
+        }
+
+        body.reels-mode .preview-stage {
+            padding: 0;
+            height: 100vh;
+        }
+
+        /* FLOATING EXIT REELS BUTTON */
+        .exit-reels-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 2500;
+            display: none;
+            align-items: center;
+            gap: 8px;
+            background: rgba(22, 22, 34, 0.85);
+            backdrop-filter: blur(16px);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-family: var(--font-display);
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+            transition: all 0.25s;
+        }
+
+        body.reels-mode .exit-reels-btn {
+            display: flex;
+        }
+
+        .exit-reels-btn:hover {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(236, 72, 153, 0.4);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .brand-icon {
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 18px rgba(236, 72, 153, 0.5);
+            animation: pulseGlow 4s infinite alternate ease-in-out;
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 14px rgba(139, 92, 246, 0.4); }
+            100% { box-shadow: 0 0 22px rgba(236, 72, 153, 0.7); }
+        }
+
+        .brand-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        .brand-text h1 {
+            font-family: var(--font-display);
+            font-size: 1.12rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(90deg, #ffffff, #f1e4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-text span {
+            font-size: 0.68rem;
+            color: #ec4899;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        /* URL INPUT FORM */
+        .url-box-container {
+            flex: 1;
+            max-width: 440px;
+            min-width: 240px;
+        }
+
+        .url-form {
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: rgba(22, 22, 34, 0.85);
+            border: 1px solid var(--border-glass);
+            border-radius: 14px;
+            padding: 4px 6px 4px 12px;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.4);
+        }
+
+        .url-form:focus-within {
+            border-color: var(--border-active);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3), inset 0 2px 4px rgba(0,0,0,0.4);
+            background: rgba(28, 28, 44, 0.95);
+        }
+
+        .url-icon {
+            display: flex;
+            align-items: center;
+            color: var(--text-secondary);
+            margin-right: 8px;
+        }
+
+        .url-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #fff;
+            font-family: var(--font-body);
+            font-size: 0.88rem;
+            padding: 6px 0;
+            user-select: auto;
+        }
+
+        .url-input::placeholder {
+            color: #727288;
+        }
+
+        .clear-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 4px 6px;
+            display: none;
+            font-size: 13px;
+            border-radius: 50%;
+        }
+
+        .clear-btn:hover {
+            color: #fff;
+        }
+
+        .load-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 7px 14px;
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 0.84rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 14px rgba(236, 72, 153, 0.35);
+        }
+
+        .load-btn:hover {
+            transform: translateY(-1px);
+            filter: brightness(1.1);
+            box-shadow: 0 6px 18px rgba(236, 72, 153, 0.5);
+        }
+
+        /* CONTROLS RIGHT */
+        .controls-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* DEVICE SWITCHER */
+        .device-switcher {
+            display: flex;
+            background: rgba(22, 22, 34, 0.85);
+            padding: 4px;
+            border-radius: 12px;
+            border: 1px solid var(--border-glass);
+            gap: 4px;
+        }
+
+        .device-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 9px;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 0.82rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .device-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        .device-btn:hover {
+            color: #fff;
+        }
+
+        .device-btn.active {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.4), rgba(236, 72, 153, 0.3));
+            color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+        }
+
+        /* AESTHETIC THEME PICKER DROPDOWN / CHIPS */
+        .theme-selector-container {
+            position: relative;
+        }
+
+        .theme-picker-btn {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 7px 13px;
+            background: rgba(28, 28, 42, 0.85);
+            border: 1px solid var(--border-glass);
+            border-radius: 11px;
+            color: #f1f1f9;
+            font-family: var(--font-display);
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .theme-picker-btn:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(36, 36, 56, 0.95);
+            transform: translateY(-1px);
+        }
+
+        .theme-color-dots {
+            display: flex;
+            gap: 3px;
+        }
+
+        .dot-color {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        /* THEME MENU POPUP */
+        .theme-menu {
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
+            background: rgba(20, 20, 32, 0.95);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 10px;
+            width: 220px;
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+            z-index: 1200;
+            animation: fadeInMenu 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .theme-menu.active {
+            display: flex;
+        }
+
+        @keyframes fadeInMenu {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .theme-menu-title {
+            font-size: 0.72rem;
+            color: var(--text-secondary);
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: 4px 8px 2px;
+        }
+
+        .theme-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 10px;
+            border-radius: 10px;
+            border: none;
+            background: transparent;
+            color: #e5e5f5;
+            font-family: var(--font-body);
+            font-size: 0.82rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+        }
+
+        .theme-option:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+        }
+
+        .theme-option.active {
+            background: rgba(139, 92, 246, 0.25);
+            color: #fff;
+            border: 1px solid rgba(139, 92, 246, 0.4);
+            font-weight: 600;
+        }
+
+        .theme-swatch {
+            width: 22px;
+            height: 14px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* AUTO CYCLE TOGGLE INSIDE MENU */
+        .auto-cycle-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 10px;
+            margin-top: 4px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 0.8rem;
+            color: #ec4899;
+            font-weight: 600;
+        }
+
+        /* REELS RECORD / STUDIO BUTTON */
+        .reels-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #f43f5e, #ec4899, #a855f7);
+            color: #fff;
+            border: none;
+            border-radius: 11px;
+            padding: 7px 14px;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 0.82rem;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(244, 63, 94, 0.4);
+            transition: all 0.25s ease;
+        }
+
+        .reels-btn:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 6px 22px rgba(244, 63, 94, 0.6);
+            filter: brightness(1.1);
+        }
+
+        .reels-btn svg {
+            width: 15px;
+            height: 15px;
+            fill: currentColor;
+        }
+
+        /* ACTION ICON BUTTONS */
+        .action-icon-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(22, 22, 34, 0.85);
+            border: 1px solid var(--border-glass);
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .action-icon-btn:hover {
+            color: #fff;
+            background: rgba(36, 36, 54, 0.95);
+            border-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-1px);
+        }
+
+        .action-icon-btn.active-float {
+            color: #38bdf8;
+            border-color: rgba(56, 189, 248, 0.4);
+            background: rgba(56, 189, 248, 0.12);
+        }
+
+        .action-icon-btn svg {
+            width: 17px;
+            height: 17px;
+            fill: currentColor;
+        }
+
+        /* TOOLTIP */
+        .action-icon-btn::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: -32px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #191926;
+            color: #e2e8f0;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s, transform 0.2s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            z-index: 100;
+        }
+
+        .action-icon-btn:hover::after {
+            opacity: 1;
+            transform: translateX(-50%) translateY(2px);
+        }
+
+        /* PRESET BAR */
+        .preset-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 8px 16px;
+            background: rgba(14, 14, 22, 0.4);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            font-size: 0.76rem;
+            color: var(--text-secondary);
+            z-index: 10;
+            position: relative;
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+
+        .preset-badge {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #d1d5db;
+            padding: 3px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .preset-badge:hover {
+            background: rgba(236, 72, 153, 0.2);
+            border-color: #ec4899;
+            color: #fff;
+        }
+
+        /* ===========================
+           PREVIEW STAGE
+        =========================== */
+        .preview-stage {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 20px 50px;
+            position: relative;
+            z-index: 5;
+            perspective: 1400px;
+            transition: padding 0.5s ease;
+        }
+
+        /* LOADING PROGRESS LINE */
+        .loading-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #ec4899, #8b5cf6, #06b6d4, #f59e0b);
+            opacity: 0;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease, opacity 0.3s;
+            z-index: 999;
+        }
+
+        .loading-line.active {
+            opacity: 1;
+            animation: loadAnim 1.6s infinite ease-in-out;
+        }
+
+        @keyframes loadAnim {
+            0% { transform: scaleX(0.1) translateX(0); }
+            50% { transform: scaleX(0.7) translateX(30%); }
+            100% { transform: scaleX(0.1) translateX(100%); }
+        }
+
+        /* ===========================
+           DEVICE WRAPPER & MOTION
+        =========================== */
+        .device-wrapper {
+            position: relative;
+            transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.4s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* SUBTLE AESTHETIC REELS FLOAT */
+        .device-wrapper.floating {
+            animation: floatMotion 5.5s ease-in-out infinite;
+        }
+
+        @keyframes floatMotion {
+            0% { transform: translateY(0) rotate(-1.5deg); }
+            50% { transform: translateY(-18px) rotate(1.5deg); }
+            100% { transform: translateY(0) rotate(-1.5deg); }
+        }
+
+        /* REELS GLOW UNDER THE PHONE/LAPTOP */
+        .device-wrapper::after {
+            content: '';
+            position: absolute;
+            width: 90%;
+            height: 90%;
+            border-radius: 60px;
+            background: radial-gradient(circle, var(--glow-1) 0%, transparent 70%);
+            filter: blur(50px);
+            z-index: -1;
+            opacity: 0.6;
+            transition: background 1.5s ease;
+        }
+
+        /* ===========================
+           1. MOBILE MOCKUP
+        =========================== */
+        .phone-frame {
+            position: relative;
+            width: 360px;
+            height: 740px;
+            padding: 12px;
+            border-radius: 54px;
+            background: linear-gradient(135deg, #44444c, #131317, #4e4e58);
+            box-shadow:
+                0 45px 100px rgba(0, 0, 0, 0.8),
+                0 15px 35px rgba(0, 0, 0, 0.55),
+                inset 0 0 3px rgba(255, 255, 255, 0.45),
+                0 0 40px rgba(236, 72, 153, 0.2);
+            display: block;
+            transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .phone-frame .phone-screen {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #ffffff;
+            border-radius: 44px;
+            position: relative;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .phone-frame .phone-screen iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+            background: #fff;
+        }
+
+        /* DYNAMIC ISLAND */
+        .dynamic-island {
+            position: absolute;
+            top: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 34px;
+            border-radius: 25px;
+            background: #000;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 16px;
+            box-shadow: inset 0 0 4px rgba(255, 255, 255, 0.15), 0 3px 10px rgba(0,0,0,0.6);
+        }
+
+        .island-sensor {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #14141c;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .island-camera {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #191929;
+            box-shadow: 0 0 5px rgba(120, 140, 255, 0.7);
+            border: 1px solid rgba(130, 150, 255, 0.3);
+        }
+
+        /* SIDE BUTTONS */
+        .phone-frame .volume-up,
+        .phone-frame .volume-down,
+        .phone-frame .power-button {
+            position: absolute;
+            background: linear-gradient(to bottom, #444, #18181a, #444);
+            border-radius: 5px;
+        }
+
+        .phone-frame .volume-up {
+            width: 5px;
+            height: 55px;
+            left: -5px;
+            top: 150px;
+        }
+
+        .phone-frame .volume-down {
+            width: 5px;
+            height: 55px;
+            left: -5px;
+            top: 220px;
+        }
+
+        .phone-frame .power-button {
+            width: 5px;
+            height: 90px;
+            right: -5px;
+            top: 190px;
+        }
+
+        /* ===========================
+           2. LAPTOP MOCKUP
+        =========================== */
+        .laptop-frame {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            position: relative;
+        }
+
+        .laptop-screen-bezel {
+            position: relative;
+            width: 920px;
+            height: 575px;
+            background: linear-gradient(135deg, #2f2f36, #141418, #34343d);
+            border-radius: 20px 20px 4px 4px;
+            padding: 16px 16px 20px 16px;
+            box-shadow:
+                0 45px 100px rgba(0, 0, 0, 0.85),
+                0 10px 30px rgba(0, 0, 0, 0.55),
+                inset 0 0 2px rgba(255, 255, 255, 0.4),
+                0 0 50px rgba(139, 92, 246, 0.2);
+        }
+
+        .laptop-webcam {
+            position: absolute;
+            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .webcam-lens {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #0f0f16;
+            box-shadow: 0 0 3px rgba(80, 100, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .webcam-led {
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            background: #22c55e;
+            opacity: 0.9;
+            box-shadow: 0 0 6px #22c55e;
+        }
+
+        .laptop-display {
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #ffffff;
+            position: relative;
+            box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .laptop-display iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+            background: #fff;
+        }
+
+        .laptop-base {
+            position: relative;
+            width: 1060px;
+            height: 18px;
+            background: linear-gradient(to bottom, #d8d8e4, #a8a8b6, #787886);
+            border-radius: 0 0 16px 16px;
+            box-shadow:
+                0 25px 45px rgba(0, 0, 0, 0.65),
+                inset 0 1px 1px rgba(255, 255, 255, 0.8);
+        }
+
+        .laptop-indent {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140px;
+            height: 6px;
+            background: #44444e;
+            border-radius: 0 0 8px 8px;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.6);
+        }
+
+        .laptop-shadow {
+            width: 980px;
+            height: 16px;
+            background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.6), transparent 70%);
+            margin-top: 2px;
+        }
+
+        /* MODE TOGGLES */
+        .mode-mobile .phone-frame { display: block; }
+        .mode-mobile .laptop-frame { display: none; }
+        .mode-laptop .phone-frame { display: none; }
+        .mode-laptop .laptop-frame { display: flex; }
+
+        /* TOAST BANNER */
+        .toast-banner {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: rgba(24, 24, 36, 0.95);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 12px;
+            padding: 12px 20px;
+            color: #f8fafc;
+            font-size: 0.84rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            opacity: 0;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 2000;
+        }
+
+        .toast-banner.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        .toast-banner svg {
+            width: 20px;
+            height: 20px;
+            fill: #f59e0b;
+            flex-shrink: 0;
+        }
+
+        .toast-banner a {
+            color: #38bdf8;
+            text-decoration: underline;
+            cursor: pointer;
+            margin-left: 6px;
+        }
+
+        .toast-close {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 16px;
+            cursor: pointer;
+            padding: 2px 6px;
+        }
+
+        .toast-close:hover { color: #fff; }
+
+        /* RESPONSIVE */
+        @media (max-width: 1100px) {
+            .laptop-screen-bezel { width: 760px; height: 475px; }
+            .laptop-base { width: 860px; }
+            .laptop-shadow { width: 800px; }
+        }
+
+        @media (max-width: 820px) {
+            .laptop-screen-bezel { width: 92vw; height: 58vw; padding: 10px; }
+            .laptop-base { width: 98vw; height: 14px; }
+            .laptop-shadow { width: 90vw; }
+        }
+
+        @media (max-width: 720px) {
+            .top-navbar { padding: 10px 14px; }
+            .url-box-container { order: 3; width: 100%; max-width: 100%; }
+        }
+
+        @media (max-width: 480px) {
+            .phone-frame {
+                width: 310px;
+                height: 640px;
+                border-radius: 46px;
+                padding: 10px;
+            }
+            .phone-frame .phone-screen { border-radius: 36px; }
+            .dynamic-island { width: 105px; height: 28px; top: 14px; }
+        }
+    </style>
+</head>
+
+<body data-theme="lovely-rose">
+
+    <!-- AESTHETIC LIVING LIQUID BACKGROUND FOR REELS -->
+    <div class="ambient-canvas">
+        <div class="ambient-orb orb-1"></div>
+        <div class="ambient-orb orb-2"></div>
+        <div class="ambient-orb orb-3"></div>
+        <div class="ambient-orb orb-4"></div>
+    </div>
+    <div class="ambient-noise"></div>
+
+    <!-- FLOATING EXIT BUTTON FOR REELS STUDIO MODE -->
+    <button class="exit-reels-btn" onclick="exitReelsMode()" title="Exit Reels Mode (Esc)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+        </svg>
+        <span>Exit Studio Mode (Esc)</span>
+    </button>
+
+    <!-- TOP NAVBAR -->
+    <header class="top-navbar">
+        <!-- BRAND -->
+        <div class="brand" onclick="loadUrl('https://nesiify-preview.netlify.app/')" title="Reset to Home">
+            <div class="brand-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+            </div>
+            <div class="brand-text">
+                <h1>DeviceStudio</h1>
+                <span>Aesthetic Reels & Preview</span>
+            </div>
+        </div>
+
+        <!-- URL INPUT FORM -->
+        <div class="url-box-container">
+            <form id="urlForm" class="url-form">
+                <div class="url-icon">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                    </svg>
+                </div>
+                <input
+                    type="text"
+                    id="urlInput"
+                    class="url-input"
+                    placeholder="Enter website URL..."
+                    value="https://nesiify-preview.netlify.app/"
+                    autocomplete="off"
+                    spellcheck="false"
+                >
+                <button type="button" id="clearBtn" class="clear-btn" title="Clear">✕</button>
+                <button type="submit" class="load-btn" title="Load website">
+                    <span>Load</span>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-8.29-1.42 1.42L16.86 11H5v2z"/>
+                    </svg>
+                </button>
+            </form>
+        </div>
+
+        <!-- CONTROLS RIGHT -->
+        <div class="controls-right">
+            <!-- REELS STUDIO RECORD BUTTON -->
+            <button class="reels-btn" onclick="enterReelsMode()" title="Clean Fullscreen for Instagram Reels Video Recording">
+                <svg viewBox="0 0 24 24">
+                    <path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/>
+                </svg>
+                <span>Reels Mode</span>
+            </button>
+
+            <!-- AESTHETIC BACKGROUND THEME PICKER -->
+            <div class="theme-selector-container">
+                <button id="themePickerBtn" class="theme-picker-btn" onclick="toggleThemeMenu()">
+                    <div class="theme-color-dots">
+                        <span class="dot-color" style="background:#f472b6;"></span>
+                        <span class="dot-color" style="background:#c084fc;"></span>
+                        <span class="dot-color" style="background:#38bdf8;"></span>
+                    </div>
+                    <span>Theme</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
+                </button>
+
+                <!-- THEME MENU -->
+                <div id="themeMenu" class="theme-menu">
+                    <div class="theme-menu-title">Lovely Backgrounds</div>
+                    <button class="theme-option active" onclick="setTheme('lovely-rose', this)">
+                        <span>🌸 Lovely Rose</span>
+                        <div class="theme-swatch" style="background: linear-gradient(135deg, #f472b6, #c084fc);"></div>
+                    </button>
+                    <button class="theme-option" onclick="setTheme('candy-dream', this)">
+                        <span>🍬 Candy Dream</span>
+                        <div class="theme-swatch" style="background: linear-gradient(135deg, #a855f7, #f43f5e);"></div>
+                    </button>
+                    <button class="theme-option" onclick="setTheme('cyber-aurora', this)">
+                        <span>🌌 Cyber Aurora</span>
+                        <div class="theme-swatch" style="background: linear-gradient(135deg, #6366f1, #14b8a6);"></div>
+                    </button>
+                    <button class="theme-option" onclick="setTheme('sunset-bliss', this)">
+                        <span>🌅 Sunset Bliss</span>
+                        <div class="theme-swatch" style="background: linear-gradient(135deg, #f97316, #ef4444);"></div>
+                    </button>
+                    <button class="theme-option" onclick="setTheme('emerald-aura', this)">
+                        <span>🌿 Emerald Aura</span>
+                        <div class="theme-swatch" style="background: linear-gradient(135deg, #10b981, #38bdf8);"></div>
+                    </button>
+                    <button class="theme-option" onclick="setTheme('midnight-lux', this)">
+                        <span>🖤 Midnight Lux</span>
+                        <div class="theme-swatch" style="background: linear-gradient(135deg, #1e293b, #d4af37);"></div>
+                    </button>
+
+                    <!-- Auto background shift -->
+                    <div class="auto-cycle-row">
+                        <span>✨ Auto Color Shift</span>
+                        <input type="checkbox" id="autoCycleCheckbox" onchange="toggleAutoCycle(this.checked)" style="cursor:pointer; accent-color: #ec4899;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- DEVICE SWITCHER -->
+            <div class="device-switcher">
+                <button id="mobileBtn" class="device-btn active" onclick="switchDevice('mobile')" title="Mobile Phone Preview">
+                    <svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
+                    <span>Mobile</span>
+                </button>
+                <button id="laptopBtn" class="device-btn" onclick="switchDevice('laptop')" title="Laptop Preview">
+                    <svg viewBox="0 0 24 24"><path d="M20 18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/></svg>
+                    <span>Laptop</span>
+                </button>
+            </div>
+
+            <!-- Reload -->
+            <button id="refreshBtn" class="action-icon-btn" data-tooltip="Reload Website" onclick="reloadPreview()">
+                <svg viewBox="0 0 24 24"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+            </button>
+
+            <!-- Float Animation Toggle -->
+            <button id="floatToggleBtn" class="action-icon-btn active-float" data-tooltip="Floating Animation" onclick="toggleFloating()">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+            </button>
+
+            <!-- Open in New Tab -->
+            <button id="externalBtn" class="action-icon-btn" data-tooltip="Open in New Tab" onclick="openExternal()">
+                <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- PRESETS BAR -->
+    <div class="preset-bar">
+        <span>Aesthetic Presets:</span>
+        <button type="button" class="preset-badge" onclick="loadUrl('https://nesiify-preview.netlify.app/')">Nesiify Preview</button>
+        <button type="button" class="preset-badge" onclick="loadUrl('https://en.wikipedia.org/wiki/Special:Random')">Wikipedia Random</button>
+        <button type="button" class="preset-badge" onclick="loadUrl('https://example.com')">Example.com</button>
+    </div>
+
+    <!-- PREVIEW STAGE -->
+    <main class="preview-stage">
+        <div id="loadingLine" class="loading-line"></div>
+
+        <div id="deviceWrapper" class="device-wrapper mode-mobile floating">
+
+            <!-- MOBILE PHONE MOCKUP -->
+            <div class="phone-frame">
+                <div class="volume-up"></div>
+                <div class="volume-down"></div>
+                <div class="power-button"></div>
+
+                <div class="phone-screen">
+                    <div class="dynamic-island">
+                        <div class="island-sensor"></div>
+                        <div class="island-camera"></div>
+                    </div>
+
+                    <iframe
+                        id="mobileIframe"
+                        src="https://nesiify-preview.netlify.app/"
+                        title="Mobile Preview"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                    ></iframe>
+                </div>
+            </div>
+
+            <!-- LAPTOP MOCKUP -->
+            <div class="laptop-frame">
+                <div class="laptop-screen-bezel">
+                    <div class="laptop-webcam">
+                        <div class="webcam-lens"></div>
+                        <div class="webcam-led"></div>
+                    </div>
+
+                    <div class="laptop-display">
+                        <iframe
+                            id="laptopIframe"
+                            src="https://nesiify-preview.netlify.app/"
+                            title="Laptop Preview"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                        ></iframe>
+                    </div>
+                </div>
+
+                <div class="laptop-base">
+                    <div class="laptop-indent"></div>
+                </div>
+                <div class="laptop-shadow"></div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toastBanner" class="toast-banner">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+        <span id="toastMsg">Website loaded. If preview appears blank, the site blocks iframe embedding.</span>
+        <a id="toastLink" href="#" target="_blank" rel="noopener">Open in Tab</a>
+        <button class="toast-close" onclick="hideToast()">✕</button>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        const urlForm = document.getElementById('urlForm');
+        const urlInput = document.getElementById('urlInput');
+        const clearBtn = document.getElementById('clearBtn');
+        const mobileBtn = document.getElementById('mobileBtn');
+        const laptopBtn = document.getElementById('laptopBtn');
+        const deviceWrapper = document.getElementById('deviceWrapper');
+        const floatToggleBtn = document.getElementById('floatToggleBtn');
+        const loadingLine = document.getElementById('loadingLine');
+        const mobileIframe = document.getElementById('mobileIframe');
+        const laptopIframe = document.getElementById('laptopIframe');
+        const toastBanner = document.getElementById('toastBanner');
+        const toastLink = document.getElementById('toastLink');
+        const themeMenu = document.getElementById('themeMenu');
+
+        let currentDevice = 'mobile';
+        let isFloating = true;
+        let currentUrl = urlInput.value.trim();
+        let autoCycleInterval = null;
+
+        // 1. URL FORM
+        urlForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            let rawUrl = urlInput.value.trim();
+            if (!rawUrl) return;
+
+            if (!/^https?:\/\//i.test(rawUrl)) {
+                rawUrl = 'https://' + rawUrl;
+                urlInput.value = rawUrl;
+            }
+
+            loadUrl(rawUrl);
+        });
+
+        urlInput.addEventListener('input', function () {
+            clearBtn.style.display = this.value ? 'block' : 'none';
+        });
+
+        clearBtn.addEventListener('click', function () {
+            urlInput.value = '';
+            clearBtn.style.display = 'none';
+            urlInput.focus();
+        });
+
+        // 2. DYNAMIC URL LOADER
+        function loadUrl(url) {
+            currentUrl = url;
+            urlInput.value = url;
+            clearBtn.style.display = 'block';
+
+            loadingLine.classList.add('active');
+
+            if (currentDevice === 'mobile') {
+                mobileIframe.src = url;
+            } else {
+                laptopIframe.src = url;
+            }
+
+            setTimeout(() => {
+                if (currentDevice === 'mobile') {
+                    if (laptopIframe.src !== url) laptopIframe.src = url;
+                } else {
+                    if (mobileIframe.src !== url) mobileIframe.src = url;
+                }
+            }, 300);
+
+            checkEmbedSecurity(url);
+        }
+
+        function onIframeLoaded() {
+            loadingLine.classList.remove('active');
+        }
+
+        mobileIframe.addEventListener('load', onIframeLoaded);
+        laptopIframe.addEventListener('load', onIframeLoaded);
+
+        // 3. DEVICE SWITCHER
+        function switchDevice(mode) {
+            currentDevice = mode;
+            if (mode === 'mobile') {
+                deviceWrapper.classList.remove('mode-laptop');
+                deviceWrapper.classList.add('mode-mobile');
+                mobileBtn.classList.add('active');
+                laptopBtn.classList.remove('active');
+            } else {
+                deviceWrapper.classList.remove('mode-mobile');
+                deviceWrapper.classList.add('mode-laptop');
+                laptopBtn.classList.add('active');
+                mobileBtn.classList.remove('active');
+            }
+        }
+
+        // 4. AESTHETIC THEME PICKER & LIVING BACKGROUNDS
+        const themesList = ['lovely-rose', 'candy-dream', 'cyber-aurora', 'sunset-bliss', 'emerald-aura', 'midnight-lux'];
+        let currentThemeIndex = 0;
+
+        function toggleThemeMenu() {
+            themeMenu.classList.toggle('active');
+        }
+
+        // Close menu on outside click
+        document.addEventListener('click', function (e) {
+            if (!e.target.closest('.theme-selector-container')) {
+                themeMenu.classList.remove('active');
+            }
+        });
+
+        function setTheme(themeName, btnElement) {
+            document.body.setAttribute('data-theme', themeName);
+            document.querySelectorAll('.theme-option').forEach(el => el.classList.remove('active'));
+            if (btnElement) {
+                btnElement.classList.add('active');
+            } else {
+                const targetBtn = Array.from(document.querySelectorAll('.theme-option')).find(el => el.getAttribute('onclick').includes(themeName));
+                if (targetBtn) targetBtn.classList.add('active');
+            }
+            themeMenu.classList.remove('active');
+        }
+
+        // AUTO CYCLE BACKGROUND FOR REELS
+        function toggleAutoCycle(enabled) {
+            if (enabled) {
+                autoCycleInterval = setInterval(() => {
+                    currentThemeIndex = (currentThemeIndex + 1) % themesList.length;
+                    setTheme(themesList[currentThemeIndex]);
+                }, 7000);
+            } else {
+                if (autoCycleInterval) clearInterval(autoCycleInterval);
+            }
+        }
+
+        // 5. REELS / STUDIO CLEAN RECORDING MODE
+        function enterReelsMode() {
+            document.body.classList.add('reels-mode');
+            themeMenu.classList.remove('active');
+        }
+
+        function exitReelsMode() {
+            document.body.classList.remove('reels-mode');
+        }
+
+        // Esc key to exit Reels mode
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                exitReelsMode();
+            }
+        });
+
+        // 6. UTILITIES
+        function reloadPreview() {
+            loadingLine.classList.add('active');
+            const targetIframe = currentDevice === 'mobile' ? mobileIframe : laptopIframe;
+            const src = targetIframe.src;
+            targetIframe.src = '';
+            setTimeout(() => { targetIframe.src = src; }, 100);
+        }
+
+        function toggleFloating() {
+            isFloating = !isFloating;
+            if (isFloating) {
+                deviceWrapper.classList.add('floating');
+                floatToggleBtn.classList.add('active-float');
+            } else {
+                deviceWrapper.classList.remove('floating');
+                floatToggleBtn.classList.remove('active-float');
+            }
+        }
+
+        function openExternal() {
+            const url = urlInput.value.trim() || currentUrl;
+            if (url) window.open(url, '_blank', 'noopener,noreferrer');
+        }
+
+        function checkEmbedSecurity(url) {
+            const blockedDomains = ['google.com', 'youtube.com', 'github.com', 'facebook.com', 'twitter.com', 'x.com', 'instagram.com'];
+            if (blockedDomains.some(domain => url.toLowerCase().includes(domain))) {
+                showToast("Note: This domain blocks embedding via X-Frame-Options. Use 'Open in Tab' to test directly.", url);
+            }
+        }
+
+        function showToast(msg, linkUrl) {
+            document.getElementById('toastMsg').innerText = msg;
+            toastLink.href = linkUrl;
+            toastBanner.classList.add('show');
+            setTimeout(hideToast, 7000);
+        }
+
+        function hideToast() {
+            toastBanner.classList.remove('show');
+        }
+
+        clearBtn.style.display = urlInput.value ? 'block' : 'none';
+    </script>
+</body>
+</html>

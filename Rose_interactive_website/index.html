@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Nesiify | A Magical Surprise Awaits</title>
+  <meta name="description" content="A romantic, cinematic interactive surprise opening experience crafted with love.">
+  <meta name="theme-color" content="#07030e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Google Fonts: Elegant Luxury & Romantic Serifs & Calligraphy -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel+Decorative:wght@700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Dancing+Script:wght@600;700&family=Montserrat:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main id="app" role="main" aria-label="Cinematic Surprise Opening">
+    <!-- Ambient Background Star & Nebula Canvas -->
+    <canvas id="ambient-canvas" aria-hidden="true"></canvas>
+
+    <!-- Top Navigation & Controls -->
+    <header class="top-nav">
+      <div class="brand-badge">
+        <span class="gem">✦</span> NESIIFY
+      </div>
+      <div class="top-controls">
+        <button id="sound-toggle" class="sound-toggle" aria-label="Toggle Sound" title="Toggle Sound">
+          ✨
+        </button>
+      </div>
+    </header>
+
+    <!-- Interactive Bubble Field Layer -->
+    <div id="bubble-field" aria-hidden="true"></div>
+
+    <!-- Canvas for Blooming Botanical Vines & Falling Petals -->
+    <canvas id="flower-canvas" aria-hidden="true"></canvas>
+
+    <!-- Canvas for Tap / Touch Spark Particles -->
+    <canvas id="burst-canvas" aria-hidden="true"></canvas>
+
+    <!-- Canvas for Floating Petal Recipient Name Formation -->
+    <canvas id="petal-name-canvas" aria-hidden="true"></canvas>
+
+    <!-- 1. FULLSCREEN AUTOMATIC CINEMATIC COUNTDOWN (3, 2, 1) -->
+    <section id="countdown-stage" class="stage-layer active" aria-live="polite">
+      <div class="countdown-wrapper">
+        <svg class="countdown-svg-timer" viewBox="0 0 160 160">
+          <circle class="timer-bg-circle" cx="80" cy="80" r="70" />
+          <circle id="timer-progress-circle" class="timer-fg-circle" cx="80" cy="80" r="70" />
+        </svg>
+        <div class="countdown-aura-ring"></div>
+        <div class="countdown-aura-ring outer"></div>
+        <div id="countdown-display" class="countdown-number">3</div>
+      </div>
+      <p id="countdown-subtext" class="countdown-caption">Get ready for something magical...</p>
+    </section>
+
+    <!-- 2. MAIN SURPRISE SHOWCASE (Name, Blooming Flowers & Surprise Button) -->
+    <section id="showcase-stage" class="stage-layer" aria-live="polite">
+      <div class="name-card">
+        <div class="name-sparkle-crest">✦ &nbsp; ✧ &nbsp; ✦</div>
+        <h1 id="recipient-name" class="revealed-name">Ananya</h1>
+        <p id="name-subtitle" class="revealed-subtitle">Every moment is a memory waiting to blossom ✨</p>
+      </div>
+
+      <!-- Action Card: Open Surprise Button -->
+      <div id="action-wrapper" class="surprise-action-card">
+        <button id="open-surprise-btn" class="open-surprise-btn" type="button" aria-label="Open Your Surprise">
+          <span class="btn-text">Open Your Surprise</span>
+          <span class="btn-icon">🎁</span>
+        </button>
+        <p class="open-hint-sub">Tap to enter your celebration ✨</p>
+      </div>
+    </section>
+
+    <!-- 3. BRAND-NEW FULLSCREEN INTERACTIVE EXPERIENCE (Post-'Open Your Surprise') -->
+    <section id="envelope-experience-stage" class="stage-layer envelope-stage-root" aria-live="polite">
+      
+      <!-- Stage 1: 'Wait... 👀' -->
+      <div id="substage-wait" class="substage-panel">
+        <div class="wait-text-glitch">Wait... <span class="eyes-emoji">👀</span></div>
+      </div>
+
+      <!-- Stage 2: Animated Sequential Messages -->
+      <div id="substage-messages" class="substage-panel">
+        <div class="story-message-container">
+          <p id="story-message-text" class="story-message-text"></p>
+          <div class="message-progress-bar">
+            <div id="message-progress-fill" class="progress-fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stage 3: Sealed Envelope Reveal & Letter Card -->
+      <div id="substage-envelope" class="substage-panel">
+        <div class="envelope-presentation-wrap">
+          
+          <!-- Realistic Romantic Sealed Envelope -->
+          <div id="envelope-wrapper" class="envelope-interactive-box" role="button" aria-label="Tap to open envelope">
+            
+            <!-- Envelope Back Wall -->
+            <div class="envelope-back"></div>
+
+            <!-- Letter Card that slides out -->
+            <div id="letter-card" class="letter-card">
+              <div class="letter-inner">
+                <div class="letter-header-crest">✧ &nbsp; ✦ &nbsp; ✧</div>
+                <h2 id="envelope-dynamic-note" class="letter-title">Made especially for you ❤️</h2>
+                <div id="envelope-dynamic-sender" class="letter-sender">From someone who adores you</div>
+                <div class="letter-divider"></div>
+                <p class="letter-teaser">There's more waiting...</p>
+                
+                <button id="continue-stage-btn" class="continue-btn" type="button">
+                  <span>Continue</span>
+                  <span class="continue-arrow">→</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Envelope Pocket (Sides & Bottom fold) -->
+            <div class="envelope-pocket"></div>
+
+            <!-- Envelope Flap with Wax Seal -->
+            <div id="envelope-flap" class="envelope-flap">
+              <div class="flap-triangle"></div>
+              <div id="wax-seal" class="wax-seal">
+                <div class="wax-seal-inner">
+                  <span class="seal-icon">💌</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Interactive Tap Prompt -->
+          <div id="envelope-tap-prompt" class="envelope-tap-hint">
+            <span class="sparkle-star">✦</span>
+            <span class="hint-label">Tap to reveal</span>
+            <span class="sparkle-star">✦</span>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- 4. BRAND-NEW 'FLOATING ROSE GARDEN' FULL-SCREEN INTERACTIVE EXPERIENCE -->
+    <section id="rose-garden-stage" class="stage-layer garden-stage-root" aria-live="polite">
+      <!-- Ambient Bokeh & Petal Canvas -->
+      <canvas id="garden-ambient-canvas" aria-hidden="true"></canvas>
+
+      <!-- Header Prompts -->
+      <div class="garden-header">
+        <h2 id="garden-title" class="garden-title">Some memories are meant to be picked. 🌹</h2>
+        <div class="garden-counter-wrap">
+          <span id="garden-subtitle" class="garden-subtitle">Pick a rose</span>
+          <div class="rose-discovery-dots" id="rose-discovery-dots"></div>
+        </div>
+      </div>
+
+      <!-- Field with Floating Roses -->
+      <div id="floating-roses-field" class="floating-roses-field">
+        <!-- Dynamically rendered floating roses -->
+      </div>
+
+      <!-- Center Bouquet Showcase (Forms gently after all photos discovered) -->
+      <div id="bouquet-showcase" class="bouquet-showcase">
+        <div class="bouquet-arrangement">
+          <!-- Background Ambient Florist Glow -->
+          <div class="bouquet-wrap-back"></div>
+
+          <!-- Florist Parchment Wrapping (Double-Layered Origami Fold) -->
+          <div class="florist-wrap-outer">
+            <div class="wrap-corner-fold left-fold"></div>
+            <div class="wrap-corner-fold right-fold"></div>
+            <div class="wrap-gold-crease"></div>
+          </div>
+          <div class="florist-wrap-inner">
+            <div class="inner-tissue-crease"></div>
+          </div>
+
+          <!-- Botanical Foliage & Fillers (SVG Eucalyptus Branches & Baby's Breath) -->
+          <div class="bouquet-foliage-layer">
+            <svg class="foliage-svg foliage-left" viewBox="0 0 70 100" fill="none">
+              <defs>
+                <linearGradient id="eucGradL" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#86efac"/>
+                  <stop offset="40%" stop-color="#22c55e"/>
+                  <stop offset="100%" stop-color="#14532d"/>
+                </linearGradient>
+              </defs>
+              <path d="M60 95 Q40 50 15 10" stroke="#166534" stroke-width="2.5" stroke-linecap="round"/>
+              <ellipse cx="20" cy="16" rx="14" ry="9" transform="rotate(-30 20 16)" fill="url(#eucGradL)" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.4))"/>
+              <ellipse cx="32" cy="40" rx="15" ry="10" transform="rotate(-25 32 40)" fill="url(#eucGradL)" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.4))"/>
+              <ellipse cx="44" cy="65" rx="16" ry="11" transform="rotate(-20 44 65)" fill="url(#eucGradL)" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.4))"/>
+            </svg>
+
+            <svg class="foliage-svg foliage-right" viewBox="0 0 70 100" fill="none">
+              <defs>
+                <linearGradient id="eucGradR" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#86efac"/>
+                  <stop offset="40%" stop-color="#22c55e"/>
+                  <stop offset="100%" stop-color="#14532d"/>
+                </linearGradient>
+              </defs>
+              <path d="M10 95 Q30 50 55 10" stroke="#166534" stroke-width="2.5" stroke-linecap="round"/>
+              <ellipse cx="50" cy="16" rx="14" ry="9" transform="rotate(30 50 16)" fill="url(#eucGradR)" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.4))"/>
+              <ellipse cx="38" cy="40" rx="15" ry="10" transform="rotate(25 38 40)" fill="url(#eucGradR)" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.4))"/>
+              <ellipse cx="26" cy="65" rx="16" ry="11" transform="rotate(20 26 65)" fill="url(#eucGradR)" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.4))"/>
+            </svg>
+
+            <svg class="foliage-svg baby-breath-left" viewBox="0 0 50 70" fill="none">
+              <path d="M45 65 Q30 35 15 15 M32 40 Q18 30 10 32 M25 25 Q12 15 8 8" stroke="#86efac" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/>
+              <circle cx="15" cy="15" r="3.2" fill="#ffffff" filter="drop-shadow(0 0 3px #ffd166)"/>
+              <circle cx="10" cy="32" r="2.8" fill="#fffdfa"/>
+              <circle cx="8" cy="8" r="3" fill="#ffffff" filter="drop-shadow(0 0 3px #ffd166)"/>
+              <circle cx="28" cy="22" r="2.4" fill="#ffffff"/>
+            </svg>
+
+            <svg class="foliage-svg baby-breath-right" viewBox="0 0 50 70" fill="none">
+              <path d="M5 65 Q20 35 35 15 M18 40 Q32 30 40 32 M25 25 Q38 15 42 8" stroke="#86efac" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/>
+              <circle cx="35" cy="15" r="3.2" fill="#ffffff" filter="drop-shadow(0 0 3px #ffd166)"/>
+              <circle cx="40" cy="32" r="2.8" fill="#fffdfa"/>
+              <circle cx="42" cy="8" r="3" fill="#ffffff" filter="drop-shadow(0 0 3px #ffd166)"/>
+              <circle cx="22" cy="22" r="2.4" fill="#ffffff"/>
+            </svg>
+          </div>
+
+          <!-- Hand-Arranged Clustered Roses Dome -->
+          <div class="bouquet-roses-cluster" id="bouquet-roses-cluster"></div>
+
+          <!-- Gathered Natural Green Stems -->
+          <div class="bouquet-stems-gathered">
+            <div class="stem-strand strand-1"></div>
+            <div class="stem-strand strand-2"></div>
+            <div class="stem-strand strand-3"></div>
+            <div class="stem-strand strand-4"></div>
+            <div class="stem-strand strand-5"></div>
+          </div>
+
+          <!-- Luxury Satin Ribbon Ensemble -->
+          <div class="luxury-ribbon-ensemble">
+            <div class="ribbon-cinch-band"></div>
+            <div class="ribbon-bow-wrap">
+              <div class="ribbon-loop loop-left"></div>
+              <div class="ribbon-knot"></div>
+              <div class="ribbon-loop loop-right"></div>
+              <div class="ribbon-tail tail-left"></div>
+              <div class="ribbon-tail tail-right"></div>
+            </div>
+          </div>
+
+          <!-- Embossed Florist Gift Tag with Initials -->
+          <div class="bouquet-initials-crest florist-gift-tag">
+            <span class="tag-pin">✦</span>
+            <span id="bouquet-initials" class="initials-letter">A</span>
+            <span class="tag-pin">✦</span>
+          </div>
+        </div>
+
+        <p class="bouquet-celebration-text">A bouquet of our cherished moments ✨</p>
+        <button id="take-bouquet-btn" class="take-bouquet-btn" type="button" aria-label="Take Your Bouquet">
+          <span>Take Your Bouquet</span>
+          <span class="bouquet-arrow">→</span>
+        </button>
+      </div>
+
+      <!-- Photo Memory Modal (Revealed when a rose is picked) -->
+      <div id="photo-memory-modal" class="photo-memory-modal" role="dialog" aria-modal="true">
+        <div class="memory-card-box">
+          <button id="close-memory-btn" class="close-memory-btn" aria-label="Close memory">✕</button>
+          <div class="memory-photo-frame">
+            <img id="memory-modal-img" class="memory-modal-img" src="" alt="Memory Photo" />
+            <div id="memory-fallback-placeholder" class="memory-fallback-placeholder">
+              <span class="fallback-icon">💖</span>
+              <span id="fallback-caption-text" class="fallback-text">Unforgettable Moment</span>
+            </div>
+          </div>
+          <p id="memory-modal-caption" class="memory-modal-caption">A moment worth keeping ❤️</p>
+          <div class="memory-dismiss-cue">Tap anywhere to close ✨</div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- 5. BRAND-NEW 'CHOOSE YOUR MOMENT' STAGE -->
+    <section id="choose-moment-stage" class="stage-layer moment-stage-root" aria-live="polite">
+      <!-- Background Ambient Canvas for Stardust & Light Rays -->
+      <canvas id="moment-ambient-canvas" aria-hidden="true"></canvas>
+
+      <!-- Back Navigation to Return to Choices -->
+      <div id="moment-top-bar" class="moment-top-bar">
+        <button id="back-to-choices-btn" class="back-to-choices-btn" type="button">
+          <span>←</span> <span>Choose another moment</span>
+        </button>
+      </div>
+
+      <!-- Main Choices View (Default) -->
+      <div id="choices-overview-panel" class="choices-overview-panel active">
+        <div class="moment-header">
+          <p class="moment-pretitle">This bouquet is yours... but the surprise isn’t over ✨</p>
+          <h2 class="moment-main-title">Choose what you want to discover next</h2>
+        </div>
+
+        <div class="floating-choices-grid">
+          <!-- Choice 1: A Message -->
+          <div class="choice-card" id="choice-message-card" role="button" tabindex="0">
+            <div class="choice-glow-halo"></div>
+            <div class="choice-icon-wrap">
+              <span class="choice-emoji">💌</span>
+            </div>
+            <h3 class="choice-title">A Message</h3>
+            <p class="choice-desc">Words written especially for your heart</p>
+            <span class="choice-tap-cta">Tap to open →</span>
+          </div>
+
+          <!-- Choice 2: A Memory -->
+          <div class="choice-card" id="choice-memory-card" role="button" tabindex="0">
+            <div class="choice-glow-halo"></div>
+            <div class="choice-icon-wrap">
+              <span class="choice-emoji">📸</span>
+            </div>
+            <h3 class="choice-title">A Memory</h3>
+            <p class="choice-desc">Step into the moments that belong to us</p>
+            <span class="choice-tap-cta">Tap to view →</span>
+          </div>
+
+          <!-- Choice 3: A Song -->
+          <div class="choice-card" id="choice-song-card" role="button" tabindex="0">
+            <div class="choice-glow-halo"></div>
+            <div class="choice-icon-wrap">
+              <span class="choice-emoji">🎵</span>
+            </div>
+            <h3 class="choice-title">A Song</h3>
+            <p class="choice-desc">A melody that carries our feelings</p>
+            <span class="choice-tap-cta">Tap to listen →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXPANDED DETAIL VIEW 1: A MESSAGE -->
+      <div id="expanded-message-panel" class="moment-expanded-panel">
+        <div class="moment-detail-card">
+          <p class="detail-pre-label">Someone has something to tell you...</p>
+          
+          <div id="detail-envelope-box" class="detail-envelope-box" role="button" tabindex="0">
+            <div class="detail-envelope-back"></div>
+            
+            <div id="detail-letter-slide" class="detail-letter-slide">
+              <div class="detail-letter-inner">
+                <div class="letter-crest">✦ &nbsp; ✧ &nbsp; ✦</div>
+                <h3 id="detail-recipient-salutation" class="letter-salutation">Dearest Ananya,</h3>
+                <p id="detail-letter-body" class="letter-body-text">
+                  Every single day with you is a gift. Thank you for being my smile, my comfort, and my favorite adventure. I'm so lucky to have you in my life. ❤️
+                </p>
+                <div class="letter-signoff">
+                  <span>With all my love,</span>
+                  <strong id="detail-sender-name">Someone who adores you</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="detail-envelope-pocket"></div>
+            
+            <div id="detail-envelope-flap" class="detail-envelope-flap">
+              <div class="detail-flap-triangle"></div>
+              <div id="detail-wax-seal" class="detail-wax-seal">
+                <span>💌</span>
+              </div>
+            </div>
+          </div>
+
+          <div id="detail-envelope-prompt" class="detail-tap-prompt">
+            <span class="sparkle-star">✦</span>
+            <span>Tap to open</span>
+            <span class="sparkle-star">✦</span>
+          </div>
+
+          <!-- Continue to One Last Surprise Button -->
+          <button id="message-continue-btn" class="moment-continue-surprise-btn" type="button">
+            <span>One last thing awaits...</span>
+            <span class="btn-sparkle">✨</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- EXPANDED DETAIL VIEW 2: A MEMORY (ONE BY ONE TRANSITIONS, NOT GRID) -->
+      <div id="expanded-memory-panel" class="moment-expanded-panel">
+        <div class="cinematic-memory-slider">
+          <div class="memory-slider-header">
+            <h3 class="slider-title">Moments That Belong To You ✨</h3>
+            <p class="slider-counter" id="memory-slider-counter">Memory 1 of 4</p>
+          </div>
+
+          <div class="slider-stage-container">
+            <div class="cinematic-photo-polaroid" id="cinematic-polaroid">
+              <div class="cinematic-img-frame">
+                <img id="slider-current-img" class="slider-img" src="" alt="Cherished Memory Photo" />
+                <div id="slider-fallback" class="slider-fallback">
+                  <span>💖</span>
+                  <p id="slider-fallback-text">Unforgettable Moment</p>
+                </div>
+              </div>
+              <p id="slider-current-caption" class="slider-caption">A moment worth keeping ❤️</p>
+            </div>
+          </div>
+
+          <div class="slider-controls-bar">
+            <button id="slider-prev-btn" class="slider-nav-btn" type="button" aria-label="Previous Memory">←</button>
+            <div class="slider-dots-track" id="slider-dots-track"></div>
+            <button id="slider-next-btn" class="slider-nav-btn" type="button" aria-label="Next Memory">→</button>
+          </div>
+          <p class="slider-hint">Tap anywhere or arrows to advance ✨</p>
+
+          <!-- Continue to One Last Surprise Button -->
+          <button id="memory-continue-btn" class="moment-continue-surprise-btn" type="button">
+            <span>One last thing awaits...</span>
+            <span class="btn-sparkle">✨</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- EXPANDED DETAIL VIEW 3: A SONG -->
+      <div id="expanded-song-panel" class="moment-expanded-panel">
+        <div class="cinematic-song-card">
+          <p class="song-prompt-text">There's a song that reminds me of you...</p>
+          
+          <!-- Animated Vinyl Record Player Visual -->
+          <div class="vinyl-player-visual">
+            <div class="vinyl-record" id="vinyl-record">
+              <div class="vinyl-groove"></div>
+              <div class="vinyl-label">
+                <span class="vinyl-icon">🎵</span>
+              </div>
+            </div>
+            <div class="soundwave-bars-visual" id="soundwave-visual">
+              <span class="bar"></span>
+              <span class="bar"></span>
+              <span class="bar"></span>
+              <span class="bar"></span>
+              <span class="bar"></span>
+            </div>
+          </div>
+
+          <div class="song-info-meta">
+            <h3 id="song-title-display" class="song-title">Kaadhal En Kaviye</h3>
+            <p id="song-subtitle-display" class="song-subtitle">A melody that holds our memories</p>
+          </div>
+
+          <!-- Play / Pause Interaction Button -->
+          <button id="toggle-song-play-btn" class="toggle-song-play-btn" type="button">
+            <span id="song-btn-icon" class="play-icon">▶</span>
+            <span id="song-btn-label" class="play-label">Play Our Song</span>
+          </button>
+
+          <!-- Audio Element for Song -->
+          <audio id="moment-audio-player" preload="auto"></audio>
+
+          <!-- Continue to One Last Surprise Button -->
+          <button id="song-continue-btn" class="moment-continue-surprise-btn" type="button">
+            <span>One last thing awaits...</span>
+            <span class="btn-sparkle">✨</span>
+          </button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- 6. BRAND-NEW 'I LOVE YOU — HEART REVEAL' STAGE -->
+    <section id="heart-reveal-stage" class="stage-layer heart-stage-root" aria-live="polite">
+      <!-- Background Ambient Stardust Canvas -->
+      <canvas id="heart-ambient-canvas" aria-hidden="true"></canvas>
+      <div class="heart-ambient-halo" aria-hidden="true"></div>
+
+      <!-- Intro Line: There's something I've been wanting to say... -->
+      <div id="heart-intro-wrap" class="heart-intro-wrap">
+        <p id="heart-intro-text" class="heart-intro-text">There's something I've been wanting to say...</p>
+      </div>
+
+      <!-- Heart Mathematical Particles Arena -->
+      <div id="heart-particles-container" class="heart-particles-container" aria-hidden="true"></div>
+
+      <!-- Center Reveal Block -->
+      <div id="heart-reveal-block" class="heart-reveal-block">
+        <p id="heart-reveal-subtext" class="heart-reveal-subtext">Some words are worth saying again...</p>
+        <h2 id="heart-reveal-main" class="heart-reveal-main">I LOVE YOU ❤️</h2>
+        <button id="heart-continue-btn" class="heart-continue-btn" type="button" aria-label="Continue to next surprise">
+          <span>Continue</span>
+          <span class="btn-arrow">→</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 7. BRAND-NEW 'ONE LAST SURPRISE' FINAL STAGE -->
+    <section id="final-surprise-stage" class="stage-layer final-stage-root" aria-live="polite">
+      <!-- Background Ambient Stardust & Celebration Canvas -->
+      <canvas id="final-ambient-canvas" aria-hidden="true"></canvas>
+      <div class="final-glow-halo" aria-hidden="true"></div>
+
+      <!-- Step 1: Sequential Dark Cinematic Intro Messages -->
+      <div id="final-intro-container" class="final-intro-container">
+        <p id="final-intro-line-1" class="final-intro-line">You've discovered the memories...</p>
+        <p id="final-intro-line-2" class="final-intro-line">You've heard the song...</p>
+        <p id="final-intro-line-3" class="final-intro-line">You've read the words...</p>
+        <p id="final-intro-line-4" class="final-intro-line final-intro-climax">But I saved one last thing for you. ✨</p>
+      </div>
+
+      <!-- Step 2: Mysterious Glowing 3D Gift Box -->
+      <div id="final-giftbox-container" class="final-giftbox-container">
+        <h2 class="final-box-title">One last surprise...</h2>
+        
+        <div id="final-gift-box" class="final-gift-box" role="button" tabindex="0" aria-label="Tap to open gift box">
+          <div class="gift-box-ambient-halo"></div>
+          
+          <!-- Box Lid Layer with 3D Ribbon & Bow -->
+          <div class="gift-box-lid-wrap" id="gift-box-lid-wrap">
+            <div class="gift-box-lid">
+              <div class="lid-ribbon horizontal"></div>
+              <div class="lid-ribbon vertical"></div>
+              <div class="ribbon-bow" id="ribbon-bow">
+                <div class="bow-loop left"></div>
+                <div class="bow-loop right"></div>
+                <div class="bow-knot"></div>
+                <div class="bow-tail left"></div>
+                <div class="bow-tail right"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Box Base Layer with Interior Golden Light & Ribbons -->
+          <div class="gift-box-base-wrap">
+            <div class="gift-box-interior-beam" id="gift-box-interior-beam"></div>
+            <div class="gift-box-base">
+              <div class="base-ribbon vertical"></div>
+              <div class="base-ribbon horizontal"></div>
+              <div class="box-interior-light-slit"></div>
+            </div>
+            <div class="gift-box-shadow"></div>
+          </div>
+
+          <!-- Burst Particle Container -->
+          <div class="box-burst-particles" id="box-burst-particles"></div>
+        </div>
+
+        <p class="final-box-prompt" id="final-box-prompt">
+          <span class="prompt-star">✦</span>
+          <span>Tap to open</span>
+          <span class="prompt-star">✦</span>
+        </p>
+      </div>
+
+      <!-- Step 3: Mystery Sender Teaser -->
+      <div id="final-teaser-container" class="final-teaser-container">
+        <h2 class="teaser-question">Who do you think this is from? <span class="teaser-eyes">👀</span></h2>
+        <button id="final-reveal-btn" class="final-reveal-btn" type="button" aria-label="Reveal sender">
+          <span>REVEAL</span>
+        </button>
+      </div>
+
+      <!-- Step 4: The Reveal & Celebration — Royal Raja Era Rolled Scroll Letter -->
+      <div id="final-reveal-container" class="final-reveal-container">
+        <!-- Royal Scroll Wrapper -->
+        <div class="royal-scroll-wrapper" id="royal-scroll-wrapper">
+          
+          <!-- Top Roller Rod with Golden Finials -->
+          <div class="scroll-roller scroll-roller-top">
+            <div class="roller-finial left">
+              <div class="finial-sphere"></div>
+              <div class="finial-collar"></div>
+            </div>
+            <div class="roller-rod">
+              <div class="rod-gold-ring ring-left"></div>
+              <div class="rod-cylinder"></div>
+              <div class="rod-gold-ring ring-right"></div>
+            </div>
+            <div class="roller-finial right">
+              <div class="finial-collar"></div>
+              <div class="finial-sphere"></div>
+            </div>
+          </div>
+
+          <!-- Unrolled Royal Red Velvet Parchment Body -->
+          <div class="scroll-parchment-body">
+            <!-- Decorative Gold Pinstripe Margins & Corner Finials -->
+            <div class="parchment-gold-line left"></div>
+            <div class="parchment-gold-line right"></div>
+            <div class="parchment-gold-line top"></div>
+            <div class="parchment-gold-line bottom"></div>
+            <div class="parchment-corner top-left">✦</div>
+            <div class="parchment-corner top-right">✦</div>
+            <div class="parchment-corner bottom-left">✦</div>
+            <div class="parchment-corner bottom-right">✦</div>
+
+            <!-- Royal Letter Inner Content -->
+            <div class="royal-letter-content">
+              <!-- Imperial Crest Header -->
+              <div class="royal-letter-crest">
+                <span class="crest-ornament">👑</span>
+                <div class="crest-divider">
+                  <span class="crest-line"></span>
+                  <span class="crest-gem">✦</span>
+                  <span class="crest-line"></span>
+                </div>
+              </div>
+
+              <!-- From Label & Dynamic Sender Signature -->
+              <div class="sender-reveal-block">
+                <p id="final-from-label" class="final-from-label">From</p>
+                <h2 id="final-sender-name" class="dynamic-sender-signature">Someone who adores you ❤️</h2>
+              </div>
+
+              <!-- Royal Filigree Divider -->
+              <div class="royal-filigree-divider">
+                <span class="filigree-leaf">❧</span>
+                <span class="filigree-gem">♦</span>
+                <span class="filigree-leaf">☙</span>
+              </div>
+
+              <!-- Personalized Final Heartfelt Message -->
+              <div id="final-message-block" class="final-message-block">
+                <p id="final-message-text" class="final-message-text">Made especially for you,<br>with all my love. ❤️</p>
+              </div>
+
+              <!-- Celebration Dedication with Recipient Name -->
+              <div id="final-dedication-block" class="final-dedication-block">
+                <p id="final-dedication-text" class="final-dedication-text">Made especially for you, Ananya ❤️</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Roller Rod with Golden Finials -->
+          <div class="scroll-roller scroll-roller-bottom">
+            <div class="roller-finial left">
+              <div class="finial-sphere"></div>
+              <div class="finial-collar"></div>
+            </div>
+            <div class="roller-rod">
+              <div class="rod-gold-ring ring-left"></div>
+              <div class="rod-cylinder"></div>
+              <div class="rod-gold-ring ring-right"></div>
+            </div>
+            <div class="roller-finial right">
+              <div class="finial-collar"></div>
+              <div class="finial-sphere"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Replay Button -->
+        <button id="replay-surprise-btn" class="replay-surprise-btn" type="button" aria-label="Replay the surprise">
+          <span>Replay the Surprise</span>
+          <span class="replay-icon">↻</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Fullscreen Cinematic Light Portal Transition -->
+    <div id="transition-portal" aria-hidden="true"></div>
+  </main>
+
+  <!-- Configuration and Logic -->
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

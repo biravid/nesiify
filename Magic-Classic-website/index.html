@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>BIRTHDAY Surprise ✨</title>
+  <meta name="description" content="A magical, mobile-friendly page-by-page birthday surprise experience.">
+  <link rel="stylesheet" href="styles.css">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Ambient Background Falling Particles Canvas -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Mobile App Container Shell -->
+  <div class="mobile-app-shell">
+
+    <!-- Floating Audio Toggle Button -->
+    <button class="floating-music-btn" id="top-music-toggle" title="Toggle Music">
+      <i class="fa-solid fa-music"></i>
+    </button>
+
+    <!-- Main Page Viewport Slider -->
+    <main class="pages-viewport" id="pages-viewport">
+
+      <!-- ==========================================================================
+           PAGE 1: SECRET PERSON IS SENT A SURPRISE PAGE
+           ========================================================================== -->
+      <section class="page-screen active" id="page-0">
+        <div class="page-card-container">
+          <div class="surprise-hero-body">
+            <img src="assets/garden_arch.jpg" alt="Garden Archway" class="hero-bg-img">
+            
+            <div class="hero-overlay-content">
+              <div class="glow-heart-badge">
+                <i class="fa-solid fa-heart"></i>
+              </div>
+
+              <div class="surprise-title-block">
+                <h1 class="main-hero-title">
+                  BIRTHDAY
+                  <span class="script-gold">Surprise</span>
+                </h1>
+              </div>
+
+              <p class="top-whisper-text">Hey, someone special sent you a magical surprise ♡</p>
+              <h2 class="gold-script-subheading">Open Your Surprise ♡</h2>
+              <p class="sub-whisper-text">Something beautiful is waiting for you...</p>
+
+              <button class="cta-gold-btn" id="page-0-cta">
+                OPEN YOUR MAGICAL SURPRISE ♡ <i class="fa-solid fa-heart"></i>
+              </button>
+
+              <div class="click-hint-text">
+                <i class="fa-solid fa-computer-mouse"></i> Click anywhere to begin
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           PAGE 2: CUSTOM SONG • LOFI PLAYER UI
+           ========================================================================== -->
+      <section class="page-screen" id="page-1">
+        <div class="page-card-container">
+          <div class="page-content-body music-body">
+            <div class="card-title-header">
+              <h2 class="gold-script-title">A song, just for you ❤️</h2>
+              <p class="card-sub-text">Because every moment with you deserves its own melody.</p>
+            </div>
+
+            <div class="lofi-player-card">
+              <div class="vinyl-disc-wrap">
+                <div class="lofi-vinyl" id="lofi-vinyl">
+                  <img src="assets/vinyl_art.jpg" alt="Album Art">
+                  <div class="vinyl-center-pin"></div>
+                </div>
+              </div>
+
+              <div class="track-info-block">
+                <div class="track-title-text" id="track-title">DayDreams</div>
+                <div class="track-sub-text" id="track-artist">(Lofi Mix)</div>
+                <div class="track-dedication-tag">Made for you ❤️</div>
+              </div>
+
+              <div class="lofi-controls-wrap">
+                <div class="lofi-time-bar">
+                  <span id="curr-time">01:24</span>
+                  <div class="lofi-progress-track" id="lofi-progress-track">
+                    <div class="lofi-progress-fill" id="lofi-progress-fill"></div>
+                  </div>
+                  <span id="total-time">04:23</span>
+                </div>
+
+                <div class="lofi-btn-row">
+                  <button class="lofi-btn" title="Shuffle"><i class="fa-solid fa-shuffle"></i></button>
+                  <button class="lofi-btn" id="lofi-prev-btn" title="Previous"><i class="fa-solid fa-backward-step"></i></button>
+                  <button class="lofi-play-btn" id="main-play-btn" title="Play/Pause"><i class="fa-solid fa-play" id="play-icon"></i></button>
+                  <button class="lofi-btn" id="lofi-next-btn" title="Next"><i class="fa-solid fa-forward-step"></i></button>
+                  <button class="lofi-btn" title="Favorite"><i class="fa-solid fa-heart"></i></button>
+                </div>
+              </div>
+            </div>
+
+            <div class="page-cta-box">
+              <button class="cta-gold-btn" id="page-1-cta">
+                STEP INTO MY HEART 💕 <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           PAGE 3: BALLOON POP UP GAME
+           ========================================================================== -->
+      <section class="page-screen" id="page-2">
+        <div class="page-card-container">
+          <div class="page-content-body balloon-body">
+            <div class="card-title-header flex-header">
+              <h2 class="gold-script-title">Pop the balloons to unlock surprises!</h2>
+              <span class="score-badge">Score <strong id="balloon-score-val">260</strong></span>
+            </div>
+
+            <!-- Interactive 3D Balloons Stage (5 Balloons) -->
+            <div class="balloons-stage" id="balloons-stage">
+              <!-- 5 balloons injected dynamically by JS -->
+            </div>
+
+            <div class="balloon-status-row flex-between">
+              <span class="pops-left-text">Pops Left: <span id="pops-left-count">5</span></span>
+              <button class="reset-btn" id="reset-balloons-btn"><i class="fa-solid fa-rotate-left"></i> Reset Balloons</button>
+            </div>
+
+            <div class="page-cta-box">
+              <button class="cta-gold-btn" id="page-2-cta">
+                A SECRET WHISPER FOR YOU 🌹 <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           PAGE 4: ANIMATED WAX SEALED ENVELOPE MESSAGE
+           ========================================================================== -->
+      <section class="page-screen" id="page-3">
+        <div class="page-card-container">
+          <div class="page-content-body envelope-body">
+            <div class="card-title-header">
+              <h2 class="gold-script-title">A message, sealed with love ❤️</h2>
+              <p class="card-sub-text">This is for your eyes only.</p>
+            </div>
+
+            <div class="wax-envelope-container">
+              <div class="wax-envelope-wrapper" id="wax-envelope-wrapper">
+                <img src="assets/wax_envelope.jpg" alt="Wax Sealed Envelope" class="wax-envelope-img">
+                <div class="wax-seal-stamp" id="wax-seal-stamp" title="Tap to open letter">
+                  <div class="wax-stamp-heart"><i class="fa-solid fa-heart"></i></div>
+                </div>
+              </div>
+
+              <div class="tap-instruction-hint">
+                Tap the envelope to open <i class="fa-solid fa-hand-pointer"></i>
+              </div>
+            </div>
+
+            <div class="page-cta-box">
+              <button class="cta-gold-btn" id="page-3-cta">
+                OUR BEAUTIFUL MOMENTS TOGETHER ♡ <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           PAGE 5: GALLERY OF 5 PHOTOS (VERTICALLY SCROLLED)
+           ========================================================================== -->
+      <section class="page-screen" id="page-4">
+        <div class="page-card-container">
+          <div class="page-content-body gallery-body">
+            <div class="card-title-header">
+              <h2 class="gold-script-title">Our Beautiful Memories ♡</h2>
+              <p class="card-sub-text">5 moments I'll cherish forever</p>
+            </div>
+
+            <!-- Vertical Scrolling Gallery Container -->
+            <div class="gallery-vertical-scroll" id="gallery-vertical-scroll">
+              <!-- 5 Vertically Scrolled Photo Cards injected by JS -->
+            </div>
+
+            <div class="page-cta-box">
+              <button class="cta-gold-btn" id="page-4-cta">
+                MY FOREVER WISH FOR YOU ✨ <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           PAGE 6: FINAL BIRTHDAY WISHES & BLESSINGS
+           ========================================================================== -->
+      <section class="page-screen" id="page-5">
+        <div class="page-card-container">
+          <div class="page-content-body final-wishes-body">
+            
+            <div class="final-wishes-card">
+              <div class="sparkle-gift-badge">
+                <i class="fa-solid fa-gift"></i>
+              </div>
+
+              <div class="card-title-header">
+                <h2 class="gold-script-title" id="final-wish-heading">Wishing You Endless Magic & Joy ✨</h2>
+                <p class="card-sub-text">A special blessing made with all my love</p>
+              </div>
+
+              <div class="wish-quote-box">
+                <i class="fa-solid fa-quote-left quote-icon-left"></i>
+                <p class="final-wish-paragraph" id="final-wish-message">
+                  May your heart always overflow with laughter, your days be brightened by endless warmth, and every single dream you hold come true. Thank you for being the most wonderful part of my life. Happy Birthday! ❤️
+                </p>
+                <i class="fa-solid fa-quote-right quote-icon-right"></i>
+              </div>
+
+              <div class="signature-tag">
+                Made with <i class="fa-solid fa-heart" style="color: var(--primary-pink);"></i> just for you
+              </div>
+            </div>
+
+            <div class="page-cta-box">
+              <button class="cta-gold-btn replay-cta" id="page-5-cta">
+                REPLAY OUR MAGICAL STORY 💕 <i class="fa-solid fa-rotate-left"></i>
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Bottom Navigation Controls Bar -->
+    <footer class="app-bottom-nav">
+      <button class="nav-circle-btn" id="prev-page-btn" title="Previous Page" disabled>
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+
+      <div class="page-dots-indicator" id="dots-container">
+        <span class="step-dot active" data-page="0"></span>
+        <span class="step-dot" data-page="1"></span>
+        <span class="step-dot" data-page="2"></span>
+        <span class="step-dot" data-page="3"></span>
+        <span class="step-dot" data-page="4"></span>
+        <span class="step-dot" data-page="5"></span>
+      </div>
+
+      <button class="nav-circle-btn" id="next-page-btn" title="Next Page">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    </footer>
+
+    <!-- Bottom Quote Footer -->
+    <div class="app-quote-footer">
+      Turn their special day into a magical memory ✨
+    </div>
+
+  </div>
+
+  <!-- ROOT LEVEL MODALS (ROOT BOUNDED FOR PERFECT DESKTOP & MOBILE VIEWPORT CENTERING) -->
+  
+  <!-- UNFOLDED PARCHMENT LETTER MODAL OVERLAY -->
+  <div class="letter-modal-overlay" id="letter-modal-overlay">
+    <div class="parchment-letter-paper">
+      <button class="close-letter-btn" id="close-letter-btn">&times;</button>
+      <div class="letter-stamp-icon"><i class="fa-solid fa-heart"></i></div>
+      <h3 class="letter-heading-text" id="letter-heading">My Dearest Love,</h3>
+      <div class="letter-body-text" id="letter-body">
+        Happy Birthday! Today is a celebration of the wonderful person you are and the infinite joy you bring into my life...
+      </div>
+      <div class="letter-signature-text" id="letter-signature">Forever & Always, <br><span>Yours ♡</span></div>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX MODAL FOR PHOTO GALLERY -->
+  <div class="lightbox-modal" id="lightbox-modal">
+    <div class="lightbox-content">
+      <button class="lightbox-close-btn" id="lightbox-close">&times;</button>
+      <img src="" alt="Enlarged Memory" class="lightbox-img" id="lightbox-img">
+      <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+  </div>
+
+  <!-- BALLOON TOAST SURPRISE NOTIFICATION -->
+  <div class="balloon-toast-modal" id="balloon-toast">
+    <div class="toast-content">
+      <span class="toast-icon">✨</span>
+      <div class="toast-text" id="balloon-toast-text">Surprise Wish Unlocked!</div>
+    </div>
+  </div>
+
+  <!-- Libraries -->
+  <script src="config.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
