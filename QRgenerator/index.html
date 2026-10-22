@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nesiify QR - Professional Free QR Code Generator</title>
+  <meta name="description" content="Generate customizable, high-resolution QR codes instantly with logo overlays, custom frames, preset themes, and vector exports. 100% free and client-side.">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- QRCodeStyling Library CDN -->
+  <script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header class="app-header">
+    <div class="header-container">
+      <a href="#" class="brand-logo" id="brandLogoLink">
+        <div class="brand-icon">N</div>
+        <div class="brand-text">
+          <h1>Nesiify QR</h1>
+        </div>
+        <span class="brand-badge">Client-Side Engine</span>
+      </a>
+
+      <div class="header-actions">
+        <button class="theme-toggle-btn" id="themeToggleBtn" title="Toggle Dark/Light Mode" aria-label="Toggle Theme">
+          <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Layout -->
+  <main class="main-layout">
+    
+    <!-- Controls & Customization Panel (Left Side) -->
+    <div class="controls-column">
+      
+      <!-- Content Input Card -->
+      <section class="glass-card">
+        <h2 class="section-title">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+          1. QR Content & Data Type
+        </h2>
+
+        <!-- Expanded Input Format Type Tabs -->
+        <div class="input-type-nav" id="inputTypeTabs" role="tablist">
+          <button class="tab-btn active" data-type="url" role="tab" aria-selected="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            URL
+          </button>
+          <button class="tab-btn" data-type="text" role="tab" aria-selected="false">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+            Text
+          </button>
+          <button class="tab-btn" data-type="phone" role="tab" aria-selected="false">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            Phone
+          </button>
+          <button class="tab-btn" data-type="email" role="tab" aria-selected="false">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            Email
+          </button>
+          <button class="tab-btn" data-type="whatsapp" role="tab" aria-selected="false">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+            WhatsApp
+          </button>
+          <button class="tab-btn" data-type="wifi" role="tab" aria-selected="false">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>
+            Wi-Fi
+          </button>
+          <button class="tab-btn" data-type="maps" role="tab" aria-selected="false">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            Location
+          </button>
+          <button class="tab-btn" data-type="vcard" role="tab" aria-selected="false">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            vCard Contact
+          </button>
+        </div>
+
+        <!-- URL Input View -->
+        <div class="content-form-pane" id="paneUrl">
+          <div class="input-group">
+            <div class="input-label">
+              <label for="urlInput">Target Web URL</label>
+              <span class="input-counter" id="urlCounter">0 / 500</span>
+            </div>
+            <div class="input-with-action">
+              <input type="url" class="form-control" id="urlInput" placeholder="https://nesiify.com" value="https://nesiify.com">
+              <button class="btn-copy-input" id="btnCopyUrlInput" title="Copy URL">Copy</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Plain Text Input View -->
+        <div class="content-form-pane" id="paneText" style="display: none;">
+          <div class="input-group">
+            <div class="input-label">
+              <label for="textInput">Custom Message or Notes</label>
+              <span class="input-counter" id="textCounter">0 / 1000</span>
+            </div>
+            <textarea class="form-control" id="textInput" placeholder="Type text content to encode..."></textarea>
+          </div>
+        </div>
+
+        <!-- Phone Input View -->
+        <div class="content-form-pane" id="panePhone" style="display: none;">
+          <div class="input-group">
+            <label class="input-label" for="phoneInput">Phone Number (with country code)</label>
+            <input type="tel" class="form-control" id="phoneInput" placeholder="+1234567890">
+          </div>
+        </div>
+
+        <!-- Email Form View -->
+        <div class="content-form-pane" id="paneEmail" style="display: none;">
+          <div class="dynamic-form">
+            <div class="input-group">
+              <label class="input-label" for="emailRecipient">Recipient Email</label>
+              <input type="email" class="form-control" id="emailRecipient" placeholder="contact@nesiify.com">
+            </div>
+            <div class="input-group">
+              <label class="input-label" for="emailSubject">Subject Line</label>
+              <input type="text" class="form-control" id="emailSubject" placeholder="Inquiry from QR">
+            </div>
+            <div class="input-group">
+              <label class="input-label" for="emailBody">Pre-filled Email Body</label>
+              <textarea class="form-control" id="emailBody" placeholder="Message content..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- WhatsApp Form View -->
+        <div class="content-form-pane" id="paneWhatsapp" style="display: none;">
+          <div class="dynamic-form">
+            <div class="input-group">
+              <label class="input-label" for="waPhone">WhatsApp Phone Number</label>
+              <input type="tel" class="form-control" id="waPhone" placeholder="e.g. +14155552671">
+            </div>
+            <div class="input-group">
+              <label class="input-label" for="waMessage">Default Pre-filled Message</label>
+              <textarea class="form-control" id="waMessage" placeholder="Hello! I would like more information..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Wi-Fi Form View -->
+        <div class="content-form-pane" id="paneWifi" style="display: none;">
+          <div class="dynamic-form">
+            <div class="input-group">
+              <label class="input-label" for="wifiSsid">Network SSID (Name)</label>
+              <input type="text" class="form-control" id="wifiSsid" placeholder="e.g. Nesiify_Guest_WiFi">
+            </div>
+            <div class="form-row">
+              <div class="input-group">
+                <label class="input-label" for="wifiPassword">Password</label>
+                <input type="password" class="form-control" id="wifiPassword" placeholder="Wi-Fi Password">
+              </div>
+              <div class="input-group">
+                <label class="input-label" for="wifiEncryption">Security Type</label>
+                <select class="form-control" id="wifiEncryption">
+                  <option value="WPA">WPA / WPA2 / WPA3</option>
+                  <option value="WEP">WEP</option>
+                  <option value="nopass">None (Open Network)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Google Maps Location Pane -->
+        <div class="content-form-pane" id="paneMaps" style="display: none;">
+          <div class="input-group">
+            <label class="input-label" for="mapsQuery">Location Address or Coordinates</label>
+            <input type="text" class="form-control" id="mapsQuery" placeholder="e.g. Times Square, New York or 40.7580,-73.9855">
+          </div>
+        </div>
+
+        <!-- vCard Contact Pane -->
+        <div class="content-form-pane" id="paneVcard" style="display: none;">
+          <div class="dynamic-form">
+            <div class="form-row">
+              <div class="input-group">
+                <label class="input-label" for="vFirstName">First Name</label>
+                <input type="text" class="form-control" id="vFirstName" placeholder="John">
+              </div>
+              <div class="input-group">
+                <label class="input-label" for="vLastName">Last Name</label>
+                <input type="text" class="form-control" id="vLastName" placeholder="Doe">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="input-group">
+                <label class="input-label" for="vOrg">Company / Org</label>
+                <input type="text" class="form-control" id="vOrg" placeholder="Nesiify Inc.">
+              </div>
+              <div class="input-group">
+                <label class="input-label" for="vPhone">Phone</label>
+                <input type="tel" class="form-control" id="vPhone" placeholder="+1234567890">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="input-group">
+                <label class="input-label" for="vEmail">Email</label>
+                <input type="email" class="form-control" id="vEmail" placeholder="john@nesiify.com">
+              </div>
+              <div class="input-group">
+                <label class="input-label" for="vUrl">Website</label>
+                <input type="url" class="form-control" id="vUrl" placeholder="https://nesiify.com">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Design & Branding Customization Card -->
+      <section class="glass-card">
+        <h2 class="section-title">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          2. Design & Branding Customization
+        </h2>
+
+        <div class="custom-accordion">
+          
+          <!-- Accordion 0: Ready-Made Business & Style Presets -->
+          <div class="accordion-item active" id="accPresets">
+            <button class="accordion-header" type="button">
+              <span class="accordion-header-title">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+                Curated Design Presets
+              </span>
+              <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="accordion-body">
+              <div class="preset-cards-grid" id="designPresetsGrid">
+                <button class="preset-card active" data-preset="classic">
+                  <span class="preset-name">Classic</span>
+                  <span class="preset-desc">Black & White</span>
+                </button>
+                <button class="preset-card" data-preset="modern">
+                  <span class="preset-name">Modern</span>
+                  <span class="preset-desc">Nesiify Indigo</span>
+                </button>
+                <button class="preset-card" data-preset="minimal">
+                  <span class="preset-name">Minimal</span>
+                  <span class="preset-desc">Slate & Dots</span>
+                </button>
+                <button class="preset-card" data-preset="luxury">
+                  <span class="preset-name">Luxury</span>
+                  <span class="preset-desc">Gold Obsidian</span>
+                </button>
+                <button class="preset-card" data-preset="birthday">
+                  <span class="preset-name">Birthday</span>
+                  <span class="preset-desc">Vibrant Party</span>
+                </button>
+                <button class="preset-card" data-preset="wedding">
+                  <span class="preset-name">Wedding</span>
+                  <span class="preset-desc">Rose Gold</span>
+                </button>
+                <button class="preset-card" data-preset="business">
+                  <span class="preset-name">Business</span>
+                  <span class="preset-desc">Navy Corporate</span>
+                </button>
+                <button class="preset-card" data-preset="whatsapp">
+                  <span class="preset-name">WhatsApp</span>
+                  <span class="preset-desc">Chat Green</span>
+                </button>
+                <button class="preset-card" data-preset="instagram">
+                  <span class="preset-name">Instagram</span>
+                  <span class="preset-desc">Sunset Magenta</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion 1: Colors -->
+          <div class="accordion-item" id="accColors">
+            <button class="accordion-header" type="button">
+              <span class="accordion-header-title">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
+                Foreground & Background Colors
+              </span>
+              <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            
+            <div class="accordion-body">
+              <div class="color-picker-grid">
+                <div class="color-box">
+                  <span class="input-label">Foreground Color</span>
+                  <div class="color-input-wrapper">
+                    <input type="color" class="color-swatch-input" id="fgColorPicker" value="#0F172A">
+                    <input type="text" class="color-hex-input" id="fgColorHex" value="#0F172A" maxlength="7">
+                  </div>
+                </div>
+
+                <div class="color-box">
+                  <span class="input-label">Background Color</span>
+                  <div class="color-input-wrapper">
+                    <input type="color" class="color-swatch-input" id="bgColorPicker" value="#FFFFFF">
+                    <input type="text" class="color-hex-input" id="bgColorHex" value="#FFFFFF" maxlength="7">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion 2: CTA Frame Banner -->
+          <div class="accordion-item" id="accFrame">
+            <button class="accordion-header" type="button">
+              <span class="accordion-header-title">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M7 7h10v10H7z"></path></svg>
+                Call to Action (CTA) Frame
+              </span>
+              <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+
+            <div class="accordion-body">
+              <div class="input-group">
+                <label class="input-label" for="frameStyleSelect">Frame Layout Style</label>
+                <select class="form-control" id="frameStyleSelect">
+                  <option value="none">No Frame (Clean)</option>
+                  <option value="bottom-badge" selected>Bottom Badge Banner</option>
+                  <option value="top-badge">Top Badge Banner</option>
+                  <option value="full-border">Full Poster Frame</option>
+                </select>
+              </div>
+
+              <div class="input-group">
+                <label class="input-label" for="ctaTextInput">CTA Badge Text</label>
+                <input type="text" class="form-control" id="ctaTextInput" placeholder="SCAN ME" value="SCAN ME">
+              </div>
+
+              <!-- Quick CTA Text Chips -->
+              <div class="presets-label">Quick Text Suggestions</div>
+              <div class="preset-chips" id="ctaQuickChips">
+                <button class="chip-text-btn" data-cta="SCAN ME">SCAN ME</button>
+                <button class="chip-text-btn" data-cta="SCAN TO VISIT">SCAN TO VISIT</button>
+                <button class="chip-text-btn" data-cta="SCAN FOR SURPRISE">SCAN FOR SURPRISE</button>
+                <button class="chip-text-btn" data-cta="CONNECT WITH US">CONNECT WITH US</button>
+                <button class="chip-text-btn" data-cta="GET MENU">GET MENU</button>
+              </div>
+
+              <div class="color-picker-grid" style="margin-top: 1rem;">
+                <div class="color-box">
+                  <span class="input-label">Frame Color</span>
+                  <div class="color-input-wrapper">
+                    <input type="color" class="color-swatch-input" id="frameColorPicker" value="#6366F1">
+                    <input type="text" class="color-hex-input" id="frameColorHex" value="#6366F1" maxlength="7">
+                  </div>
+                </div>
+                <div class="color-box">
+                  <span class="input-label">Frame Text Color</span>
+                  <div class="color-input-wrapper">
+                    <input type="color" class="color-swatch-input" id="frameTextColorPicker" value="#FFFFFF">
+                    <input type="text" class="color-hex-input" id="frameTextColorHex" value="#FFFFFF" maxlength="7">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion 3: Pattern Shapes & Corners -->
+          <div class="accordion-item" id="accShapes">
+            <button class="accordion-header" type="button">
+              <span class="accordion-header-title">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                QR Pattern & Corner Style
+              </span>
+              <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+
+            <div class="accordion-body">
+              <span class="input-label" style="margin-bottom: 0.5rem;">Pattern Dots Style</span>
+              <div class="style-grid" id="dotStyleGrid">
+                <div class="style-option active" data-style="square">
+                  <div class="style-option-icon">■</div>
+                  <span>Square</span>
+                </div>
+                <div class="style-option" data-style="dots">
+                  <div class="style-option-icon">●</div>
+                  <span>Dots</span>
+                </div>
+                <div class="style-option" data-style="rounded">
+                  <div class="style-option-icon">⬟</div>
+                  <span>Rounded</span>
+                </div>
+                <div class="style-option" data-style="extra-rounded">
+                  <div class="style-option-icon">✦</div>
+                  <span>Extra Round</span>
+                </div>
+                <div class="style-option" data-style="classy">
+                  <div class="style-option-icon">◆</div>
+                  <span>Classy</span>
+                </div>
+              </div>
+
+              <span class="input-label" style="margin-bottom: 0.5rem; margin-top: 1rem;">Corner Square Style</span>
+              <div class="style-grid" id="cornerSquareGrid">
+                <div class="style-option active" data-corner="square">
+                  <div class="style-option-icon">▢</div>
+                  <span>Square</span>
+                </div>
+                <div class="style-option" data-corner="extra-rounded">
+                  <div class="style-option-icon">▢</div>
+                  <span>Rounded</span>
+                </div>
+                <div class="style-option" data-corner="dot">
+                  <div class="style-option-icon">◯</div>
+                  <span>Circle</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion 4: Size Presets & Quality -->
+          <div class="accordion-item" id="accSize">
+            <button class="accordion-header" type="button">
+              <span class="accordion-header-title">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>
+                Size Presets & Resolution
+              </span>
+              <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+
+            <div class="accordion-body">
+              <!-- Size Presets Dropdown -->
+              <div class="input-group">
+                <label class="input-label" for="sizePresetSelect">Size Use-Case Preset</label>
+                <select class="form-control" id="sizePresetSelect">
+                  <option value="300" selected>Social Media (300 x 300 px)</option>
+                  <option value="400">WhatsApp & Messaging (400 x 400 px)</option>
+                  <option value="600">Business Card Print (600 x 600 px)</option>
+                  <option value="1000">A5 Document Print (1000 x 1000 px)</option>
+                  <option value="1500">A4 Document Print (1500 x 1500 px)</option>
+                  <option value="2000">High-Res Poster (2000 x 2000 px)</option>
+                  <option value="custom">Custom Dimension Slider</option>
+                </select>
+              </div>
+
+              <!-- Size Slider (Enabled when Custom or adjusted) -->
+              <div class="slider-group" id="customSizeGroup">
+                <div class="slider-header">
+                  <span>Custom Dimension</span>
+                  <span class="slider-value" id="sizeValue">300 x 300 px</span>
+                </div>
+                <input type="range" class="custom-slider" id="sizeSlider" min="150" max="2000" step="25" value="300">
+              </div>
+
+              <!-- Margin Slider -->
+              <div class="slider-group">
+                <div class="slider-header">
+                  <span>Quiet Zone (Margin)</span>
+                  <span class="slider-value" id="marginValue">10 px</span>
+                </div>
+                <input type="range" class="custom-slider" id="marginSlider" min="0" max="40" step="2" value="10">
+              </div>
+
+              <!-- Error Correction Select -->
+              <div class="input-group">
+                <label class="input-label" for="ecLevelSelect">Error Correction Level</label>
+                <select class="form-control" id="ecLevelSelect">
+                  <option value="L">Low (7% recovery)</option>
+                  <option value="M" selected>Medium (15% recovery)</option>
+                  <option value="Q">Quartile (25% recovery)</option>
+                  <option value="H">High (30% recovery - Recommended for Logos)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion 5: Center Logo Upload -->
+          <div class="accordion-item" id="accLogo">
+            <button class="accordion-header" type="button">
+              <span class="accordion-header-title">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                Logo & Icon Overlay
+              </span>
+              <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+
+            <div class="accordion-body">
+              <!-- Upload Dropzone -->
+              <div class="dropzone-container" id="logoDropzone">
+                <input type="file" id="logoFileInput" accept="image/png, image/jpeg, image/svg+xml" style="display: none;">
+                <div class="dropzone-content">
+                  <svg class="dropzone-icon" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                  <div class="dropzone-text">
+                    <strong>Click to upload</strong> or drag & drop logo
+                    <br><span style="font-size: 0.75rem; color: var(--text-muted);">PNG, JPG, SVG (Max 2MB)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Logo Preview Bar -->
+              <div class="logo-preview-wrapper" id="logoPreviewWrapper">
+                <div class="logo-preview-info">
+                  <img src="" alt="Uploaded Logo" class="logo-preview-img" id="logoPreviewImg">
+                  <span class="logo-filename" id="logoFileName">logo.png</span>
+                </div>
+                <button type="button" class="btn-remove-logo" id="btnRemoveLogo">Remove</button>
+              </div>
+
+              <!-- Logo Scale Slider -->
+              <div class="slider-group" style="margin-top: 1rem;">
+                <div class="slider-header">
+                  <span>Logo Scale Size</span>
+                  <span class="slider-value" id="logoScaleValue">0.3</span>
+                </div>
+                <input type="range" class="custom-slider" id="logoScaleSlider" min="0.1" max="0.35" step="0.05" value="0.3">
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Local History Card ("My QR Codes") -->
+      <section class="glass-card">
+        <div class="history-header">
+          <h2 class="section-title" style="margin-bottom: 0;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            My QR Codes History
+          </h2>
+          <button class="btn-clear-history" id="btnClearHistory">Clear All</button>
+        </div>
+        <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 1rem;">
+          Saved locally in your browser storage. Access, duplicate, or re-download anytime.
+        </p>
+
+        <div class="history-list" id="historyListContainer">
+          <div class="history-empty">No saved QR codes yet. Click "Save to My QRs" to store your configurations!</div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Live QR Preview Column (Right Side Sticky) -->
+    <div class="preview-column">
+      <section class="glass-card preview-card">
+        
+        <div class="preview-header-bar">
+          <span class="preview-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"></circle></svg>
+            Live Preview
+          </span>
+          <button class="btn-save-qr" id="btnSaveToHistory" title="Save configuration to local history">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+            Save to My QRs
+          </button>
+        </div>
+
+        <!-- Frame Composite Wrapper -->
+        <div class="qr-frame-wrapper" id="qrFrameWrapper">
+          <div class="cta-badge-banner top-banner" id="topCtaBanner" style="display: none;">SCAN ME</div>
+          <div class="qr-display-container" id="qrCanvasContainer">
+            <div class="qr-spinner" id="qrSpinner">
+              <div class="spinner-icon"></div>
+            </div>
+          </div>
+          <div class="cta-badge-banner bottom-banner" id="bottomCtaBanner">SCAN ME</div>
+        </div>
+
+        <!-- Scannability Meter -->
+        <div class="scannability-card">
+          <span class="scannability-title">Scannability Assessment</span>
+          <span class="scannability-status" id="scannabilityStatus">
+            <span class="status-dot"></span>
+            Optimal Contrast
+          </span>
+        </div>
+
+        <!-- Action Toolbar Buttons Grid -->
+        <div class="action-buttons-grid">
+          <button type="button" class="btn btn-primary btn-full" id="btnGenerate">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            Generate QR Code
+          </button>
+
+          <button type="button" class="btn btn-secondary" id="btnDownloadPng">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            PNG
+          </button>
+
+          <button type="button" class="btn btn-secondary" id="btnDownloadJpg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            JPG
+          </button>
+
+          <button type="button" class="btn btn-secondary" id="btnDownloadSvg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            SVG
+          </button>
+
+          <button type="button" class="btn btn-secondary" id="btnWebShare">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+            Share
+          </button>
+
+          <button type="button" class="btn btn-secondary btn-full" id="btnCopyClipboard">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            Copy Image to Clipboard
+          </button>
+        </div>
+
+        <!-- Reset Button -->
+        <button type="button" class="btn-reset" id="btnResetAll">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+          Reset All Settings to Default
+        </button>
+
+      </section>
+    </div>
+
+  </main>
+
+  <!-- Floating Mobile Quick Bar (Visible on mobile screens < 768px) -->
+  <div class="mobile-quick-bar" id="mobileQuickBar">
+    <button type="button" class="mobile-preview-btn" id="mobileJumpToPreviewBtn" aria-label="Jump to Live Preview">
+      <div class="mobile-mini-qr-thumb" id="mobileMiniQrThumb">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+      </div>
+      <div class="mobile-bar-info">
+        <span class="mobile-bar-title">Live Preview</span>
+        <span class="mobile-bar-sub">Tap to scroll to preview</span>
+      </div>
+    </button>
+    <div class="mobile-bar-actions">
+      <button type="button" class="btn btn-primary mobile-download-btn" id="mobileQuickDownloadBtn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+        Download
+      </button>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <p>Powered by <strong>Nesiify Technology</strong> &bull; Free Client-Side QR Engine &bull; Zero Server Tracking</p>
+  </footer>
+
+  <!-- Application Logic Script -->
+  <script src="script.js"></script>
+</body>
+</html>
