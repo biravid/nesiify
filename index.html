@@ -2,28 +2,1445 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>nesiify gifts</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nesiify Gifts (@nesiify_gifts) — Digital Surprise Websites</title>
+  <meta name="description" content="Personalized digital surprise websites, birthday countdowns, love stories, proposals, and keepsake pages for your loved ones. By @nesiify_gifts.">
+
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================
+       NESIIFY GIFTS — INSTAGRAM LINK IN BIO & SHOWCASE
+       Simple, clean, modern & lightweight CSS
+       ========================================================== */
+    :root {
+      --bg: #0d0c15;
+      --bg-card: rgba(23, 21, 38, 0.75);
+      --bg-card-hover: rgba(33, 30, 54, 0.95);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(236, 72, 153, 0.4);
+      --text: #f5f4fb;
+      --text-muted: #a39eb8;
+      --accent-pink: #ec4899;
+      --accent-purple: #8b5cf6;
+      --accent-gold: #f59e0b;
+      --accent-cyan: #06b6d4;
+      --accent-rose: #f43f5e;
+      --accent-green: #10b981;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+      --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --ig-gradient: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      line-height: 1.5;
+      overflow-x: hidden;
+      position: relative;
+      padding-bottom: 70px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Subtle background ambient glows */
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(120px);
+      z-index: 0;
+      opacity: 0.35;
+    }
+
+    body::before {
+      width: 450px;
+      height: 450px;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: radial-gradient(circle, #8b5cf6 0%, #ec4899 70%, transparent 100%);
+    }
+
+    body::after {
+      width: 380px;
+      height: 380px;
+      bottom: 50px;
+      right: 5%;
+      background: radial-gradient(circle, #06b6d4 0%, #8b5cf6 70%, transparent 100%);
+      opacity: 0.2;
+    }
+
+    .container {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 36px 20px 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ==========================================================
+       SECRET CREATOR / ADMIN MODE RULES
+       Hidden by default. Visible only when body.creator-mode is active.
+       ========================================================== */
+    .creator-only {
+      display: none !important;
+    }
+
+    body.creator-mode .creator-only {
+      display: flex !important;
+    }
+
+    /* Subtle indicator when creator mode is active */
+    body.creator-mode .avatar-ring {
+      box-shadow: 0 0 25px rgba(139, 92, 246, 0.7), 0 0 45px rgba(236, 72, 153, 0.5) !important;
+    }
+
+    .badge-creator {
+      background: rgba(139, 92, 246, 0.2) !important;
+      color: #c084fc !important;
+      border-color: rgba(139, 92, 246, 0.45) !important;
+    }
+
+    .card.creator-only {
+      border: 1px dashed rgba(139, 92, 246, 0.4) !important;
+      background: rgba(28, 22, 48, 0.8) !important;
+    }
+
+    .creator-status-bar {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(139, 92, 246, 0.15);
+      border: 1px solid rgba(139, 92, 246, 0.35);
+      padding: 10px 18px;
+      border-radius: var(--radius-md);
+      margin-bottom: 20px;
+      font-size: 0.85rem;
+      color: #d8b4fe;
+    }
+
+    body.creator-mode .creator-status-bar {
+      display: flex !important;
+    }
+
+    .btn-lock-creator {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .btn-lock-creator:hover {
+      background: rgba(244, 63, 94, 0.3);
+      border-color: rgba(244, 63, 94, 0.5);
+    }
+
+    /* ==========================================================
+       HEADER: INSTAGRAM PROFILE CARD
+       ========================================================== */
+    .profile-card {
+      text-align: center;
+      margin-bottom: 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 104px;
+      height: 104px;
+      margin-bottom: 18px;
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .avatar-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      padding: 3px;
+      background: var(--ig-gradient);
+      box-shadow: 0 10px 30px -8px rgba(220, 39, 67, 0.45);
+      animation: pulseGlow 4s infinite alternate ease-in-out;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .avatar-inner {
+      width: 100%;
+      height: 100%;
+      background: #171524;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 42px;
+    }
+
+    .badge-verified {
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      background: #1d9bf0;
+      color: #fff;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      border: 2px solid var(--bg);
+    }
+
+    .brand-title {
+      font-family: var(--font-display);
+      font-size: 1.85rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .brand-title .brand-gradient {
+      background: linear-gradient(135deg, #fff 40%, #f472b6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .ig-handle {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.92rem;
+      color: #ec4899;
+      text-decoration: none;
+      font-weight: 600;
+      background: rgba(236, 72, 153, 0.12);
+      padding: 4px 14px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+      border: 1px solid rgba(236, 72, 153, 0.25);
+      transition: all 0.25s ease;
+    }
+
+    .ig-handle:hover {
+      background: rgba(236, 72, 153, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(236, 72, 153, 0.25);
+    }
+
+    .bio-text {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      max-width: 480px;
+      margin: 0 auto 22px;
+      line-height: 1.55;
+    }
+
+    /* ACTION BUTTONS ROW */
+    .action-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      width: 100%;
+      max-width: 520px;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-ig {
+      background: var(--ig-gradient);
+      color: #fff;
+      box-shadow: 0 8px 24px -6px rgba(220, 39, 67, 0.4);
+      flex: 1 1 200px;
+    }
+
+    .btn-ig:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px -6px rgba(220, 39, 67, 0.6);
+      filter: brightness(1.08);
+    }
+
+    .btn-dm {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(8px);
+      flex: 1 1 160px;
+    }
+
+    .btn-dm:hover {
+      background: rgba(255, 255, 255, 0.14);
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    /* ==========================================================
+       FEATURED BANNER: DEVICE STUDIO / MOBILE PREVIEW
+       (Class .creator-only keeps it hidden by default)
+       ========================================================== */
+    .featured-banner {
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(236, 72, 153, 0.15) 100%);
+      border: 1px solid rgba(139, 92, 246, 0.35);
+      border-radius: var(--radius-lg);
+      padding: 22px 24px;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      backdrop-filter: blur(12px);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .featured-banner:hover {
+      border-color: rgba(236, 72, 153, 0.6);
+      box-shadow: 0 16px 36px -12px rgba(139, 92, 246, 0.4);
+    }
+
+    .featured-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-grow: 1;
+    }
+
+    .featured-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #8b5cf6, #ec4899);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+      box-shadow: 0 6px 18px rgba(139, 92, 246, 0.35);
+    }
+
+    .featured-info h3 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .featured-tag {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      background: #8b5cf6;
+      color: #fff;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    .featured-info p {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
+    .featured-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .btn-featured-open {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: var(--ig-gradient);
+      color: #fff;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 14px rgba(220, 39, 67, 0.35);
+    }
+
+    .btn-featured-open:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(220, 39, 67, 0.5);
+    }
+
+    .btn-featured-copy {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .btn-featured-copy:hover {
+      background: rgba(255, 255, 255, 0.16);
+      transform: translateY(-2px);
+    }
+
+    /* ==========================================================
+       CONTROLS: SEARCH & CATEGORY FILTERS
+       ========================================================== */
+    .controls-wrapper {
+      margin-bottom: 24px;
+    }
+
+    .search-box {
+      position: relative;
+      margin-bottom: 14px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 14px 18px 14px 44px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      outline: none;
+      backdrop-filter: blur(8px);
+      transition: all 0.25s ease;
+    }
+
+    .search-input:focus {
+      background: rgba(255, 255, 255, 0.07);
+      border-color: var(--accent-purple);
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.25);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 16px;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .filter-pills {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .filter-pills::-webkit-scrollbar {
+      display: none;
+    }
+
+    .pill {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 7px 15px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .pill:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.09);
+    }
+
+    .pill.active {
+      background: var(--text);
+      color: #0d0c15;
+      border-color: var(--text);
+    }
+
+    /* ==========================================================
+       CATALOG GRID & CARDS
+       ========================================================== */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      backdrop-filter: blur(10px);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      background: var(--bg-card-hover);
+      border-color: var(--border-hover);
+      box-shadow: 0 16px 32px -10px rgba(0, 0, 0, 0.6);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: transform 0.25s ease;
+    }
+
+    .card:hover .card-icon {
+      transform: scale(1.08);
+    }
+
+    .badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+    }
+
+    .badge-birthday {
+      background: rgba(236, 72, 153, 0.14);
+      color: #f472b6;
+      border-color: rgba(236, 72, 153, 0.3);
+    }
+
+    .badge-love {
+      background: rgba(244, 63, 94, 0.14);
+      color: #fb7185;
+      border-color: rgba(244, 63, 94, 0.3);
+    }
+
+    .badge-viral {
+      background: rgba(6, 182, 212, 0.14);
+      color: #38bdf8;
+      border-color: rgba(6, 182, 212, 0.3);
+    }
+
+    .badge-tool {
+      background: rgba(245, 158, 11, 0.14);
+      color: #fbbf24;
+      border-color: rgba(245, 158, 11, 0.3);
+    }
+
+    .badge-festival {
+      background: rgba(16, 185, 129, 0.14);
+      color: #34d399;
+      border-color: rgba(16, 185, 129, 0.3);
+    }
+
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      line-height: 1.3;
+      color: #fff;
+    }
+
+    .card-desc {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      line-height: 1.5;
+      margin-bottom: 18px;
+      flex-grow: 1;
+    }
+
+    /* CARD ACTION BUTTONS */
+    .card-footer {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 14px;
+      margin-top: auto;
+    }
+
+    .btn-card {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 9px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+      font-family: var(--font-body);
+    }
+
+    .btn-card-open {
+      flex: 1;
+      background: rgba(236, 72, 153, 0.14);
+      color: #f472b6;
+      border-color: rgba(236, 72, 153, 0.3);
+    }
+
+    .btn-card-open:hover {
+      background: var(--ig-gradient);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 4px 14px rgba(236, 72, 153, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .btn-card-copy {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-muted);
+      border-color: var(--border);
+      flex: 0 0 auto;
+    }
+
+    .btn-card-copy:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: var(--text);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-1px);
+    }
+
+    .btn-card-copy.copied {
+      background: rgba(16, 185, 129, 0.2) !important;
+      color: #34d399 !important;
+      border-color: rgba(16, 185, 129, 0.4) !important;
+    }
+
+    /* EMPTY SEARCH STATE */
+    .empty-state {
+      display: none;
+      text-align: center;
+      padding: 48px 20px;
+      grid-column: 1 / -1;
+      color: var(--text-muted);
+    }
+
+    .empty-state span {
+      font-size: 40px;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    /* ==========================================================
+       TOAST NOTIFICATION FOR COPY LINK & ADMIN MODE
+       ========================================================== */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: rgba(23, 21, 38, 0.95);
+      border: 1px solid rgba(236, 72, 153, 0.5);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 9999;
+      backdrop-filter: blur(12px);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* ==========================================================
+       FOOTER
+       ========================================================== */
+    .footer {
+      text-align: center;
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-logo {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 6px;
+      display: inline-block;
+    }
+
+    .footer-tagline {
+      color: var(--text-muted);
+      font-size: 0.86rem;
+      margin-bottom: 14px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent-pink);
+    }
+
+    .copyright {
+      color: rgba(255, 255, 255, 0.35);
+      font-size: 0.78rem;
+    }
+
+    /* KEYFRAMES */
+    @keyframes pulseGlow {
+      0% {
+        box-shadow: 0 8px 24px -6px rgba(220, 39, 67, 0.4);
+      }
+      100% {
+        box-shadow: 0 12px 36px 0px rgba(139, 92, 246, 0.55);
+      }
+    }
+
+    /* ==========================================================
+       RESPONSIVE ADJUSTMENTS
+       ========================================================== */
+    @media (max-width: 600px) {
+      .container {
+        padding: 24px 16px;
+      }
+
+      .brand-title {
+        font-size: 1.6rem;
+      }
+
+      .bio-text {
+        font-size: 0.9rem;
+      }
+
+      .featured-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 18px;
+      }
+
+      .featured-actions {
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      .btn-featured-open {
+        flex: 1;
+        justify-content: center;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <a href="blue-silver-birthday/index.html">Blue silver birthday</a><br><br>
-    <a href="Pinterest_Pink_Birthday_original/index.html">Pink pinterest birthday </a><br><br>
-    <a href="gokilapurushoth/index.html">GokilaPurushoth Birthday</a><br><br>
-    <a href="Google_search_website/index.html">Google search website</a><br><br>
-    <a href="Magic-Classic-website/index.html">Magic classic website</a><br><br>
-    <a href="Mini-wish-website/index.html">Mini wish website</a><br><br>
-    <a href="Pink-Proposal-website/index.html">Pink proposal website</a><br><br>
-    <a href="PostCardGenerator/index.html">Postcard generator</a><br><br>
-    <a href="QRgenerator/index.html">QR generator</a><br><br>
-    <a href="RakshaBandan/index.html">Raksha bandan</a><br><br>
-    <a href="Red Cream birthday/index.html">Red Cream birthday</a><br><br>
-    <a href="Rose_interactive_website/index.html">Rose interactive website</a><br><br>
-    <a href="violet_cream_birthday/index.html">Violet cream birthday</a><br><br>
-    <a href="mobile-preview.html">Mobile Preview</a><br><br>
 
+  <div class="container">
+
+    <!-- ==========================================
+         PROFILE HEADER: @nesiify_gifts
+         Tap avatar 3 times quickly to unlock Creator Mode
+         ========================================== -->
+    <header class="profile-card">
+      <div class="avatar-wrapper" id="avatarTrigger" title="Tap 3 times for Creator Mode">
+        <div class="avatar-ring">
+          <div class="avatar-inner">
+            🎁
+          </div>
+        </div>
+        <div class="badge-verified" title="Verified Creator">✓</div>
+      </div>
+
+      <h1 class="brand-title">
+        <span class="brand-gradient">Nesiify Gifts</span>
+      </h1>
+
+      <a href="https://www.instagram.com/nesiify_gifts" target="_blank" rel="noopener noreferrer" class="ig-handle">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+        </svg>
+        @nesiify_gifts
+      </a>
+
+      <p class="bio-text">
+        Every moment deserves its own page. Handcrafted digital surprise websites & interactive keepsakes for your loved ones ✨
+      </p>
+
+      <div class="action-buttons">
+        <a href="https://www.instagram.com/nesiify_gifts" target="_blank" rel="noopener noreferrer" class="btn btn-ig">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+          Follow on Instagram
+        </a>
+        <a href="https://ig.me/m/nesiify_gifts" target="_blank" rel="noopener noreferrer" class="btn btn-dm">
+          💬 DM to Order
+        </a>
+      </div>
+    </header>
+
+    <!-- CREATOR MODE ACTIVE STATUS BAR (Only shown when unlocked) -->
+    <div class="creator-status-bar" id="creatorStatusBar">
+      <span>🔓 <strong>Creator Mode Active:</strong> 4 private tools & generators visible.</span>
+      <button type="button" class="btn-lock-creator" id="btnLockCreator">Lock & Hide 🔒</button>
+    </div>
+
+    <!-- ==========================================
+         FEATURED BANNER: DEVICE STUDIO (HIDDEN ITEM 1)
+         Hidden by default with class .creator-only
+         ========================================== -->
+    <div class="featured-banner creator-only">
+      <div class="featured-left">
+        <div class="featured-icon">📲</div>
+        <div class="featured-info">
+          <h3>DeviceStudio Previewer <span class="featured-tag badge-creator">Creator Only 🔒</span></h3>
+          <p>Preview any gift template inside iPhone & Laptop frames — ideal for Instagram reels showcase!</p>
+        </div>
+      </div>
+      <div class="featured-actions">
+        <a href="mobile-preview.html" target="_blank" rel="noopener noreferrer" class="btn-featured-open">
+          Open Studio ↗
+        </a>
+        <button type="button" class="btn-featured-copy js-copy-btn" data-url="mobile-preview.html" title="Copy link to DeviceStudio">
+          📋 Copy Link
+        </button>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         SEARCH & CATEGORY FILTERS
+         ========================================== -->
+    <section class="controls-wrapper">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" class="search-input" placeholder="Search templates (e.g. pink, google, birthday)..." autocomplete="off">
+      </div>
+
+      <div class="filter-pills" id="filterPills">
+        <button class="pill active" data-filter="all">All (10)</button>
+        <button class="pill" data-filter="birthday">🎂 Birthday</button>
+        <button class="pill" data-filter="love">💖 Love & Proposal</button>
+        <button class="pill" data-filter="viral">🪄 Viral & Interactive</button>
+        <button class="pill creator-only" data-filter="tool">🛠️ Tools & Generators</button>
+        <button class="pill" data-filter="festival">🪢 Festivals</button>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         TEMPLATES GRID
+         ========================================== -->
+    <main class="grid" id="templatesGrid">
+
+      <!-- 1. Blue Silver Birthday (PUBLIC) -->
+      <article class="card" data-category="birthday">
+        <div class="card-header">
+          <div class="card-icon">🎂</div>
+          <span class="badge badge-birthday">Birthday</span>
+        </div>
+        <h2 class="card-title">Blue Silver Birthday</h2>
+        <p class="card-desc">Luxury blue & silver aesthetic with interactive countdown, scratch reveal card, and photo memories.</p>
+        <div class="card-footer">
+          <a href="blue-silver-birthday/index.html" target="_blank" rel="noopener noreferrer" class="btn-card btn-card-open">
+            Open Demo ↗
+          </a>
+          <button type="button" class="btn-card btn-card-copy js-copy-btn" data-url="blue-silver-birthday/index.html" title="Copy link">
+            📋 Copy Link
+          </button>
+        </div>
+      </article>
+
+      <!-- 2. Pink Pinterest Birthday (PUBLIC) -->
+      <article class="card" data-category="birthday">
+        <div class="card-header">
+          <div class="card-icon">🎀</div>
+          <span class="badge badge-birthday">Aesthetic</span>
+        </div>
+        <h2 class="card-title">Pink Pinterest Birthday</h2>
+        <p class="card-desc">Pastel pink Pinterest scrapbook mood with cute stickers, polaroid frames, and music player.</p>
+        <div class="card-footer">
+          <a href="Pinterest_Pink_Birthday_original/index.html" target="_blank" rel="noopener noreferrer" class="btn-card btn-card-open">
+            Open Demo ↗
+          </a>
+          <button type="button" class="btn-card btn-card-copy js-copy-btn" data-url="Pinterest_Pink_Birthday_original/index.html" title="Copy link">
+            📋 Copy Link
+          </button>
+        </div>
+      </article>
+
+      <!-- 3. Red Cream Birthday (PUBLIC) -->
+      <article class="card" data-category="birthday">
+        <div class="card-header">
+          <div class="card-icon">✨</div>
+          <span class="badge badge-birthday">Luxury</span>
+        </div>
+        <h2 class="card-title">Red Cream Birthday</h2>
+        <p class="card-desc">Warm red & velvet cream palette featuring cinematic photo reel, unboxing surprises, and love letter.</p>
+        <div class="card-footer">
+          <a href="Red%20Cream%20birthday/index.html" target="_blank" rel="noopener noreferrer" class="btn-card btn-card-open">
+            Open Demo ↗
+          </a>
+          <button type="button" class="btn-card btn-card-copy js-copy-btn" data-url="Red%20Cream%20birthday/index.html" title="Copy link">
+            📋 Copy Link
+          </button>
+        </div>
+      </article>
+
+      <!-- 4. Violet Cream Birthday (PUBLIC) -->
+      <article class="card" data-category="birthday">
+        <div class="card-header">
+          <div class="card-icon">💜</div>
+          <span class="badge badge-birthday">Lavender</span>
+        </div>
+        <h2 class="card-title">Violet Cream Birthday</h2>
+        <p class="card-desc">Dreamy lavender theme with vinyl lofi player, balloon popping reveals, and password-protected notes.</p>
+        <div class="card-footer">
+          <a href="violet_cream_birthday/index.html" target="_blank" rel="noopener noreferrer" class="btn-card btn-card-open">
+            Open Demo ↗
+          </a>
+          <button type="button" class="btn-card btn-card-copy js-copy-btn" data-url="violet_cream_birthday/index.html" title="Copy link">
+            📋 Copy Link
+          </button>
+        </div>
+      </article>
+
+      <!-- 5. Magic Classic Website (PUBLIC) -->
+      <article class="card" data-category="birthday">
+        <div class="card-header">
+          <div class="card-icon">🎉</div>
+          <span class="badge badge-birthday">Classic</span>
+        </div>
+        <h2 class="card-title">Magic Classic Birthday</h2>
+        <p class="card-desc">Festive birthday party experience with confetti bursts, countdown clock, and personalized blessings.</p>
+        <div class="card-footer">
+          <a href="Magic-Classic-website/index.html" target="_blank" rel="noopener noreferrer" class="btn-card btn-card-open">
+            Open Demo ↗
+          </a>
+          <button type="button" class="btn-card btn-card-copy js-copy-btn" data-url="Magic-Classic-website/index.html" title="Copy link">
+            📋 Copy Link
+          </button>
+        </div>
+      </article>
+
+      <!-- 6. Mini Wish Website (PUBLIC) -->
+      <article class="card" data-category="birthday">
+        <div class="card-header">
+          <div class="card-icon">💌</div>
+          <span class="badge badge-birthday">Mini Card</span>
+        </div>
+        <h2 class="card-title">Mini Wish Website</h2>
+        <p class="card-desc">Fast-loading, adorable mini web card with animated birthday cake, candles, and background song.</p>
+        <div class="card-footer">
+          <a href="Mini-wish-website/index.html" target="_blank" rel="noopener noreferrer" class="btn-card btn-card-open">
+            Open Demo ↗
+          </a>
+          <button type="button" class="btn-card btn-card-copy js-copy-btn" data-url="Mini-wish-website/index.html" title="Copy link">
+            📋 Copy Link
+          </button>
+        </div>
+      </article>
+
+      <!-- 7. Google Search Website (PUBLIC) -->
+      <article class="card" data-category="viral">
+        <div class="card-header">
+          <div class="card-icon">🔍</div>
+          <span class="badge badge-viral">Viral Concept</span>
+        </div>
+        <h2 class="card-title">Google Search Website</h2>
+        <p class="card-desc">Viral mock Google Search interface that turns "who is the best person in the world" into an emotional reveal.</p>
+        <div class="card-footer">
+          <a href="Google_search_website/index.html" target="_blank" rel="noopener noreferrer" class="btn-card btn-card-open">
+            Open Demo ↗
+          </a>
+          <button type="button" class="btn-card btn-card-copy js-copy-btn" data-url="Google_search_website/index.html" title="Copy link">
+            📋 Copy Link
+          </button>
+        </div>
+      </article>
+
+      <!-- 8. Pink Proposal Website (PUBLIC) -->
+      <article class="card" data-category="love">
+        <div class="card-header">
+          <div class="card-icon">💍</div>
+          <span class="badge badge-love">Proposal</span>
+        </div>
+        <h2 class="card-title">Pink Proposal Website</h2>
+        <p class="card-desc">Romantic proposal experience with blooming rose animations, heartfelt questions, and interactive "Yes" reveal.</p>
+        <div class="card-footer">
+          <a href="Pink-Proposal-website/index.html" target="_blank" rel="noopener noreferrer" class="btn-card btn-card-open">
+            Open Demo ↗
+          </a>
+          <button type="button" class="btn-card btn-card-copy js-copy-btn" data-url="Pink-Proposal-website/index.html" title="Copy link">
+            📋 Copy Link
+          </button>
+        </div>
+      </article>
+
+      <!-- 9. Rose Interactive Website (PUBLIC) -->
+      <article class="card" data-category="viral">
+        <div class="card-header">
+          <div class="card-icon">🌹</div>
+          <span class="badge badge-viral">Interactive</span>
+        </div>
+        <h2 class="card-title">Rose Interactive Website</h2>
+        <p class="card-desc">Tap-to-bloom interactive digital rose with ambient music and secret message hidden in the petals.</p>
+        <div class="card-footer">
+          <a href="Rose_interactive_website/index.html" target="_blank" rel="noopener noreferrer" class="btn-card btn-card-open">
+            Open Demo ↗
+          </a>
+          <button type="button" class="btn-card btn-card-copy js-copy-btn" data-url="Rose_interactive_website/index.html" title="Copy link">
+            📋 Copy Link
+          </button>
+        </div>
+      </article>
+
+      <!-- 10. Raksha Bandhan (PUBLIC) -->
+      <article class="card" data-category="festival">
+        <div class="card-header">
+          <div class="card-icon">🪢</div>
+          <span class="badge badge-festival">Festival</span>
+        </div>
+        <h2 class="card-title">Raksha Bandhan</h2>
+        <p class="card-desc">Interactive virtual Rakhi ceremony with pooja thali, sister's emotional voice note & memories.</p>
+        <div class="card-footer">
+          <a href="RakshaBandan/index.html" target="_blank" rel="noopener noreferrer" class="btn-card btn-card-open">
+            Open Demo ↗
+          </a>
+          <button type="button" class="btn-card btn-card-copy js-copy-btn" data-url="RakshaBandan/index.html" title="Copy link">
+            📋 Copy Link
+          </button>
+        </div>
+      </article>
+
+      <!-- ========================================================
+           HIDDEN CREATOR ITEMS (Class .creator-only)
+           1. GokilaPurushoth Birthday
+           2. Postcard Generator
+           3. QR Generator
+           ======================================================== -->
+
+      <!-- 11. GokilaPurushoth Birthday (HIDDEN ITEM 2) -->
+      <article class="card creator-only" data-category="love">
+        <div class="card-header">
+          <div class="card-icon">👩‍❤️‍👨</div>
+          <span class="badge badge-creator">Creator Only 🔒</span>
+        </div>
+        <h2 class="card-title">GokilaPurushoth Birthday</h2>
+        <p class="card-desc">Special boyfriend day surprise with custom Google search results, photo spotlight cards, and memory gallery.</p>
+        <div class="card-footer">
+          <a href="gokilapurushoth/index.html" target="_blank" rel="noopener noreferrer" class="btn-card btn-card-open">
+            Open Demo ↗
+          </a>
+          <button type="button" class="btn-card btn-card-copy js-copy-btn" data-url="gokilapurushoth/index.html" title="Copy link">
+            📋 Copy Link
+          </button>
+        </div>
+      </article>
+
+      <!-- 12. Postcard Generator (HIDDEN ITEM 3) -->
+      <article class="card creator-only" data-category="tool">
+        <div class="card-header">
+          <div class="card-icon">✉️</div>
+          <span class="badge badge-creator">Creator Tool 🔒</span>
+        </div>
+        <h2 class="card-title">Postcard Generator</h2>
+        <p class="card-desc">Interactive vintage postcard creation studio — design custom stamps, handwritten notes, and instant share links.</p>
+        <div class="card-footer">
+          <a href="PostCardGenerator/index.html" target="_blank" rel="noopener noreferrer" class="btn-card btn-card-open">
+            Open Studio ↗
+          </a>
+          <button type="button" class="btn-card btn-card-copy js-copy-btn" data-url="PostCardGenerator/index.html" title="Copy link">
+            📋 Copy Link
+          </button>
+        </div>
+      </article>
+
+      <!-- 13. QR Generator (HIDDEN ITEM 4) -->
+      <article class="card creator-only" data-category="tool">
+        <div class="card-header">
+          <div class="card-icon">📱</div>
+          <span class="badge badge-creator">Creator Tool 🔒</span>
+        </div>
+        <h2 class="card-title">QR Generator</h2>
+        <p class="card-desc">Generate beautiful custom QR codes to print inside greeting cards, gift boxes, or secret surprise envelopes.</p>
+        <div class="card-footer">
+          <a href="QRgenerator/index.html" target="_blank" rel="noopener noreferrer" class="btn-card btn-card-open">
+            Open Tool ↗
+          </a>
+          <button type="button" class="btn-card btn-card-copy js-copy-btn" data-url="QRgenerator/index.html" title="Copy link">
+            📋 Copy Link
+          </button>
+        </div>
+      </article>
+
+      <!-- Empty state if no search results -->
+      <div class="empty-state" id="emptyState">
+        <span>🔍</span>
+        <p>No matching templates found. Try searching for "birthday", "pink", or "proposal".</p>
+      </div>
+
+    </main>
+
+    <!-- ==========================================
+         FOOTER
+         ========================================== -->
+    <footer class="footer">
+      <div class="footer-logo">Nesiify Gifts.</div>
+      <p class="footer-tagline">செய்யப்பட்டது அன்புடன் — Handcrafted with love.</p>
+      <div class="footer-links">
+        <a href="https://www.instagram.com/nesiify_gifts" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://ig.me/m/nesiify_gifts" target="_blank" rel="noopener noreferrer">Order via DM</a>
+        <a href="mobile-preview.html" target="_blank" rel="noopener noreferrer" class="creator-only">Device Studio</a>
+      </div>
+      <p class="copyright">© <span id="year"></span> Nesiify Gifts. Every page, kept between the two of you.</p>
+    </footer>
+
+  </div>
+
+  <!-- Toast Notification element -->
+  <div id="toast" class="toast">Link copied to clipboard! 📋✨</div>
+
+  <!-- Client-side filter, search, copy link & SECRET CREATOR MODE script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Dynamic footer year
+      var yearEl = document.getElementById("year");
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      var searchInput = document.getElementById("searchInput");
+      var filterPills = document.querySelectorAll(".filter-pills .pill");
+      var cards = document.querySelectorAll(".grid .card");
+      var emptyState = document.getElementById("emptyState");
+      var toast = document.getElementById("toast");
+      var avatarTrigger = document.getElementById("avatarTrigger");
+      var btnLockCreator = document.getElementById("btnLockCreator");
+      var toastTimer = null;
+
+      var currentFilter = "all";
+      var currentSearch = "";
+
+      // Toast feedback helper
+      function showToast(message) {
+        if (!toast) return;
+        toast.textContent = message || "Link copied! 📋✨";
+        toast.classList.add("show");
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () {
+          toast.classList.remove("show");
+        }, 2500);
+      }
+
+      // ==========================================
+      // SECRET CREATOR MODE LOGIC
+      // ==========================================
+      function updateCountsAndPills() {
+        var isCreator = document.body.classList.contains("creator-mode");
+        var allPill = document.querySelector('.filter-pills .pill[data-filter="all"]');
+        var toolPill = document.querySelector('.filter-pills .pill[data-filter="tool"]');
+
+        var totalPublic = 0;
+        cards.forEach(function (card) {
+          if (!card.classList.contains("creator-only") || isCreator) {
+            totalPublic++;
+          }
+        });
+
+        if (allPill) {
+          allPill.textContent = "All (" + totalPublic + ")";
+        }
+
+        if (toolPill && !isCreator && currentFilter === "tool") {
+          currentFilter = "all";
+          filterPills.forEach(function (p) { p.classList.remove("active"); });
+          if (allPill) allPill.classList.add("active");
+        }
+      }
+
+      function enableCreatorMode(showToastMsg) {
+        document.body.classList.add("creator-mode");
+        localStorage.setItem("nesiify_creator_mode", "true");
+        updateCountsAndPills();
+        filterCards();
+        if (showToastMsg) {
+          showToast("🔓 Creator Mode Unlocked! 4 private tools visible.");
+        }
+      }
+
+      function disableCreatorMode(showToastMsg) {
+        document.body.classList.remove("creator-mode");
+        localStorage.removeItem("nesiify_creator_mode");
+        updateCountsAndPills();
+        filterCards();
+        if (showToastMsg) {
+          showToast("🔒 Creator Mode Locked.");
+        }
+      }
+
+      function toggleCreatorMode() {
+        if (document.body.classList.contains("creator-mode")) {
+          disableCreatorMode(true);
+        } else {
+          enableCreatorMode(true);
+        }
+      }
+
+      // Check on startup: URL query ?admin=true / ?creator=1 / #admin OR saved state
+      var urlParams = new URLSearchParams(window.location.search);
+      var hasAdminParam = urlParams.get("admin") === "true" || urlParams.get("creator") === "1" || window.location.hash === "#admin";
+      var savedCreatorState = localStorage.getItem("nesiify_creator_mode") === "true";
+
+      if (hasAdminParam || savedCreatorState) {
+        enableCreatorMode(false);
+      } else {
+        disableCreatorMode(false);
+      }
+
+      // 3-Tap gesture on Avatar (Gift Box Logo)
+      var tapCount = 0;
+      var tapTimer = null;
+      if (avatarTrigger) {
+        avatarTrigger.addEventListener("click", function (e) {
+          tapCount++;
+          if (tapTimer) clearTimeout(tapTimer);
+
+          if (tapCount >= 3) {
+            tapCount = 0;
+            toggleCreatorMode();
+          } else {
+            tapTimer = setTimeout(function () {
+              tapCount = 0;
+            }, 900);
+          }
+        });
+      }
+
+      // Lock button in Creator status bar
+      if (btnLockCreator) {
+        btnLockCreator.addEventListener("click", function () {
+          disableCreatorMode(true);
+        });
+      }
+
+      // ==========================================
+      // COPY TO CLIPBOARD LOGIC
+      // ==========================================
+      function copyToClipboard(relativeUrl, buttonEl) {
+        var fullUrl = "";
+        try {
+          fullUrl = new URL(relativeUrl, window.location.href).href;
+        } catch (e) {
+          fullUrl = window.location.origin + window.location.pathname.replace(/[^/]*$/, '') + relativeUrl;
+        }
+
+        function onSuccess() {
+          showToast("Link copied! 📋✨");
+          if (buttonEl) {
+            var originalText = buttonEl.innerHTML;
+            buttonEl.classList.add("copied");
+            buttonEl.innerHTML = "Copied! ✓";
+            setTimeout(function () {
+              buttonEl.classList.remove("copied");
+              buttonEl.innerHTML = originalText;
+            }, 1800);
+          }
+        }
+
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(fullUrl).then(onSuccess).catch(function () {
+            fallbackCopy(fullUrl, onSuccess);
+          });
+        } else {
+          fallbackCopy(fullUrl, onSuccess);
+        }
+      }
+
+      function fallbackCopy(text, callback) {
+        var textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-9999px";
+        textArea.style.top = "0";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+          document.execCommand("copy");
+          if (callback) callback();
+        } catch (err) {
+          console.error("Copy failed", err);
+        }
+        document.body.removeChild(textArea);
+      }
+
+      // Attach copy button listeners
+      var copyButtons = document.querySelectorAll(".js-copy-btn");
+      copyButtons.forEach(function (btn) {
+        btn.addEventListener("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          var url = this.getAttribute("data-url");
+          if (url) {
+            copyToClipboard(url, this);
+          }
+        });
+      });
+
+      // ==========================================
+      // FILTER & SEARCH LOGIC
+      // ==========================================
+      function filterCards() {
+        var isCreator = document.body.classList.contains("creator-mode");
+        var visibleCount = 0;
+
+        cards.forEach(function (card) {
+          var isCreatorCard = card.classList.contains("creator-only");
+          if (isCreatorCard && !isCreator) {
+            card.style.display = "none";
+            return;
+          }
+
+          var category = card.getAttribute("data-category");
+          var text = (card.textContent || "").toLowerCase();
+
+          var matchesCategory = currentFilter === "all" || category === currentFilter;
+          var matchesSearch = !currentSearch || text.indexOf(currentSearch) !== -1;
+
+          if (matchesCategory && matchesSearch) {
+            card.style.display = "flex";
+            visibleCount++;
+          } else {
+            card.style.display = "none";
+          }
+        });
+
+        if (emptyState) {
+          emptyState.style.display = visibleCount === 0 ? "block" : "none";
+        }
+      }
+
+      // Filter pill click
+      filterPills.forEach(function (pill) {
+        pill.addEventListener("click", function () {
+          filterPills.forEach(function (p) { p.classList.remove("active"); });
+          this.classList.add("active");
+          currentFilter = this.getAttribute("data-filter");
+          filterCards();
+        });
+      });
+
+      // Search input
+      if (searchInput) {
+        searchInput.addEventListener("input", function () {
+          currentSearch = this.value.trim().toLowerCase();
+          filterCards();
+        });
+      }
+    });
+  </script>
 
 </body>
+
+</html>
 
 </html>
